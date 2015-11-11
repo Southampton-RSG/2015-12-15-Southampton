@@ -1,0 +1,26 @@
+02-defensive:
+
+1.
+assert len(values) > 0 # 'values' passed in is non-empty
+assert result[-1] >= 0 # the most recent result is greater than 0
+assert result[-1] >= result[0] # the last result is greater than first
+
+03-unittesting:
+
+1. See test_running.py
+
+2. 
+asserts in code
+ - give more fine-grained monitoring of behaviour
+ - give developers clear idea of what should be correct behaviour within the program itself
+ - monitors behaviour at run-time
+
+unit tests
+ - treat thing to test as a black box; higher-level monitoring
+ - separate from code, but should be maintained with the code
+ - provides examples of how to invoke the code to do something
+ - monitors behaviour outside of run-time
+
+04-tdd:
+
+1. See something.py

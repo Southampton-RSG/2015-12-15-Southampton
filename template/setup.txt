@@ -1,0 +1,53 @@
+Set up infrastructure for using lesson template
+-----------------------------------------------
+
+1. Copy the contents of this directory into your lesson directory,
+   i.e. into novice/lesson-name
+
+2. Install each of the prerequisites in requirements.txt using easy_install,
+   e.g.
+   $ sudo easy_install pandocfilters
+
+
+Writing your material
+---------------------
+
+1. Modify the index.md and 01-intro.md markdown files, adding your own
+   topic files in the form of nn-topic.md, and linking to the *HTML* versions
+   of those files (i.e. nn-topic.html) from index.md in the 'topics' section
+
+2. When writing slides, consider writing them in markdown, in motivation.md.
+   For writing presentations, it's basic, but these slides should be short
+   and simple anyway.
+
+NB: See http://pandoc.org/README.html#pandocs-markdown for Pandoc's markdown
+format.
+
+Generating the HTML files from markdown
+---------------------------------------
+
+1. Type 'make clean' to remove the existing HTML files. This will also 
+   remove all .pyc files and those that end with ~ in their filename.
+
+2. Type 'make check' to check your markdown against Software Carpentry style
+   guidelines (these are only recommendations).
+
+3. Type 'make preview' to generate HTML files from all the markdown .md files
+   in the directory. You can view the generated HTML files directly (i.e. as 
+   files) in your browser without having to upload them to GitHub first.
+   Note that this will not work on any markdown files in any subdirectories,
+   only those in the directory with the Makefile. Any motivation.md will also
+   be rendered in HTML, but when viewed in a browser will conform to a 
+   presentation style which works well under e.g. Chrome (View -> Enter
+   Presentation Mode". Use left/right arrow keys to change slides.
+
+4. When you are happy with the local versions of the generated HTML files,
+   add/commit all changed files into your local repository e.g.
+   $ add .
+   $ commit -m "A helpful message about what was changed/added" .
+
+5. Push those changes back to the public repository
+   $ git push
+
+6. Check the uploaded HTML files in a browser, e.g. point browser to
+   http://softwaresaved.github.io/<repo>/novice/<lesson-name>/index.html

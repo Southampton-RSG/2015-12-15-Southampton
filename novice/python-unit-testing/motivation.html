@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+  <title>Writing Robust Code and Unit Testing</title>
+
+
+  <script src="js/deckjs-custom.js"></script>
+  <script>
+      // TODO: finer filter on what is needed (vs profile-5)
+      includedeck("css/swc-slides.css", {
+         BEFOREINIT: function() {
+            $(".slide.auto li:not(li li):not(.notslide)").addClass("slide");
+         }
+      });
+  </script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <div class="slide title-slide" data-container-class="no-status">
+        <h1 class="var-title"></h1>
+        <img class="logo" src="img/software-carpentry-banner.png" alt="Software Carpentry"/>
+    </div>
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+<section id="so-far" class="slide level2">
+<h1>So far…</h1>
+<ul>
+<li>Have introduced the basic tools of programming</li>
+<li><p>But how do we know a program gives the right answer?</p></li>
+<li>We need to
+<ul>
+<li>write programs that check their own operation</li>
+<li>write tests to catch the mistakes those self-checks miss</li>
+</ul></li>
+</ul>
+</section>
+<section id="confess" class="slide level2">
+<h1>Confess!</h1>
+<p>Why don’t you write tests?</p>
+<ul>
+<li>“I don’t write buggy code”</li>
+<li>“It’s too hard”</li>
+<li>“It’s not interesting”</li>
+<li>“It takes too much time and I’ve research to do”</li>
+</ul>
+</section>
+<section id="ariane-5" class="slide level2">
+<h1>Ariane 5</h1>
+<ul>
+<li>Ariane 5 used Ariane 4 code</li>
+<li>Ariane 5’s faster engines caused buffer overflow</li>
+<li>Buffer overflow caused Ariane 5 to explode!</li>
+<li>Unfortunately, code wasn’t properly tested</li>
+</ul>
+<p>Millions of pounds down the drain, some very red faces</p>
+</section>
+<section id="consider-geoffrey-chang" class="slide level2">
+<h1>Consider Geoffrey Chang…</h1>
+<ul>
+<li>Dept. of Molecular Biology, Scripps Institute</li>
+<li>5th Annual Presidential Early Career Awards, 2000</li>
+<li>Beckerman Foundation Young Investigator Award, 2001</li>
+</ul>
+<p>Three pharma publications in <em>Science</em>, 2001-2005</p>
+<p>Letters – Retraction, Science 22 December 2006</p>
+</section>
+<section id="and-hes-not-alone" class="slide level2">
+<h1>And he’s not alone…</h1>
+<ul>
+<li>“A Test of Corrections for Extraneous Signals in Gridded Surface Temperature Data”, R. McKitrick et al, Climate Research, 2004
+<ul>
+<li>“McKitrick screws up yet again”, T. Lambert’s blog</li>
+<li>“McKitrick mucks it up”, J. Quiggin’s blog</li>
+</ul></li>
+<li>“ERRATUM”, Climate Research, 2004</li>
+<li>“formula … takes the angle in <em>radians</em>, but our data were entered in <em>degrees</em>”</li>
+</ul>
+</section>
+<section id="hes-really-not-alone" class="slide level2">
+<h1>He’s <em>really</em> not alone…</h1>
+<ul>
+<li>“Worms: Identifying Impacts on Education and Health in the Presence of Treatment Externalities”, E. Miguel, M. Kremer, Econometrica, 2003
+<ul>
+<li>“Wrong answers typed into the program”, Buzzfeed</li>
+</ul></li>
+<li>FreeSurfer neuroimaging analysis software
+<ul>
+<li>Reviewed in PLOS one article “The Effects of FreeSurfer Version, …”, P. Habets et al.</li>
+<li>Results significantly different between v5.0.0 and two earlier versions and across machines</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-testing-gives-you" class="slide level2">
+<h1>What testing gives you</h1>
+<ul>
+<li>Confidence that your code does what it is supposed to
+<ul>
+<li>That your research is built on a solid foundation</li>
+</ul></li>
+<li>Ability to detect, and fix, bugs more quickly</li>
+<li>Confidence to refactor or fix bugs without creating new bugs</li>
+<li>Examples of how to use your code</li>
+<li>“if it’s not tested, it’s broken”
+<ul>
+<li>bittermanandy, 10/09/2010</li>
+</ul></li>
+</ul>
+</section>
+<section id="examples-of-unit-testing-frameworks" class="slide level2">
+<h1>Examples of unit testing frameworks</h1>
+<ul>
+<li>Fortran: FRUIT, pFUnit</li>
+<li>R: RUnit, testthat</li>
+<li>MATLAB: Unit Testing Framework</li>
+<li>.NET: csUnit</li>
+<li>Java: JUnit</li>
+<li>PHP: PHPUnit, PHP Unit Testing Framework</li>
+<li>Python: Nose, Autotest</li>
+</ul>
+</section>
+<section id="learning-objectives" class="slide level2">
+<h1>Learning Objectives</h1>
+<ul>
+<li class="fragment">how to write code defensively to guard against making errors</li>
+<li class="fragment">how to use a unit testing framework</li>
+<li class="fragment">when it’s useful to write tests <em>before</em> writing code</li>
+<li class="fragment">how Python reports and handles errors</li>
+</ul>
+</section>
+<section id="challenge" class="slide level2">
+<h1>Challenge</h1>
+<p>A colleague of yours has written a function that calculates the running total of all the values in a list, e.g., running([0, 1, 2]) produces the list [0, 1, 3].</p>
+<p>Write some unit test functions for it in a <strong>test_running.py</strong> file (including <strong>from running import running</strong> at the top), and then use <strong>nosetests</strong> to see what bugs you can find.</p>
+</section>
+<section id="challenge-1" class="slide level2">
+<h1>Challenge</h1>
+<p>Write a function called <strong>addnumbers</strong> in <strong>addnumbers.py</strong> that passes the unit tests in <strong>test_addnumbers.py</strong>.</p>
+<p>All addnumbers should do is add together all the numbers in a list and return the result.</p>
+</section>
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- footer -->
+    <p class="deck-status deck-progress-10"> <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-title">will be replaced by the title</span></p>
+    <!-- progress bar -->
+    <div class="progress-bar" data-progress-size=":spe.bottom(0, 1) ; left: slide.left+'px' ; height: designRatio+'px'" data-progress="width: detail.p * slide.width" style="position: absolute;"> </div>
+
+    <!-- End extension snippets. -->
+  </div>
+
+</body>
+</html>

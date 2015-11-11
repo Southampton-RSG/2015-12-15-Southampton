@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+  <title>Building programs with Python</title>
+
+
+  <script src="js/deckjs-custom.js"></script>
+  <script>
+      // TODO: finer filter on what is needed (vs profile-5)
+      includedeck("css/swc-slides.css", {
+         BEFOREINIT: function() {
+            $(".slide.auto li:not(li li):not(.notslide)").addClass("slide");
+         }
+      });
+  </script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <div class="slide title-slide" data-container-class="no-status">
+        <h1 class="var-title"></h1>
+        <img class="logo" src="img/software-carpentry-banner.png" alt="Software Carpentry"/>
+    </div>
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+<section id="why-python" class="slide level2">
+<h1>Why Python?</h1>
+<ul>
+<li>It’s free, well-documented, and runs almost everywhere</li>
+<li>Large (and growing) user base among researchers and scientists</li>
+<li>Simple, readable, flexible, powerful language and easier for beginners to grasp</li>
+<li>Goal is to teach basic programming concepts that can be applied to other programming languages</li>
+</ul>
+</section>
+<section id="cont.." class="slide level2">
+<h1>Cont..</h1>
+<ul>
+<li>Part of the winning formula for productivity, software quality, and maintainability at many institutions and companies across the world
+<ul>
+<li>Largely being used across various application domains:
+<ul>
+<li>Scientific (Bioinformatics, Biology, Computational chemistry, Data visualisation, Scientific programming etc..)</li>
+<li>Engineering</li>
+<li>Software development</li>
+<li>Arts, business, education and government sectors</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="cont..-1" class="slide level2">
+<h1>Cont..</h1>
+<ul>
+<li>Used for development on the web and the client</li>
+<li>Increased productivity:
+<ul>
+<li>Debugging Python programs is easy: a bad input or bug will show a meaningful error message.</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-is-python" class="slide level2">
+<h1>What is Python?</h1>
+<ul>
+<li>Close to pseudocode, easy to read</li>
+<li>Indentation marks block structure - simplifies maintenance and aids collaboration</li>
+</ul>
+</section>
+<section id="why-teaching-python" class="slide level2">
+<h1>Why teaching Python?</h1>
+<ul>
+<li>Based on Southampton PhD students software usage survey conducted by SSI’s Policy researchers: <img src="img/wordle2.png" /></li>
+</ul>
+</section>
+<section id="python3" class="slide level2">
+<h1>Python3</h1>
+<ul>
+<li>Python is currently transitioning from version 2 to 3</li>
+<li>Teaching will be in 3.4</li>
+<li>Lots of new features of Python3
+<ul>
+<li>Advanced unpacking</li>
+<li>Matrix multiplication</li>
+<li>Chained exceptions</li>
+<li>Everything is an iterator …</li>
+</ul></li>
+<li>New syntax. New interpreter behaviour. Standard library fixes</li>
+</ul>
+</section>
+<section id="learning-objectives" class="slide level2">
+<h1>Learning objectives</h1>
+<ul>
+<li>how to assign values to variables and perform simple operations: python basics</li>
+<li>how to repeat actions with loops</li>
+<li>how to read and analyse patient data using libraries</li>
+<li>how to visualise data using libraries</li>
+<li>how to correctly evaluate expressions: making choices using conditionals</li>
+<li>why we should divide programs into small, single-purpose blocks of code: creating functions</li>
+<li>how to read data from standard input in a program so that it can be used in a pipeline</li>
+</ul>
+</section>
+<section id="turning-on-python-interpreter" class="slide level2">
+<h1>Turning on Python Interpreter</h1>
+<ul>
+<li>The interpreter provides an interactive environment to play with the language</li>
+<li>Open a terminal window and type <strong>python3.4</strong><br /></li>
+<li>If on windows open <strong>Git Bash</strong> (covered in Shell session)</li>
+<li>At the prompt type ‘hello world!’ <img src="img/hello.png" /></li>
+</ul>
+</section>
+<section id="python-overview" class="slide level2">
+<h1>Python Overview</h1>
+<p><em>From Learning Python:</em></p>
+<ul>
+<li>Programs are composed of modules</li>
+<li>Modules contain statements</li>
+<li>Statements contain expressions</li>
+<li>Expressions create and process objects</li>
+</ul>
+</section>
+<section id="basics-variables-objects-types-and-data-structures" class="slide level2">
+<h1>Basics: Variables, Objects, types and Data Structures</h1>
+<ul>
+<li>Introduction to Python variables</li>
+<li>Creating and assigning values to variables</li>
+<li>Everything in Python is really an object</li>
+<li>Types: Built-in types and type handling
+<ul>
+<li>Built-in: String, integers, boolean and floating point</li>
+<li>type(val) returns the type of a variable (also classes)<br /></li>
+<li>int(val[,base]) converts to an integer (of base base)</li>
+<li>float(val): Corresponding to floats</li>
+<li>str(val): Corresponding to strings (classes allow this automatically)</li>
+</ul></li>
+</ul>
+</section>
+<section id="python-control-flow" class="slide level2">
+<h1>Python Control Flow</h1>
+<ul>
+<li>Real power of programs come from:
+<ul>
+<li>Repetition</li>
+<li>Selection</li>
+</ul></li>
+</ul>
+</section>
+<section id="control-flow-repeating-actions-with-loops" class="slide level2">
+<h1>Control Flow: Repeating actions with loops</h1>
+<ul>
+<li>What a loop does?</li>
+<li>Writing loops to repeat simple calculations
+<ul>
+<li>Indexing/ Counting starts from <strong>0</strong></li>
+</ul></li>
+<li>Track changes to a loop variable as the loop runs</li>
+<li>Track changes to other variables as they are updated by a <code>for</code> loop</li>
+</ul>
+</section>
+<section id="why-indentation" class="slide level2">
+<h1>Why indentation?</h1>
+<ul>
+<li>Studies show that’s what people actually pay attention to
+<ul>
+<li>Every textbook on C or Java has examples where indentation and bracing don’t match</li>
+</ul></li>
+<li>Doesn’t matter how much indentation you use, but the whole block must be consistent<br /></li>
+<li>Python Style Guide (PEP 8) recommends 4 spaces</li>
+<li>And no tab characters</li>
+</ul>
+</section>
+<section id="lists-in-python" class="slide level2">
+<h1>Lists in Python</h1>
+<ul>
+<li>Lists as arrays</li>
+<li>Indexing
+<ul>
+<li>Indexing some single value or even a whole set of values from a given list.</li>
+<li>Indexing for retrieving single elements works as usual in python and indexing by negative numbers starts counting from the end.</li>
+</ul></li>
+<li>Slicing
+<ul>
+<li>Subset of a list, called a <strong>Slice</strong>, by specifying two indices. The return value is a new list containing all the elements of the list, in order, starting with the first slice index, up to but not including the second slice index.</li>
+<li><strong>Difference between upper and lower bound is the number of values in the slice.</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="indexing-and-slicing-a-list-example" class="slide level2">
+<h1>Indexing and Slicing a List Example</h1>
+<figure>
+<img src="img/index_slice_list.png" />
+</figure>
+</section>
+<section id="using-python-libraries" class="slide level2">
+<h1>Using Python libraries</h1>
+<ul>
+<li>This introduction to Python is built around an end to end scientific example: data analysis</li>
+<li>What is a library (module) and its usage</li>
+<li>Reading data from a file</li>
+</ul>
+</section>
+<section id="numpy-arrays" class="slide level2">
+<h1>NumPy Arrays</h1>
+<ul>
+<li>NumPy arrays and operations on arrays of data</li>
+</ul>
+<figure>
+<img src="img/numpy_array_dims.png" />
+</figure>
+</section>
+<section id="numpy-arrays-indexing-and-slicing" class="slide level2">
+<h1>NumPy arrays: Indexing and Slicing</h1>
+<ul>
+<li>Ways of selecting individual values and subsets of data</li>
+<li>One-dimensional arrays are simple; on the surface they act similarly to Python lists.</li>
+</ul>
+</section>
+<section id="indexing-in-a-numpy-2d-array" class="slide level2">
+<h1>Indexing in a NumPy 2D array</h1>
+<ul>
+<li>The indices are (row, column) instead of (column, row).</li>
+<li>Example Patient inflammation data who were given treatment for arthritis:
+<ul>
+<li><strong>Rows:</strong> Hold information for a single patient</li>
+<li><strong>Columns:</strong> Represent successive days</li>
+</ul></li>
+</ul>
+</section>
+<section id="cont..-2" class="slide level2">
+<h1>Cont..</h1>
+<figure>
+<img src="img/indexing2darray.png" />
+</figure>
+</section>
+<section id="data-visualisation-using-libraries" class="slide level2">
+<h1>Data visualisation using libraries</h1>
+<p><em>The purpose of computing is insight, not numbers, Richard Hamming.</em></p>
+<ul>
+<li>Best way to develop insight is often to visualise data.</li>
+<li>Plotting data using <code>matplotlib</code> library</li>
+</ul>
+</section>
+<section id="control-flow-making-choices" class="slide level2">
+<h1>Control Flow: Making choices</h1>
+<ul>
+<li>Write conditional statements including <code>if</code>, <code>elif</code> and <code>else</code></li>
+<li>A few things to note about the syntax:
+<ul>
+<li>Each if/ else statement must close with a colon (:)</li>
+<li>Code to be executed as part of any <em>if/else</em> statement must be indented by four spaces.</li>
+<li>Although not explicitly required, every <em>if</em> statement must also include an <em>else</em> statement - it just makes for a better program.</li>
+</ul></li>
+<li>Evaluate expressions containing <code>and</code> and <code>or</code></li>
+</ul>
+</section>
+<section id="creating-functions" class="slide level2">
+<h1>Creating Functions</h1>
+<ul>
+<li>Defining a function, the parameters that it takes, return value</li>
+<li>Test and debug a function</li>
+<li>Scope of variables</li>
+<li>Set default values for function parameters</li>
+<li>Divide programs into small, single-purpose functions</li>
+</ul>
+</section>
+<section id="command-line-programs" class="slide level2">
+<h1>Command-line Programs</h1>
+<ul>
+<li>Using values of command-line arguments in a program</li>
+<li>Handling flags and files separately in a command-line program</li>
+<li>Reading data from standard input in a program</li>
+</ul>
+</section>
+<section id="wrap-up-challenge-connecting-the-dots" class="slide level2">
+<h1>Wrap-up Challenge: Connecting the dots</h1>
+<p><strong>Write a python script (function) for Fahrenheit to Celsius temperature conversion and stores the output in a file.</strong></p>
+<ul>
+<li>Hint (Tools to be used):
+<ul>
+<li>Unix pipes and filters</li>
+<li>Python functions</li>
+<li>Command-line programs</li>
+<li>Using Fahr_to_kelvin() and Kelvin_to_celsius() functions</li>
+</ul></li>
+</ul>
+</section>
+<section id="thank-you" class="slide level2">
+<h1>Thank You!</h1>
+</section>
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- footer -->
+    <p class="deck-status deck-progress-10"> <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-title">will be replaced by the title</span></p>
+    <!-- progress bar -->
+    <div class="progress-bar" data-progress-size=":spe.bottom(0, 1) ; left: slide.left+'px' ; height: designRatio+'px'" data-progress="width: detail.p * slide.width" style="position: absolute;"> </div>
+
+    <!-- End extension snippets. -->
+  </div>
+
+</body>
+</html>

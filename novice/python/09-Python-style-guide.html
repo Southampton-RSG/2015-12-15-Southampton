@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Python Style Guide</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Python coding conventions</li>
+</ul>
+</div>
+</section>
+<p>This is taken from <a href="https://www.python.org/dev/peps/pep-0008/">PEP-008: Python Style Guide</a>. It is a semi-official guide to Python coding conventions.</p>
+<p>We should stick to this unless we have hard data that proves something else is better.</p>
+<p>Basic layout is as below:</p>
+<ul>
+<li>Indent blocks using four spaces</li>
+<li>Keep lines less than 80 characters long</li>
+<li>Separate functions with two blank lines</li>
+<li>Separate logical chunks of long functions with a single blank line</li>
+<li>Put comments on lines of their own, rather than to the right of code</li>
+</ul>
+<p>Here are some basic python style rules listed in a table below:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Rule</strong></th>
+<th align="left"><strong>Good</strong></th>
+<th align="left"><strong>Bad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">No whitespace immediately inside parentheses or before the parenthesis starting indexing or slicing</td>
+<td align="left"><code>max(candidates[sublist])</code></td>
+<td align="left"><code>max( candidates[ sublist ] )</code> , <code>max (candidates [sublist] )</code></td>
+</tr>
+<tr class="even">
+<td align="left">No whitespace immediately before comma or colon</td>
+<td align="left"><code>if limit &gt; 0: print minimum, limit</code></td>
+<td align="left"><code>if limit &gt; 0 : print minimum , limit</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Use space around arithmetic and in-place operators</td>
+<td align="left"><code>x += 3 * 5</code></td>
+<td align="left"><code>x+=3*5</code></td>
+</tr>
+<tr class="even">
+<td align="left">No spaces when specifying default parameter values</td>
+<td align="left"><code>def integrate(func, start=0.0, interval=1.0)</code></td>
+<td align="left"><code>def integrate(func, start = 0.0, interval = 1.0)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Never use names that are distinguished only by <code>&quot;l&quot;</code>, <code>&quot;1&quot;</code>, <code>&quot;0&quot;</code>, or <code>&quot;O&quot;</code></td>
+<td align="left"><code>tempo_long</code> and <code>tempo_init</code></td>
+<td align="left"><code>tempo_l</code> and <code>tempo_1</code></td>
+</tr>
+<tr class="even">
+<td align="left">Short lower-case names for modules (i.e., files)</td>
+<td align="left"><code>geology</code></td>
+<td align="left"><code>Geology</code> or <code>geology_package</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Upper case with underscores for constants</td>
+<td align="left"><code>TOLERANCE</code> or <code>MAX_AREA</code></td>
+<td align="left"><code>Tolerance</code> or <code>MaxArea</code></td>
+</tr>
+<tr class="even">
+<td align="left">Camel case for class names</td>
+<td align="left"><code>SingleVariableIntegrator</code></td>
+<td align="left"><code>single_variable_integrator</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Lowercase with underscores for function and method names</td>
+<td align="left"><code>divide_region</code></td>
+<td align="left"><code>divRegion</code></td>
+</tr>
+<tr class="even">
+<td align="left">and member variables</td>
+<td align="left"><code>max_so_far</code></td>
+<td align="left"><code>maxSoFar</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Use <code>is</code> and <code>is not</code> when comparing to special values</td>
+<td align="left"><code>if current is not None:</code></td>
+<td align="left"><code>if current != None:</code></td>
+</tr>
+<tr class="even">
+<td align="left">Use <code>isinstance</code> when checking types</td>
+<td align="left"><code>if isinstance(current, Rock):</code></td>
+<td align="left"><code>if type(current) == Rock:</code></td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+     
+<strong>Table 8.1: Basic Python Style Rules </strong><br />
+</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

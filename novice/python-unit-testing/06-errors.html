@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Writing Robust Code and Unit Testing</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <!-- change to SSI logo
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+        -->
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Writing Robust Code and Unit Testing</h1></a>
+          <h2 class="subtitle">Handling Errors</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Understand how programs can catch abnormal behaviour through exceptions</li>
+<li>How exceptions can be written in Python, and when to use them</li>
+<li>How to generate your own exceptions</li>
+</ul>
+</div>
+</section>
+<p>Assertions help us catch errors in our code, but things can go wrong for other reasons, like missing or badly-formatted files. Most modern programming languages allow programmers to use <strong>exceptions</strong> to separate what the program should do if everything goes right from what it should do if something goes wrong. Doing this makes both cases easier to read and understand.</p>
+<p>For example, here’s a small piece of code that tries to read parameters and a grid from two separate files, and reports an error if either goes wrong:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+<span class="kw">except</span>:
+    log.error(<span class="st">&#39;Failed to read input file(s)&#39;</span>)
+    sys.exit(ERROR)</code></pre>
+<p>We join the normal case and the error-handling code using the keywords <code>try</code> and <code>except</code>. These work together like <code>if</code> and <code>else</code>: the statements under the <code>try</code> are what should happen if everything works, while the statements under <code>except</code> are what the program should do if something goes wrong.</p>
+<p>We have actually seen exceptions before without knowing it, since by default, when an exception occurs, Python prints it out and halts our program. For example, trying to open a nonexistent file triggers a type of exception called an <code>IOError</code>, while an out-of-bounds index to a list triggers an <code>IndexError</code>:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">open</span>(<span class="st">&#39;nonexistent-file.txt&#39;</span>, <span class="st">&#39;r&#39;</span>)</code></pre>
+<pre class="output"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+IOError: [Errno 2] No such file or directory: &#39;nonexistent-file.txt&#39;</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">values = [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]
+<span class="dt">print</span>(values[<span class="dv">999</span>])</code></pre>
+<pre class="output"><code>---------------------------------------------------------------------------
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+IndexError: list index out of range</code></pre>
+<p>We can use <code>try</code> and <code>except</code> to deal with these errors ourselves if we don’t want the program simply to fall over:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    reader = <span class="dt">open</span>(<span class="st">&#39;nonexistent-file.txt&#39;</span>, <span class="st">&#39;r&#39;</span>)
+<span class="kw">except</span> <span class="ot">IOError</span>:
+    <span class="dt">print</span>(<span class="st">&#39;Whoops!&#39;</span>)</code></pre>
+<pre class="output"><code>Whoops!</code></pre>
+<p>When Python executes this code, it runs the statement inside the <code>try</code>. If that works, it skips over the <code>except</code> block without running it. If an exception occurs inside the <code>try</code> block, though, Python compares the type of the exception to the type specified by the <code>except</code>. If they match, it executes the code in the <code>except</code> block.</p>
+<p><code>IOError</code> is the particular kind of exception Python raises when there is a problem related to input and output, such as files not existing or the program not having the permissions it needs to read them. We can put as many lines of code in a <code>try</code> block as we want, just as we can put many statements under an <code>if</code>. We can also handle several different kinds of errors afterward. For example, here’s some code to calculate the entropy at each point in a grid (no need to type this in):</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+    entropy = lee_entropy(params, grid)
+    write_entropy(entropy_file, entropy)
+<span class="kw">except</span> <span class="ot">IOError</span>:
+    report_error_and_exit(<span class="st">&#39;IO error&#39;</span>)
+<span class="kw">except</span> <span class="ot">ArithmeticError</span>:
+    report_error_and_exit(<span class="st">&#39;Arithmetic error&#39;</span>)</code></pre>
+<p>Python tries to run the four functions inside the <code>try</code> as normal. If an error occurs in any of them, Python immediately jumps down and tries to find an <code>except</code> of the corresponding type:</p>
+<ul>
+<li><code>IOError</code> - Python jumps into the first error handler</li>
+<li><code>ArithmeticError</code> - Python jumps into the second handler instead.</li>
+</ul>
+<p>It will only execute one of these, just as it will only execute one branch of a series of <code>if</code>/<code>elif</code>/<code>else</code> statements.</p>
+<p>This layout has made the code easier to read, but we’ve lost something important: the message printed out by the <code>IOError</code> branch doesn’t tell us which file caused the problem. We can do better if we capture and hang on to the object that Python creates to record information about the error:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+    entropy = lee_entropy(params, grid)
+    write_entropy(entropy_file, entropy)
+<span class="kw">except</span> <span class="ot">IOError</span> <span class="ch">as</span> err:
+    report_error_and_exit(<span class="st">&#39;Cannot read/write&#39;</span> + err.filename)
+<span class="kw">except</span> <span class="ot">ArithmeticError</span> <span class="ch">as</span> err:
+    report_error_and_exit(err.message)</code></pre>
+<p>If something goes wrong in the <code>try</code>, Python creates an exception object, fills it with information, and assigns it to the variable <code>err</code>. (There’s nothing special about this variable name—we can use anything we want.)</p>
+<p>Exactly what information is recorded depends on what kind of error occurred; Python’s documentation describes the properties of each type of error in detail, but we can always just print the exception object. In the case of an I/O error, we print out the name of the file that caused the problem. And in the case of an arithmetic error, printing out the message embedded in the exception object is what Python would have done anyway.</p>
+<p>So much for how exceptions work: how should they be used? Some programmers use <code>try</code> and <code>except</code> to give their programs default behaviors. For example, if this code can’t read the grid file that the user has asked for, it creates a default grid instead:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    grid = read_grid(grid_file)
+<span class="kw">except</span> <span class="ot">IOError</span>:
+    grid = default_grid()</code></pre>
+<p>Other programmers would explicitly test for the grid file, and use <code>if</code> and <code>else</code> for control flow:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> file_exists(grid_file):
+    grid = read_grid(grid_file)
+<span class="kw">else</span>:
+    grid = default_grid()</code></pre>
+<p>It’s mostly a matter of taste, but we prefer the second style. As a rule, exceptions should only be used to handle exceptional cases. If the program knows how to fall back to a default grid, that’s not an unexpected event. Using <code>if</code> and <code>else</code> instead of <code>try</code> and <code>except</code> sends different signals to anyone reading our code, even if they do the same thing.</p>
+<p>Novices often ask another question about exception handling style as well, but before we address it, there’s something in our example that you might not have noticed. Exceptions can actually be thrown a long way: they don’t have to be handled immediately. Take another look at this code:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">try</span>:
+    params = read_params(param_file)
+    grid = read_grid(grid_file)
+    entropy = lee_entropy(params, grid)
+    write_entropy(entropy_file, entropy)
+<span class="kw">except</span> <span class="ot">IOError</span> <span class="ch">as</span> err:
+    report_error_and_exit(<span class="st">&#39;Cannot read/write&#39;</span> + err.filename)
+<span class="kw">except</span> <span class="ot">ArithmeticError</span> <span class="ch">as</span> err:
+    report_error_and_exit(err.message)</code></pre>
+<p>The four lines in the <code>try</code> block are all function calls. They might catch and handle exceptions themselves, but if an exception occurs in one of them that <em>isn’t</em> handled internally, Python looks in the calling code for a matching <code>except</code>. If it doesn’t find one there, it looks in that function’s caller, and so on. If we get all the way back to the main program without finding an exception handler, Python’s default behavior is to print an error message like the ones we’ve been seeing all along.</p>
+<p>This rule is the origin of the rule “Throw Low, Catch High.” There are many places in our program where an error might occur. There are only a few, though, where errors can sensibly be handled. For example, a linear algebra library doesn’t know whether it’s being called directly from the Python interpreter, or whether it’s being used as a component in a larger program. In the latter case, the library doesn’t know if the program that’s calling it is being run from the command line or from a GUI. The library therefore shouldn’t try to handle or report errors itself, because it has no way of knowing what the right way to do this is. It should instead just raise an exception, and let its caller figure out how best to handle it.</p>
+<p>Finally, we can raise exceptions ourselves if we want to. In fact, we <em>should</em> do this, since it’s the standard way in Python to signal that something has gone wrong. Here, for example, is a function that reads a grid and checks its consistency:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> read_grid(grid_file):
+    <span class="co">&#39;&#39;&#39;Read grid, checking consistency.&#39;&#39;&#39;</span>
+
+    data = read_raw_data(grid_file)
+    <span class="kw">if</span> not grid_consistent(data):
+        <span class="kw">raise</span> <span class="ot">Exception</span>(<span class="st">&#39;Inconsistent grid: &#39;</span> + grid_file)
+    result = normalize_grid(data)
+
+    <span class="kw">return</span> result</code></pre>
+<p>The <code>raise</code> statement creates a new exception with a meaningful error message. Since <code>read_grid</code> itself doesn’t contain a <code>try</code>/<code>except</code> block, this exception will always be thrown up and out of the function, to be caught and handled by whoever is calling <code>read_grid</code>. We can define new types of exceptions if we want to. And we should, so that errors in our code can be distinguished from errors in other people’s code. However, this involves classes and objects, which is outside the scope of these lessons.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenges"><span class="glyphicon glyphicon-pencil"></span>Challenges</h2>
+</div>
+<div class="panel-body">
+<ol style="list-style-type: decimal">
+<li><p>Modify the program below so that it prints three lines of output.</p>
+<pre><code>try:
+    for number in [-1, 0, 1]:
+        print(1.0/number)
+except ZeroDivisionError:
+    print(&#39;whoops&#39;)</code></pre></li>
+</ol>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

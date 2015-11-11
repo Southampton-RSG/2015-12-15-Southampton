@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Writing Robust Code and Unit Testing</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <!-- change to SSI logo
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+        -->
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Writing Robust Code and Unit Testing</h1></a>
+          <h2 class="subtitle">Limits to Testing</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Understand the limits and value of unit testing</li>
+</ul>
+</div>
+</section>
+<p>Like any other piece of experimental apparatus, a complex program requires a much higher investment in testing than a simple one. Putting it another way, a small script that is only going to be used once, to produce one figure, probably doesn’t need separate testing: its output is either correct or not. A linear algebra library that will be used by thousands of people in twice that number of applications over the course of a decade, on the other hand, definitely does.</p>
+<p>Unfortunately, it’s practically impossible to prove that a program will always do what it’s supposed to. To see why, consider a function that checks whether a character strings contains only the letters ‘A’, ‘C’, ‘G’, and ‘T’. These four tests clearly aren’t sufficient:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">assert</span> is_all_bases(<span class="st">&#39;A&#39;</span>)
+<span class="kw">assert</span> is_all_bases(<span class="st">&#39;C&#39;</span>)
+<span class="kw">assert</span> is_all_bases(<span class="st">&#39;G&#39;</span>)
+<span class="kw">assert</span> is_all_bases(<span class="st">&#39;T&#39;</span>)</code></pre>
+<p>because this version of <code>is_all_bases</code> passes them:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> is_all_bases(bases):
+    <span class="kw">return</span> <span class="ot">True</span></code></pre>
+<p>Adding these tests isn’t enough:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">assert</span> not is_all_bases(<span class="st">&#39;X&#39;</span>)
+<span class="kw">assert</span> not is_all_bases(<span class="st">&#39;Y&#39;</span>)
+<span class="kw">assert</span> not is_all_bases(<span class="st">&#39;Z&#39;</span>)</code></pre>
+<p>because this version still passes:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> is_all_bases(bases):
+    <span class="kw">return</span> bases[<span class="dv">0</span>] in <span class="st">&#39;ACGT&#39;</span></code></pre>
+<p>We can add yet more tests:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">assert</span> is_all_bases(<span class="st">&#39;ACGCGA&#39;</span>)
+<span class="kw">assert</span> not is_all_bases(<span class="st">&#39;CGAZ&#39;</span>)</code></pre>
+<p>But no matter how many we have, we can always write a function that passes them, but does the wrong thing in other cases. And as we add more tests, we have to start worrying about whether the tests themselves are correct, and about whether we can afford the time needed to write them. After all, if we really want to check that the square root function is correct for all values between 0.0 and 1.0, we need to write over a billion test cases; that’s a lot of typing, and the chances of us getting every one right are effectively zero.</p>
+<p>Testing is still worth doing, though: it’s one of those things that doesn’t work in theory, but is surprisingly effective in practice. If we choose our tests carefully, we can demonstrate that our software is as likely to be correct as a mathematical proof or a physical experiment.</p>
+<p>Ensuring that we have the right answer is only one reason to test software. The other is that it speeds up development by reducing the amount of re-work we have to do. Even small programs can be quite complex, and changing one thing can all too easily break something else. If we test changes as we make them, and automatically re-test things we’ve already done, we can catch and fix errors while the changes are still fresh in our minds.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

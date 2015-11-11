@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Writing Robust Code and Unit Testing</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <!-- change to SSI logo
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+        -->
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Writing Robust Code and Unit Testing</h1></a>
+          <h2 class="subtitle">Defensive Programming</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Using assertions to ensure correct behaviour within a program</li>
+<li>Understanding the different types of assertions you can use and where to use them</li>
+</ul>
+</div>
+</section>
+<p>We made several mistakes while writing the programs in our first few lessons:</p>
+<ul>
+<li>Are there still errors lurking in the code we have?</li>
+<li>How can we guard against introducing new errors in code as we modify it?</li>
+</ul>
+<!-- include mention of research into searching for bugs in same place -->
+<p>The first step is to use <em>defensive programming</em>, i.e., to assume that mistakes <em>will</em> happen and to guard against them.</p>
+<p>One way to do this is to add <em>assertions</em> to our code so that it checks itself as it runs. An assertion is simply a statement that something must be true at a certain point in a program. When Python sees one, it checks that the assertion’s condition:</p>
+<ul>
+<li>If <em>true</em>, Python does nothing</li>
+<li>If <em>false</em>, Python halts the program immediately and prints the error message provided</li>
+</ul>
+<p>For example, this piece of code halts as soon as the loop encounters a value that isn’t positive:</p>
+<pre class="sourceCode python"><code class="sourceCode python">numbers = [<span class="fl">1.5</span>, <span class="fl">2.3</span>, <span class="fl">0.7</span>, -<span class="fl">0.001</span>, <span class="fl">4.4</span>]
+total = <span class="fl">0.0</span>
+<span class="kw">for</span> n in numbers:
+    <span class="kw">assert</span> n &gt;= <span class="fl">0.0</span>, <span class="st">&#39;Data should only contain positive values&#39;</span>
+    total += n</code></pre>
+<pre class="output"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 2, in &lt;module&gt;
+AssertionError: Data should only contain positive values</code></pre>
+<p>Programs like the Firefox browser are littered with assertions: 10-20% of the code they contain are there to check that the other 80-90% are working correctly.</p>
+<p>Broadly speaking, assertions fall into three categories:</p>
+<ul>
+<li>A <strong>precondition</strong> is something that must be true at the start of a function in order for it to work correctly.</li>
+<li>A <strong>postcondition</strong> is something that the function guarantees is true when it finishes.</li>
+<li>An <strong>invariant</strong> something that is always true at a particular point inside a piece of code.</li>
+</ul>
+<p>For example, let’s look at rectangle1.py (in the code subdirectory). Suppose we are representing rectangles using a tuple of four coordinates <code>(x0, y0, x1, y1)</code>. In order to do some calculations, we need to normalize the rectangle so that it is at the origin and 1.0 units long on its longest axis. The function does that, but checks that its input is correctly formatted and that its result makes sense:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> normalize_rectangle(rect):
+    <span class="kw">assert</span> <span class="dt">len</span>(rect) == <span class="dv">4</span>, <span class="st">&#39;Rectangles must contain 4 coordinates&#39;</span>
+    x0, y0, x1, y1 = rect
+    <span class="kw">assert</span> x0 &lt; x1, <span class="st">&#39;Invalid X coordinates&#39;</span>
+    <span class="kw">assert</span> y0 &lt; y1, <span class="st">&#39;Invalid Y coordinates&#39;</span>
+
+    dx = x1 - x0
+    dy = y1 - y0
+    <span class="kw">if</span> dx &gt; dy:
+        scaled = <span class="dt">float</span>(dx) / dy
+        upper_x, upper_y = <span class="fl">1.0</span>, scaled
+    <span class="kw">else</span>:
+        scaled = <span class="dt">float</span>(dx) / dy
+        upper_x, upper_y = scaled, <span class="fl">1.0</span>
+
+    <span class="kw">assert</span> <span class="dv">0</span> &lt; upper_x &lt;= <span class="fl">1.0</span>, <span class="st">&#39;Calculated upper X coordinate invalid&#39;</span>
+    <span class="kw">assert</span> <span class="dv">0</span> &lt; upper_y &lt;= <span class="fl">1.0</span>, <span class="st">&#39;Calculated upper Y coordinate invalid&#39;</span>
+
+    <span class="kw">return</span> (<span class="dv">0</span>, <span class="dv">0</span>, upper_x, upper_y)</code></pre>
+<p>The preconditions on lines 2, 4, and 5 catch invalid inputs. Before you try the next bit, make sure you <code>cd</code> to the code subdirectory first!</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> rectangle1 <span class="ch">import</span> normalize_rectangle
+<span class="dt">print</span>(normalize_rectangle( (<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>) )) <span class="co"># missing the fourth coordinate</span></code></pre>
+<pre class="output"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;rectangle1.py&quot;, line 2, in normalize_rectangle
+    assert len(rect) == 4, &#39;Rectangles must contain 4 coordinates&#39;
+AssertionError: Rectangles must contain 4 coordinates</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(normalize_rectangle( (<span class="fl">4.0</span>, <span class="fl">2.0</span>, <span class="fl">1.0</span>, <span class="fl">5.0</span>) )) <span class="co"># X axis inverted</span></code></pre>
+<pre class="output"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;rectangle1.py&quot;, line 4, in normalize_rectangle
+    assert x0 &lt; x1, &#39;Invalid X coordinates&#39;
+AssertionError: Invalid X coordinates</code></pre>
+<p>The post-conditions help us catch bugs by telling us when our calculations cannot have been correct. For example, if we normalize a rectangle that is taller than it is wide everything seems OK:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(normalize_rectangle( (<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">5.0</span>) ))</code></pre>
+<pre class="output"><code>(0, 0, 0.2, 1.0)</code></pre>
+<p>but if we normalize one that’s wider than it is tall, the assertion is triggered:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(normalize_rectangle( (<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">5.0</span>, <span class="fl">1.0</span>) ))</code></pre>
+<pre class="output"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;rectangle1.py&quot;, line 17, in normalize_rectangle
+    assert 0 &lt; upper_y &lt;= 1.0, &#39;Calculated upper Y coordinate invalid&#39;
+AssertionError: Calculated upper Y coordinate invalid</code></pre>
+<p>Re-reading our function, we realize that line 10 should divide <code>dy</code> by <code>dx</code> rather than <code>dx</code> by <code>dy</code>. If we had left out the assertion at the end of the function, we would have created and returned something that looked like a valid answer, but wasn’t; detecting and debugging that would almost certainly have taken more time in the long run than writing the assertion.</p>
+<p>But assertions aren’t just about catching errors: they also help people understand programs. Each assertion gives the person reading the program a chance to check (consciously or otherwise) that their understanding matches what the code is doing.</p>
+<p>Most good programmers follow two rules when adding assertions to their code.</p>
+<ul>
+<li><p>The first is, “<strong>fail early, fail often</strong>”. The greater the distance between when and where an error occurs and when it’s noticed, the harder the error will be to debug, so good code catches mistakes as early as possible.</p></li>
+<li><p>The second rule is, “<strong>turns bugs into assertions or tests</strong>”. If you made a mistake in a piece of code, the odds are good that you have made other mistakes nearby, or will make the same mistake (or a related one) the next time you change it. Writing assertions to check that you haven’t <em>regressed</em> (i.e., haven’t re-introduced an old problem) can save a lot of time in the long run, and helps to warn people who are reading the code (including your future self) that this bit is tricky.</p></li>
+</ul>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenges"><span class="glyphicon glyphicon-pencil"></span>Challenges</h2>
+</div>
+<div class="panel-body">
+<ol style="list-style-type: decimal">
+<li><p>Explain in words what the assertions in this code check, and for each one, give an example of input that will make that assertion fail.</p>
+<pre><code>def running(values):
+    assert len(values) &gt; 0
+    result = [values[0]]
+    for v in values[1:]:
+        assert result[-1] &gt;= 0
+        result.append(result[-1] + v)
+    assert result[-1] &gt;= result[0]
+    return result</code></pre></li>
+</ol>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+  Use this layout for generic pages in the workshop website.
+  Use 'workshop.html' for the workshop home page.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Prerequisites - installation instructions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc-workshop-and-lesson.css" />
+    <link rel="stylesheet" type="text/css" href="css/lesson.css" />
+    <link rel="alternate" type="application/rss+xml" title="The Software Sustainability Institute Blog" href="http://software.ac.uk/blog"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+  <body class="lesson">
+    <div class="container container-full-width card">
+    <article>
+      <div class="row-fluid">
+        <div class="span10 offset1">
+           <h1 class="title">Software Prerequisites</h1>
+
+<p>Prior to the workshop (or using the training material yourself), you should ensure you have the following software installed on your laptop - please do this as soon as you can.</p>
+
+<p><strong>The schedule (and links to the training material) can be found <a href="schedule.html">here</a>.</strong></p>
+
+<hr>
+
+<h2 id="text-editor">Text Editor</h2>
+<p>You are free to use your preferred text editor. If you don&#39;t have one, we recommend:</p>
+
+<h4 id="windows">Windows</h4>
+<p><a href="https://notepad-plus-plus.org/download/">Notepad++</a></p>
+
+<h4 id="mac-os-x--linux">Mac OS X &amp; Linux</h4>
+<p>We recommend Nano, which is terminal based and is installed by default. You can verify you have this installed by typing the following at a terminal:</p>
+
+<pre class="output"><code>nano
+</pre></code>
+
+<p>Press CTRL+X to exit</p>
+
+<hr>
+
+<h2 id="python">Python</h2>
+<p>We teach with Python 2.7, since it is still the most widely used version. We will also employ the numpy and matplotlib libraries and the nose unit testing framework.</p>
+
+<h4 id="windows-1">Windows</h4>
+<p>We recommend the <a href="http://continuum.io/downloads">Anaconda Python distribution</a>. This provides Python plus the required libraries and frameworks</p>
+
+<h4 id="mac-os-x">Mac OS X</h4>
+<p>Mac OS 10.9 Mavericks and 10.10 Yosemite ship with Python 2.7, numpy and matplotlib installed by default. You will need to install nose. Open a terminal and enter the following command:</p>
+
+<pre class="output"><code>sudo easy_install nose
+</pre></code>
+
+<p>If you intend to use an earlier version of Mac OS X, please contact us before the event (emailing both s.crouch@software.ac.uk and j.robinson@software.ac.uk).</p>
+
+<h4 id="linux">Linux</h4>
+<p>Most distros include Python 2.7 by default. Install the libraries in a terminal like this:</p>
+
+<ul>
+  <li>Ubuntu 14.04LTS and derivatives<br>
+  <pre class="output"><code>sudo apt-get install python-numpy python-matplotlib python-nose</pre></code></li>
+  <li>Fedora 22<br>
+  <pre class="output"><code>su -
+dnf install numpy python-matplotlib python-nose</pre></code>
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="git">Git</h2>
+<p>In this workshop we will work with remote Git repositories hosted at Github. You should <a href="https://github.com/join">create an account</a> there before the event.</p>
+
+<h4 id="windows-2">Windows</h4>
+<p>Download and install <a href="http://git-scm.com/download/win">Git for Windows</a>. You can accept the default installation options. In this workshop we will use Git via the Git Bash command line, installed as part of this package.</p>
+
+<h4 id="mac-os-x-1">Mac OS X</h4>
+<p>Git will be installed automatically the first time you try to run it.  Open  terminal and type:</p>
+
+<pre class="output"><code>git
+</pre></code>
+
+<p>Follow the prompts to install the Apple command line development tools.</p>
+
+<h4 id="linux-1">Linux</h4>
+<p>Install via a terminal like this:</p>
+
+<ul>
+  <li>Ubuntu 14.04LTS and derivatives
+  <pre class="output"><code>sudo apt-get install git</code></pre></li>
+  <li>Fedora 22<br>
+  <pre class="output"><code>su -
+dnf install git</code></pre></li>
+</ul>
+
+<hr>
+<h1>Verify your setup</h1>
+<p>All of the exercises in this workshop will take place at the command line via the Bash shell.  In Mac OS X and Linux, this is your normal terminal environment.  In Windows, the Git Bash shell has been installed and can be accessed via the Git entry in the Start Menu.
+
+We provide a simple Python script to test that the prerequisites have been correctly installed. You can retrieve and execute the test at the Bash prompt by typing (pasting) the following command:</p>
+
+<pre class="output"><code>curl -L http://goo.gl/HuPJu3 | python</code></pre>
+
+<p>You should see eight passes and no failures.  If anything fails, please contact us (emailing both s.crouch@software.ac.uk and j.robinson@software.ac.uk) with details <b>by Thursday 18 June at the latest</b>.</p>
+
+<h1>During the workshop</h1>
+<p>We will make use of <a href="https://etherpad.mozilla.org/NGCMG-SSI-Workshop-June2015">this etherpad</a> during the workshop (Etherpad allows a group to edit documents online collaboratively in real-time). Please use this to keep collaborative notes and ask (and answer!) each others questions.</p>
+
+
+
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+  
+  This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+  <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+  <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+</div>
+
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster. -->
+<script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+<script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+
+  </body>
+</html>

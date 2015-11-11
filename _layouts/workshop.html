@@ -19,14 +19,25 @@
   </head>
   <body class="workshop">
 
-    {% include github-ribbon.html %}
-
+ 
     <div class="container card">
       {% include banner.html %}
       <div class="jumbotron">
         <div class="row">
           <div class="col-md-10 col-md-offset-1">
             <h2>{{page.venue}}</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <p>{% if page.address %}{{page.address}}{% endif %}</p>
+              </div>
+              <div class="col-md-10">
+                <p>{% if page.address2 %}{{page.address2}}{% endif %}</p>
+              </div> 
+              <div class="col-md-6">
+                <p>{% if page.address3 %}{{page.address3}}{% endif %}</p>
+              </div> 
+             </div>  
+             
             <div class="row">
               <div class="col-md-6">
                 <p>{{page.humandate}}</p>

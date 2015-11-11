@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+  <title>Automating tasks with the Unix shell</title>
+
+
+  <script src="js/deckjs-custom.js"></script>
+  <script>
+      // TODO: finer filter on what is needed (vs profile-5)
+      includedeck("css/swc-slides.css", {
+         BEFOREINIT: function() {
+            $(".slide.auto li:not(li li):not(.notslide)").addClass("slide");
+         }
+      });
+  </script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <div class="slide title-slide" data-container-class="no-status">
+        <h1 class="var-title"></h1>
+        <img class="logo" src="img/software-carpentry-banner.png" alt="Software Carpentry"/>
+    </div>
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+<section id="what-is-the-shell" class="slide level2">
+<h1>What is the shell?</h1>
+<ul>
+<li>Command line interface to applications</li>
+<li>Called the ‘shell’ since it wraps the complexity of the operating system in a simple wrapper</li>
+<li>Can have shell commands in a file - called a ‘script’
+<ul>
+<li>… but are still just programs</li>
+</ul></li>
+<li>Developed in the 1970’s - syntax can be parochial</li>
+<li>Every Unix-like system (e.g. Linux, Mac OS X) has the shell</li>
+<li>Most popular shell is Bash (Bourne Again SHell)</li>
+</ul>
+</section>
+<section id="boromir-speaks" class="slide level2">
+<h1>Boromir speaks</h1>
+<figure>
+<img src="img/boromir.png" />
+</figure>
+<ul>
+<li>This is wrong.</li>
+</ul>
+</section>
+<section id="a-typical-problem" class="slide level2">
+<h1>A Typical Problem</h1>
+<ul>
+<li>Running the same workflow on several samples can be labour intensive
+<ul>
+<li>e.g. the same set of processing steps over many files</li>
+</ul></li>
+<li>Manual manipulation of data files is…
+<ul>
+<li>Often not captured in documentation</li>
+<li>Hard to reproduce</li>
+<li>Prone to error</li>
+<li>Difficult to troubleshoot, review, or improve</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-does-the-shell-help" class="slide level2">
+<h1>How does the shell help?</h1>
+<ul>
+<li>Workflow steps can be automated
+<ul>
+<li>Through the use of shell scripts</li>
+<li>Even through one-line commands</li>
+<li>It’s a bit like Lego</li>
+</ul></li>
+<li>Built-in commands allow for easy data manipulation (e.g. sort, grep, etc.)</li>
+<li>Automation improves reproducibility and makes troubleshooting easier</li>
+<li><em>Let the computer do the work!</em></li>
+</ul>
+</section>
+<section id="other-reasons-to-learn-the-shell" class="slide level2">
+<h1>Other reasons to learn the shell</h1>
+<ul>
+<li>It makes you more productive!
+<ul>
+<li>Can do simple, repetitive things far more quickly</li>
+<li>…even complex things</li>
+<li>You don’t need to learn it all for it to be very useful</li>
+</ul></li>
+<li>Many applications/services depend on the shell
+<ul>
+<li>Scientific applications</li>
+<li>Common server applications (e.g. web servers, databases)</li>
+<li>High Performance Computing resources (e.g. IRIDIS, Lyceum, ARCHER)</li>
+</ul></li>
+<li>Foundation for the rest of the course</li>
+</ul>
+</section>
+<section id="learning-objectives" class="slide level2">
+<h1>Learning objectives</h1>
+<p>We’ll find out how to:</p>
+<ul>
+<li class="fragment">Navigate the file system</li>
+<li class="fragment">Create files and directories</li>
+<li class="fragment"><em>Redirect</em> output from commands to files</li>
+<li class="fragment">Chaining commands together using <em>pipes</em></li>
+<li class="fragment">Write loops to repeat operations many times</li>
+<li class="fragment">Include multiple commands in a shell <em>script</em></li>
+<li class="fragment">How to find files and things within files</li>
+</ul>
+</section>
+<section id="getting-started" class="slide level2">
+<h1>Getting started</h1>
+<p>If you haven’t already, let’s get a shell running!</p>
+<ul>
+<li><strong>Windows</strong>: run <strong>Git Bash</strong></li>
+<li><strong>Mac OS X</strong>: run <strong>Terminal</strong> under <em>Applications -&gt; Utilities</em></li>
+<li><strong>Linux</strong>: run <strong>Terminal</strong> application</li>
+</ul>
+<p>Then go to <strong>http://bit.ly/SWCSoton</strong> and follow instructions for downloading repository and configuring environment.</p>
+</section>
+<section id="let-us-begin" class="slide level2">
+<h1>Let us begin…</h1>
+</section>
+<section id="an-example-filesystem-i" class="slide level2">
+<h1>An example filesystem I</h1>
+<figure>
+<img src="img/filesystem.png" />
+</figure>
+</section>
+<section id="an-example-filesystem-ii" class="slide level2">
+<h1>An example filesystem II</h1>
+<figure>
+<img src="img/home-directories.png" />
+</figure>
+</section>
+<section id="pipes-example" class="slide level2">
+<h1>Pipes example</h1>
+<figure>
+<img src="img/redirects-and-pipes.png" />
+</figure>
+</section>
+<section id="limitations" class="slide level2">
+<h1>Limitations</h1>
+<ul>
+<li>Bash scripts good for quickly automating repetitive tasks that call other programs… up to a point!
+<ul>
+<li>More advanced techniques often have steep learning curve</li>
+<li>Writing more complex Bash scripts can take a lot longer</li>
+<li>Large Bash scripts often difficult to read and maintain</li>
+</ul></li>
+<li>For larger tasks use a more general language (like Python)
+<ul>
+<li>Can be more productive and lead to more maintainable code</li>
+<li>You can still use Bash’s pipes and redirects with them!</li>
+</ul></li>
+</ul>
+</section>
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- footer -->
+    <p class="deck-status deck-progress-10"> <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-title">will be replaced by the title</span></p>
+    <!-- progress bar -->
+    <div class="progress-bar" data-progress-size=":spe.bottom(0, 1) ; left: slide.left+'px' ; height: designRatio+'px'" data-progress="width: detail.p * slide.width" style="position: absolute;"> </div>
+
+    <!-- End extension snippets. -->
+  </div>
+
+</body>
+</html>

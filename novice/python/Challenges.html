@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Challenges</h2>
+          <blockquote>
+<h2>Python basics: Variables, Objects, Arrays, Lists etc</h2>
+</blockquote>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>What’s inside the box?</h4>
+</div>
+<div class="panel-body">
+<p>Draw diagrams showing what variables refer to what values after each statement in the following program:</p>
+<pre class="sourceCode python"><code class="sourceCode python">weight = <span class="fl">70.5</span>
+age = <span class="dv">35</span>
+<span class="co"># Take a trip to the planet Neptune</span>
+weight = weight * <span class="fl">1.14</span>
+age = age + <span class="dv">20</span></code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>Sorting out references</h4>
+</div>
+<div class="panel-body">
+<p>What does the following program print out?</p>
+<pre class="sourceCode python"><code class="sourceCode python">first, second = <span class="st">&#39;Grace&#39;</span>, <span class="st">&#39;Hopper&#39;</span>
+third, fourth = second, first
+<span class="dt">print</span> third, fourth</code></pre>
+</div>
+</section>
+<blockquote>
+<h2>Loops</h2>
+</blockquote>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>From 1 to N</h4>
+</div>
+<div class="panel-body">
+<p>Python has a built-in function called <code>range</code> that creates a list of numbers: <code>range(3)</code> produces <code>[0, 1, 2]</code>, <code>range(2, 5)</code> produces <code>[2, 3, 4]</code>. Using <code>range</code>, write a loop to print the first 3 natural numbers:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dv">1</span>
+<span class="dv">2</span>
+<span class="dv">3</span></code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Computing powers with loops</h2>
+</div>
+<div class="panel-body">
+<p>Exponentiation is built into Python:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(<span class="dv">5</span> ** <span class="dv">3</span>)
+<span class="dv">125</span></code></pre>
+<p>Write a loop that calculates the same result as <code>5 ** 3</code> using multiplication (and without exponentiation).</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Reverse a string</h2>
+</div>
+<div class="panel-body">
+<p>Write a loop that takes a string, and produces a new string with the characters in reverse order, so <code>Newton</code> becomes <code>notweN</code>.</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>Slicing strings</h4>
+</div>
+<div class="panel-body">
+<p>A section of an array is called a <a href="../../reference.html#slice">slice</a>. We can take slices of character strings as well:</p>
+<pre class="sourceCode python"><code class="sourceCode python">element = <span class="st">&#39;oxygen&#39;</span>
+<span class="dt">print</span> <span class="st">&#39;first three characters:&#39;</span>, element[<span class="dv">0</span>:<span class="dv">3</span>]
+<span class="dt">print</span> <span class="st">&#39;last three characters:&#39;</span>, element[<span class="dv">3</span>:<span class="dv">6</span>]</code></pre>
+</div>
+</section>
+<blockquote>
+<p>What is the value of <code>element[:4]</code>? What about <code>element[4:]</code>? Or <code>element[:]</code>?</p>
+<p>What is <code>element[-1]</code>? What is <code>element[-2]</code>? Given those answers, explain what <code>element[1:-1]</code> does.</p>
+</blockquote>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Turn a string into a list</h2>
+</div>
+<div class="panel-body">
+<p>Use a for-loop to convert the string “hello” into a list of letters:</p>
+<pre class="sourceCode python"><code class="sourceCode python">[<span class="st">&quot;h&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;o&quot;</span>]</code></pre>
+<p>Hint: You can create an empty list like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python">my_list = []</code></pre>
+</div>
+</section>
+<blockquote>
+<h2>Using libraries</h2>
+</blockquote>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>Thin slices</h4>
+</div>
+<div class="panel-body">
+<p>From our previous topic challenges, the expression <code>element[3:3]</code> produces an <a href="../../reference.html#empty-string">empty string</a>, i.e., a string that contains no characters. If <code>data</code> holds our array of patient data, what does <code>data[3:3, 4:4]</code> produce? What about <code>data[3:3, :]</code>?</p>
+</div>
+</section>
+<blockquote>
+<h2>Visualising data using libraries</h2>
+</blockquote>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>Make your own plot</h4>
+</div>
+<div class="panel-body">
+<p>Create a plot showing the standard deviation of the inflammation data for each day across all patients. Hint: <code>data.std(axis=0)</code> gives you standard deviation.</p>
+</div>
+</section>
+<blockquote>
+<h2>Making choices</h2>
+</blockquote>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>How many paths?</h4>
+</div>
+<div class="panel-body">
+<p>Which of the following would be printed if you were to run this code? Why did you pick this answer?</p>
+<ul>
+<li>A</li>
+<li>B</li>
+<li>C</li>
+<li>B and C</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> <span class="dv">4</span> &gt; <span class="dv">5</span>:
+    <span class="dt">print</span> <span class="st">&#39;A&#39;</span>
+<span class="kw">elif</span> <span class="dv">4</span> &lt;= <span class="dv">5</span>:
+    <span class="dt">print</span> <span class="st">&#39;B&#39;</span>
+<span class="kw">elif</span> <span class="dv">4</span> &lt; <span class="dv">5</span>:
+    <span class="dt">print</span> <span class="st">&#39;C&#39;</span></code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pencil"></span>What is truth?</h4>
+</div>
+<div class="panel-body">
+<p><code>True</code> and <code>False</code> aren’t the only values in Python that are true and false. In fact, <em>any</em> value can be used in an <code>if</code> or <code>elif</code>. After reading and running the code below, explain what the rule is for which values are considered true and which are considered false. (Note that if the body of a conditional is a single statement, we can write it on the same line as the <code>if</code>.)</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> <span class="st">&#39;&#39;</span>: <span class="dt">print</span> <span class="st">&#39;empty string is true&#39;</span>
+<span class="kw">if</span> <span class="st">&#39;word&#39;</span>: <span class="dt">print</span> <span class="st">&#39;word is true&#39;</span>
+<span class="kw">if</span> []: <span class="dt">print</span> <span class="st">&#39;empty list is true&#39;</span>
+<span class="kw">if</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]: <span class="dt">print</span> <span class="st">&#39;non-empty list is true&#39;</span>
+<span class="kw">if</span> <span class="dv">0</span>: <span class="dt">print</span> <span class="st">&#39;zero is true&#39;</span>
+<span class="kw">if</span> <span class="dv">1</span>: <span class="dt">print</span> <span class="st">&#39;one is true&#39;</span></code></pre>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
