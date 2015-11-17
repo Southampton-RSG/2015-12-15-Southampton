@@ -9,7 +9,7 @@ title: Software Prerequisites
 
 We maintain a list of common problems that can occur during installation and ways of solving them. Take a look at the [Configuration Problems and Solutions wiki page](https://github.com/swcarpentry/workshop-template/wiki/Configuration-Problems-and-Solutions) for help.
 
-If you still have trouble, we will run a **Software Installation surgery from 09.00 until 17.00 on  **. This will take place in room 3013 (Simon Hettrick's office), Building 32, Highfield campus. You don't need to make an appointment: just turn up. 
+If you still have trouble, we will run a **Software Installation surgery from 09.30 AM until 12.30 PM on  *Monday, December 14, 2015*. This will take place in room 3013 (Simon Hettrick's office), Building 32, Highfield campus. You don't need to make an appointment: just turn up. 
 
 
 ## Bash
@@ -125,7 +125,7 @@ curl -L http://goo.gl/HuPJu3 | python3.4
 
 ..
 
-You should see eight passes and no failures.  If anything fails, please contact us (emailing s.crouch@software.ac.uk, j.robinson@software.ac.uk and d.inupakutika@software.ac.uk) with details by ** ** at the latest.
+You should see eight passes and no failures.  If anything fails, please contact us (emailing s.crouch@software.ac.uk, j.robinson@software.ac.uk and d.inupakutika@software.ac.uk) with details by **Friday, December 11, 2015** at the latest.
 
 ## During the workshop
 
