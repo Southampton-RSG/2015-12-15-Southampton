@@ -74,10 +74,10 @@ d
 but that's a bad approach for two reasons:
 
 1.  It doesn't scale:
-    if we want to print the characters in a string that's hundreds of letters long,
-    we'd be better off just typing them in.
+    if we want to print the characters in a string that's hundreds of
+    letters long, we'd be better off just typing them in.
 
-1.  It's fragile:
+2.  It's fragile:
     if we give it a longer string,
     it only prints part of the data,
     and if we give it a shorter one,

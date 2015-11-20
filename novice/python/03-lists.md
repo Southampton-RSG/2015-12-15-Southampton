@@ -17,7 +17,6 @@ as a multidimensional array quite easily.
 
 ### List basics
 
-Just as a `for` loop is a way to do operations many times, a list is a way to store many values.
 A list in python is just an ordered collection of items which can be of any type. By comparison 
 an array is an ordered collection of items of a single type - so a list is more flexible than an 
 array.
@@ -40,7 +39,18 @@ Odds are: [1, 3, 5, 7, 9, 11, 15]
 ~~~
 
 This looks like an array because we can use *slicing* notation to pick out an individual element - 
-indexes start from 0. We select individual elements from lists by indexing them:
+indexes start from 0.
+
+Programming languages like Fortran and MATLAB start counting at 1,
+because that's what human beings have done for thousands of years.
+Languages in the C family (including C++, Java, Perl, and Python) count from 0
+because that's simpler for computers to do.
+
+It takes a bit of getting used to,
+but one way to remember the rule is that
+the index is how many steps we have to take from the start to get the item we want.
+
+We select individual elements from lists by indexing them:
 
 ~~~{.python}
 print('first and last:', odds[0], odds[-1])
@@ -59,6 +69,7 @@ assign directly to it:
 odds[6] = 13
 ~~~
 
+<!--
 and if we loop over a list,
 the loop variable is assigned elements one at a time:
 
@@ -76,6 +87,7 @@ for number in odds:
 11
 13
 ~~~
+-->
 
 The *Slicing* notation looks like array indexing but it is a lot more flexible. For example:
 
@@ -289,19 +301,6 @@ odds: [1, 3, 5, 7]
 
 This is different from how variables worked in lesson 1, and more similar to how a spreadsheet works.
 
->##Turn a string into a list {.challenge}
->
->Use a for-loop to convert the string "hello" into a list of letters:
->
->~~~ {.python}
->["h", "e", "l", "l", "o"]
->~~~
->Hint: You can create an empty list like this:
->
->~~~ {.python}
->my_list = []
->~~~
-
 ### Basic array operations
 
 So far so good, and it looks as if using a list is as easy as using an array.
@@ -309,6 +308,7 @@ So far so good, and it looks as if using a list is as easy as using an array.
 Where things start to go wrong just a little is when we attempt to push the similarities 
 between lists and arrays one step too far. For example, suppose we want to create an array 
 initialised to a particular value. Following the general array idiom in most languages we 
+<!--
 might write:
 
 ~~~ {.python}
@@ -316,12 +316,21 @@ myList=[]
 for i in range(10):
     myList[i]=1
 ~~~
+-->
+might initialise the elements to a value, say, 1. e.g.:
+
+~~~ {.python}
+myList=[]
+myList[1]=1
+myList[2]=1
+...
+~~~
 
 only to discover that this doesn't work because we can't assign to a list element that doesn't already exist.
 
 ~~~{.error}
 Traceback (most recent call last):
-  File "<stdin>", line 2, in <module>
+  File "<stdin>", line 1, in <module>
 IndexError: list assignment index out of range
 ~~~
 
@@ -329,9 +338,9 @@ One solution is to use the append method to add elements one by one:
 
 ~~~ {.python}
 myList=[]
-for i in range(10):
-    myList.append(1)
+myList.append(1)
+myList.append(1)
+...
 ~~~
 
-This works but it only works if we need to build up the list in this particular order - which most of the time you do. 
-
+This works but it only works if we need to build up the list in this particular order - which most of the time you want to do anyway.

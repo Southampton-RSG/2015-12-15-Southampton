@@ -18,7 +18,7 @@ Similarly,
 while a lot of powerful tools are built into languages like Python,
 even more live in the [libraries](../../reference.html#software-library) they are used to build.
 
-Library is a collection of code (precompiled routines) that a program can use. They are particularly 
+Library is a collection of code (precompiled routines, functions) that a program can use. They are particularly 
 useful for storing frequently used routines because you don't need to explicitly link them to every program 
 that uses them. Libraries will be automatically looked for routines that are not found elsewhere.
 
@@ -149,13 +149,15 @@ middle value in data: 13.0
 ~~~
 
 The expression `data[30, 20]` may not surprise you,
-but `data[0, 0]` might.
+but as with lists, `data[0, 0]` might.
+<!--
 Programming languages like Fortran and MATLAB start counting at 1,
 because that's what human beings have done for thousands of years.
 Languages in the C family (including C++, Java, Perl, and Python) count from 0
 because that's simpler for computers to do.
 As a result,
-if we have an M&times;N array in Python,
+-->
+So if we have an M&times;N array in Python,
 its indices go from 0 to M-1 on the first axis
 and 0 to N-1 on the second.
 It takes a bit of getting used to,

@@ -9,11 +9,14 @@ minutes: 10
 > *   Write conditional statements including `if`, `elif`, and `else` branches.
 > *   Evaluate expressions containing `and` and `or`.
 
+<!--
 In our numpy and visualisation lessons, we discovered something suspicious was going on
 in our inflammation data by drawing some plots.
 How can we use Python to automatically recognize the different features we saw,
-and take a different action for each? In this lesson, we'll learn how to write code that
-runs only when certain conditions are true.
+and take a different action for each?
+-->
+
+So what if we want to do something that's dependent on whether a given condition is true? In this lesson, we'll learn how to write code that runs only when certain conditions are true.
 
 ## Conditionals
 
@@ -112,6 +115,7 @@ at least one test is true
 In this case,
 "either" means "either or both", not "either one or the other but not both".
 
+<!--
 ## Checking our Data
 
 Now that we've seen how conditionals work,
@@ -148,6 +152,7 @@ but we could also imagine not using the `else` catch-all
 so that messages are only printed when something is wrong,
 freeing us from having to manually examine every plot for features we've seen before,
 or doing all manner of other things to respond to changing conditions in our data.
+-->
 
 > ## How many paths? {.challenge}
 > 
