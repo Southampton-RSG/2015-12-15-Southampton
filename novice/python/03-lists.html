@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Arrays, Lists etc</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Lists and Arrays in Python</li>
+<li>Indexing and slicing</li>
+</ul>
+</div>
+</section>
+<h3 id="arrays-in-python">Arrays in Python</h3>
+<p>One of the most fundamental data structures in any language is the array. Python doesn’t have a native array data structure, but it has the list which is much more general and can be used as a multidimensional array quite easily.</p>
+<h3 id="list-basics">List basics</h3>
+<p>A list in python is just an ordered collection of items which can be of any type. By comparison an array is an ordered collection of items of a single type - so a list is more flexible than an array.</p>
+<p>A list is also a dynamic mutable type and this means we can add and delete elements from the list at any time.</p>
+<p>Unlike Numpy arrays, lists are built into the language (so we don’t have to load a library to use them).</p>
+<p>To define a list we simply write a comma separated list of items in square brackets:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds = [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">15</span>]
+<span class="dt">print</span>(<span class="st">&#39;Odds are:&#39;</span>, odds)</code></pre>
+<pre class="output"><code>Odds are: [1, 3, 5, 7, 9, 11, 15]</code></pre>
+<p>This looks like an array because we can use <em>slicing</em> notation to pick out an individual element - indexes start from 0.</p>
+<p>Programming languages like Fortran and MATLAB start counting at 1, because that’s what human beings have done for thousands of years. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
+<p>It takes a bit of getting used to, but one way to remember the rule is that the index is how many steps we have to take from the start to get the item we want.</p>
+<p>We select individual elements from lists by indexing them:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(<span class="st">&#39;first and last:&#39;</span>, odds[<span class="dv">0</span>], odds[-<span class="dv">1</span>])</code></pre>
+<p>will print first and last elements, i.e. value 1 and 7 in this case.</p>
+<pre class="output"><code>first and last: 1 15</code></pre>
+<p>Similarly to change the seventh element we can assign directly to it:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">6</span>] = <span class="dv">13</span></code></pre>
+<!--
+and if we loop over a list,
+the loop variable is assigned elements one at a time:
+
+~~~ {.python}
+for number in odds:
+    print(number)
+~~~
+
+~~~ {.output}
+1
+3
+5
+7
+9
+11
+13
+~~~
+-->
+<p>The <em>Slicing</em> notation looks like array indexing but it is a lot more flexible. For example:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">2</span>:<span class="dv">5</span>]</code></pre>
+<pre class="output"><code>[5, 7, 9]</code></pre>
+<p>is a sublist from the third element to the fifth i.e. from <code>odds[2]</code> to <code>odds[4]</code>. Notice that the final element specified i.e. <code>[5]</code> is not included in the slice.</p>
+<p>Also notice that you can leave out either of the start and end indexes and they will be assumed to have their maximum possible value. For example:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">5</span>:]</code></pre>
+<pre class="output"><code>[11, 13]</code></pre>
+<p>is the list from <code>odds[5]</code> to the end of the list and</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[:<span class="dv">5</span>]</code></pre>
+<pre class="output"><code>[1, 3, 5, 7, 9]</code></pre>
+<p>is the list up to and not including odds[5] and</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[:]</code></pre>
+<pre class="output"><code>[1, 3, 5, 7, 9, 11, 13]</code></pre>
+<p>is the entire list.</p>
+<h3 id="slicing-strings">Slicing strings</h3>
+<p>A section of an array is called a <a href="../../reference.html#slice">slice</a>. We can take slices of character strings as well:</p>
+<pre class="sourceCode python"><code class="sourceCode python">element = <span class="st">&#39;oxygen&#39;</span>
+<span class="dt">print</span>(<span class="st">&#39;first three characters:&#39;</span>, element[<span class="dv">0</span>:<span class="dv">3</span>])
+<span class="dt">print</span>(<span class="st">&#39;last three characters:&#39;</span>, element[<span class="dv">3</span>:<span class="dv">6</span>])</code></pre>
+<pre class="output"><code>first three characters: oxy
+last three characters: gen</code></pre>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="slicing-strings-challenge"><span class="glyphicon glyphicon-pencil"></span>Slicing strings challenge</h2>
+</div>
+<div class="panel-body">
+<p>What is the value of <code>element[:4]</code>? What about <code>element[4:]</code>? Or <code>element[:]</code>?</p>
+<p>What is <code>element[-1]</code>? What is <code>element[-2]</code>? Given those answers, explain what <code>element[1:-1]</code> does.</p>
+</div>
+</section>
+<p>List slicing is more or less the same as string slicing except that we can modify a slice. For example:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">0</span>:<span class="dv">2</span>]=[<span class="dv">17</span>,<span class="dv">19</span>]</code></pre>
+<p>has the same effect as</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">0</span>]=<span class="dv">17</span>
+odds[<span class="dv">1</span>]=<span class="dv">19</span></code></pre>
+<p><strong>NOTE:</strong></p>
+<p>Finally it is worth knowing that the list we assign to a slice doesn’t have to be the same size as the slice - it simply replaces it even if it is a different size.</p>
+<h3 id="thin-slices">Thin slices</h3>
+<p>The expression <code>element[3:3]</code> produces an <a href="../../reference.html#empty-string">empty string</a>, i.e., a string that contains no characters.</p>
+<h3 id="lists-and-strings">Lists and Strings</h3>
+<p>There is one important difference between lists and strings: we can change the values in a list, but we cannot change the characters in a string. For example:</p>
+<pre class="sourceCode python"><code class="sourceCode python">names = [<span class="st">&#39;Newton&#39;</span>, <span class="st">&#39;Darwing&#39;</span>, <span class="st">&#39;Turing&#39;</span>] <span class="co"># typo in Darwin&#39;s name</span>
+<span class="dt">print</span>(<span class="st">&#39;names is originally:&#39;</span>, names)
+names[<span class="dv">1</span>] = <span class="st">&#39;Darwin&#39;</span> <span class="co"># correct the name</span>
+<span class="dt">print</span>(<span class="st">&#39;final value of names:&#39;</span>, names)</code></pre>
+<pre class="output"><code>names is originally: [&#39;Newton&#39;, &#39;Darwing&#39;, &#39;Turing&#39;]
+final value of names: [&#39;Newton&#39;, &#39;Darwin&#39;, &#39;Turing&#39;]</code></pre>
+<p>works, but:</p>
+<pre class="sourceCode python"><code class="sourceCode python">name = <span class="st">&#39;Bell&#39;</span>
+name[<span class="dv">0</span>] = <span class="st">&#39;b&#39;</span></code></pre>
+<pre class="error"><code>&gt;&gt;&gt; name[0]=&#39;b&#39;
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: &#39;str&#39; object does not support item assignment</code></pre>
+<p>does not.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="ch-ch-ch-changes"><span class="glyphicon glyphicon-pushpin"></span>Ch-Ch-Ch-Changes</h2>
+</div>
+<div class="panel-body">
+<p>Data which can be modified in place is called <a href="reference.html#mutable">mutable</a>, while data which cannot be modified is called <a href="reference.html#immutable">immutable</a>. Strings and numbers are immutable. This does not mean that variables with string or number values are constants, but when we want to change the value of a string or number variable, we can only replace the old value with a completely new value.</p>
+<p>Lists and arrays, on the other hand, are mutable: we can modify them after they have been created. We can change individual elements, append new elements, or reorder the whole list. For some operations, like sorting, we can choose whether to use a function that modifies the data in place or a function that returns a modified copy and leaves the original unchanged.</p>
+<p>Be careful when modifying data in place. If two variables refer to the same list, and you modify the list value, it will change for both variables! If you want variables with mutable values to be independent, you must make a copy of the value when you assign it.</p>
+<p>Because of pitfalls like this, code which modifies data in place can be more difficult to understand. However, it is often far more efficient to modify a large data structure in place than to create a modified copy for every small change. You should consider both of these aspects when writing your code.</p>
+</div>
+</aside>
+<p>There are many ways to change the contents of lists besides assigning new values to individual elements:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds.append(<span class="dv">21</span>)
+<span class="dt">print</span>(<span class="st">&#39;odds after adding a value:&#39;</span>, odds)</code></pre>
+<pre class="output"><code>odds after adding a value: [17, 19, 5, 7, 9, 11, 13, 15, 21]</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">del</span> odds[<span class="dv">0</span>]
+<span class="dt">print</span>(<span class="st">&#39;odds after removing the first element:&#39;</span>, odds)</code></pre>
+<pre class="output"><code>odds after removing the first element: [19, 5, 7, 9, 11, 13, 15, 21]</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">odds.reverse()
+<span class="dt">print</span>(<span class="st">&#39;odds after reversing:&#39;</span>, odds)</code></pre>
+<pre class="output"><code>odds after reversing: [21, 15, 13, 11, 9, 7, 5, 19]</code></pre>
+<p>While modifying in place, it is useful to remember that python treats lists in a slightly counterintuitive way.</p>
+<p>If we make a list and (attempt to) copy it then modify in place, we can cause all sorts of trouble:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds = [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]
+primes = odds
+primes += [<span class="dv">2</span>]
+<span class="dt">print</span>(<span class="st">&#39;primes:&#39;</span>, primes)
+<span class="dt">print</span>(<span class="st">&#39;odds:&#39;</span>, odds)</code></pre>
+<pre class="output"><code>primes: [1, 3, 5, 7, 2]
+odds: [1, 3, 5, 7, 2]</code></pre>
+<p>This is because python stores a list in memory, and then can use multiple names to refer to the same list. If all we want to do is copy a (simple) list, we can use the list() command, so we do not modify a list we did not mean to:</p>
+<pre class="sourceCode python"><code class="sourceCode python">odds = [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]
+primes = <span class="dt">list</span>(odds)
+primes += [<span class="dv">2</span>]
+<span class="dt">print</span>(<span class="st">&#39;primes:&#39;</span>, primes)
+<span class="dt">print</span>(<span class="st">&#39;odds:&#39;</span>, odds)</code></pre>
+<pre class="output"><code>primes: [1, 3, 5, 7, 2]
+odds: [1, 3, 5, 7]</code></pre>
+<p>This is different from how variables worked in lesson 1, and more similar to how a spreadsheet works.</p>
+<h3 id="basic-array-operations">Basic array operations</h3>
+<p>So far so good, and it looks as if using a list is as easy as using an array.</p>
+<p>Where things start to go wrong just a little is when we attempt to push the similarities between lists and arrays one step too far. For example, suppose we want to create an array initialised to a particular value. Following the general array idiom in most languages we <!--
+might write:
+
+~~~ {.python}
+myList=[]
+for i in range(10):
+    myList[i]=1
+~~~
+--> might initialise the elements to a value, say, 1. e.g.:</p>
+<pre class="sourceCode python"><code class="sourceCode python">myList=[]
+myList[<span class="dv">1</span>]=<span class="dv">1</span>
+myList[<span class="dv">2</span>]=<span class="dv">1</span>
+...</code></pre>
+<p>only to discover that this doesn’t work because we can’t assign to a list element that doesn’t already exist.</p>
+<pre class="error"><code>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+IndexError: list assignment index out of range</code></pre>
+<p>One solution is to use the append method to add elements one by one:</p>
+<pre class="sourceCode python"><code class="sourceCode python">myList=[]
+myList.append(<span class="dv">1</span>)
+myList.append(<span class="dv">1</span>)
+...</code></pre>
+<p>This works but it only works if we need to build up the list in this particular order - which most of the time you want to do anyway.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
