@@ -39,7 +39,14 @@
 </ul>
 </div>
 </section>
-<p>In our numpy and visualisation lessons, we discovered something suspicious was going on in our inflammation data by drawing some plots. How can we use Python to automatically recognize the different features we saw, and take a different action for each? In this lesson, we’ll learn how to write code that runs only when certain conditions are true.</p>
+<!--
+In our numpy and visualisation lessons, we discovered something suspicious was going on
+in our inflammation data by drawing some plots.
+How can we use Python to automatically recognize the different features we saw,
+and take a different action for each?
+-->
+
+<p>So what if we want to do something that’s dependent on whether a given condition is true? In this lesson, we’ll learn how to write code that runs only when certain conditions are true.</p>
 <h2 id="conditionals">Conditionals</h2>
 <p>We can ask Python to take different actions, depending on a condition, with an if statement:</p>
 <pre class="sourceCode python"><code class="sourceCode python">num = <span class="dv">37</span>
@@ -84,17 +91,45 @@ done</code></pre>
     <span class="dt">print</span>(<span class="st">&quot;at least one test is true&quot;</span>)</code></pre>
 <pre class="output"><code>at least one test is true</code></pre>
 <p>In this case, “either” means “either or both”, not “either one or the other but not both”.</p>
-<h2 id="checking-our-data">Checking our Data</h2>
-<p>Now that we’ve seen how conditionals work, we can use them to check for the suspicious features we saw in our inflammation data. In the first couple of plots, the maximum inflammation per day seemed to rise like a straight line, one unit per day. We can check for this inside the <code>for</code> loop we wrote with the following conditional:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> data.<span class="dt">max</span>(axis=<span class="dv">0</span>)[<span class="dv">0</span>] == <span class="dv">0</span> and data.<span class="dt">max</span>(axis=<span class="dv">0</span>)[<span class="dv">20</span>] == <span class="dv">20</span>:
-    <span class="dt">print</span>(<span class="st">&quot;Suspicious looking maxima!&quot;</span>)</code></pre>
-<p>We also saw a different problem in the third dataset; the minima per day were all zero (looks like a healthy person snuck into our study). We can also check for this with an <code>elif</code> condition:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">elif</span> data.<span class="dt">min</span>(axis=<span class="dv">0</span>).<span class="dt">sum</span>() == <span class="dv">0</span>:
-    <span class="dt">print</span>(<span class="st">&quot;Minima add up to zero!&quot;</span>)</code></pre>
-<p>And if neither of these conditions are true, we can use <code>else</code> to give the all-clear:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">else</span>:
-    <span class="dt">print</span>(<span class="st">&#39;Seems OK!&#39;</span>)</code></pre>
-<p>In this way, we can ask Python to do something different depending on the condition of our data. Here we printed messages in all cases, but we could also imagine not using the <code>else</code> catch-all so that messages are only printed when something is wrong, freeing us from having to manually examine every plot for features we’ve seen before, or doing all manner of other things to respond to changing conditions in our data.</p>
+<!--
+## Checking our Data
+
+Now that we've seen how conditionals work,
+we can use them to check for the suspicious features we saw in our inflammation data.
+In the first couple of plots, the maximum inflammation per day
+seemed to rise like a straight line, one unit per day.
+We can check for this inside the `for` loop we wrote with the following conditional:
+
+~~~ {.python}
+if data.max(axis=0)[0] == 0 and data.max(axis=0)[20] == 20:
+    print("Suspicious looking maxima!")
+~~~
+
+We also saw a different problem in the third dataset;
+the minima per day were all zero (looks like a healthy person snuck into our study).
+We can also check for this with an `elif` condition:
+
+~~~{.python}
+elif data.min(axis=0).sum() == 0:
+    print("Minima add up to zero!")
+~~~
+
+And if neither of these conditions are true, we can use `else` to give the all-clear:
+
+~~~ {.python}
+else:
+    print('Seems OK!')
+~~~
+
+In this way,
+we can ask Python to do something different depending on the condition of our data.
+Here we printed messages in all cases,
+but we could also imagine not using the `else` catch-all
+so that messages are only printed when something is wrong,
+freeing us from having to manually examine every plot for features we've seen before,
+or doing all manner of other things to respond to changing conditions in our data.
+-->
+
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pencil"></span>How many paths?</h2>

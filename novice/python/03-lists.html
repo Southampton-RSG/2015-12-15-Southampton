@@ -42,29 +42,42 @@
 <h3 id="arrays-in-python">Arrays in Python</h3>
 <p>One of the most fundamental data structures in any language is the array. Python doesn’t have a native array data structure, but it has the list which is much more general and can be used as a multidimensional array quite easily.</p>
 <h3 id="list-basics">List basics</h3>
-<p>Just as a <code>for</code> loop is a way to do operations many times, a list is a way to store many values. A list in python is just an ordered collection of items which can be of any type. By comparison an array is an ordered collection of items of a single type - so a list is more flexible than an array.</p>
+<p>A list in python is just an ordered collection of items which can be of any type. By comparison an array is an ordered collection of items of a single type - so a list is more flexible than an array.</p>
 <p>A list is also a dynamic mutable type and this means we can add and delete elements from the list at any time.</p>
 <p>Unlike Numpy arrays, lists are built into the language (so we don’t have to load a library to use them).</p>
 <p>To define a list we simply write a comma separated list of items in square brackets:</p>
 <pre class="sourceCode python"><code class="sourceCode python">odds = [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">15</span>]
 <span class="dt">print</span>(<span class="st">&#39;Odds are:&#39;</span>, odds)</code></pre>
 <pre class="output"><code>Odds are: [1, 3, 5, 7, 9, 11, 15]</code></pre>
-<p>This looks like an array because we can use <em>slicing</em> notation to pick out an individual element - indexes start from 0. We select individual elements from lists by indexing them:</p>
+<p>This looks like an array because we can use <em>slicing</em> notation to pick out an individual element - indexes start from 0.</p>
+<p>Programming languages like Fortran and MATLAB start counting at 1, because that’s what human beings have done for thousands of years. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
+<p>It takes a bit of getting used to, but one way to remember the rule is that the index is how many steps we have to take from the start to get the item we want.</p>
+<p>We select individual elements from lists by indexing them:</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(<span class="st">&#39;first and last:&#39;</span>, odds[<span class="dv">0</span>], odds[-<span class="dv">1</span>])</code></pre>
 <p>will print first and last elements, i.e. value 1 and 7 in this case.</p>
 <pre class="output"><code>first and last: 1 15</code></pre>
 <p>Similarly to change the seventh element we can assign directly to it:</p>
 <pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">6</span>] = <span class="dv">13</span></code></pre>
-<p>and if we loop over a list, the loop variable is assigned elements one at a time:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">for</span> number in odds:
-    <span class="dt">print</span>(number)</code></pre>
-<pre class="output"><code>1
+<!--
+and if we loop over a list,
+the loop variable is assigned elements one at a time:
+
+~~~ {.python}
+for number in odds:
+    print(number)
+~~~
+
+~~~ {.output}
+1
 3
 5
 7
 9
 11
-13</code></pre>
+13
+~~~
+-->
+
 <p>The <em>Slicing</em> notation looks like array indexing but it is a lot more flexible. For example:</p>
 <pre class="sourceCode python"><code class="sourceCode python">odds[<span class="dv">2</span>:<span class="dv">5</span>]</code></pre>
 <pre class="output"><code>[5, 7, 9]</code></pre>
@@ -159,32 +172,31 @@ primes += [<span class="dv">2</span>]
 <pre class="output"><code>primes: [1, 3, 5, 7, 2]
 odds: [1, 3, 5, 7]</code></pre>
 <p>This is different from how variables worked in lesson 1, and more similar to how a spreadsheet works.</p>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Turn a string into a list</h2>
-</div>
-<div class="panel-body">
-<p>Use a for-loop to convert the string “hello” into a list of letters:</p>
-<pre class="sourceCode python"><code class="sourceCode python">[<span class="st">&quot;h&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;o&quot;</span>]</code></pre>
-<p>Hint: You can create an empty list like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python">my_list = []</code></pre>
-</div>
-</section>
 <h3 id="basic-array-operations">Basic array operations</h3>
 <p>So far so good, and it looks as if using a list is as easy as using an array.</p>
-<p>Where things start to go wrong just a little is when we attempt to push the similarities between lists and arrays one step too far. For example, suppose we want to create an array initialised to a particular value. Following the general array idiom in most languages we might write:</p>
+<p>Where things start to go wrong just a little is when we attempt to push the similarities between lists and arrays one step too far. For example, suppose we want to create an array initialised to a particular value. Following the general array idiom in most languages we <!--
+might write:
+
+~~~ {.python}
+myList=[]
+for i in range(10):
+    myList[i]=1
+~~~
+--> might initialise the elements to a value, say, 1. e.g.:</p>
 <pre class="sourceCode python"><code class="sourceCode python">myList=[]
-<span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">10</span>):
-    myList[i]=<span class="dv">1</span></code></pre>
+myList[<span class="dv">1</span>]=<span class="dv">1</span>
+myList[<span class="dv">2</span>]=<span class="dv">1</span>
+...</code></pre>
 <p>only to discover that this doesn’t work because we can’t assign to a list element that doesn’t already exist.</p>
 <pre class="error"><code>Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 2, in &lt;module&gt;
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
 IndexError: list assignment index out of range</code></pre>
 <p>One solution is to use the append method to add elements one by one:</p>
 <pre class="sourceCode python"><code class="sourceCode python">myList=[]
-<span class="kw">for</span> i in <span class="dt">range</span>(<span class="dv">10</span>):
-    myList.append(<span class="dv">1</span>)</code></pre>
-<p>This works but it only works if we need to build up the list in this particular order - which most of the time you do.</p>
+myList.append(<span class="dv">1</span>)
+myList.append(<span class="dv">1</span>)
+...</code></pre>
+<p>This works but it only works if we need to build up the list in this particular order - which most of the time you want to do anyway.</p>
         </div>
       </div>
       </article>

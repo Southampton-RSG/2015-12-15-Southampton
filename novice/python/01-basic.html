@@ -27,18 +27,44 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
                     <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
-          <h2 class="subtitle">Python Basics- Variables, Objects, Arrays, Lists etc</h2>
+          <h2 class="subtitle">Python Basics - Running the Python interpreter, Variables</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
+<li>Running the Python interpreter</li>
 <li>Introduction to Python variables</li>
 <li>Creating and Assigning values to variables</li>
 </ul>
 </div>
 </section>
+<h2 id="running-the-python-interpreter">Running the Python interpreter</h2>
+<p>Normally, you write Python programs in a Python script, which is basically a file of Python commands you can run. But to start with, we’ll take a look at the Python interpreter. It’s similar to the shell in how it works, in that you type in commands and it gives you results back, but instead you use the Python language.</p>
+<p>It’s a really quick and convenient way to get started with Python, particularly when learning about things like how to use variables, and it’s good for playing around with what you can do and quickly testing small things. But as you progress to more interesting and complex things you need to move over to writing proper Python scripts, which we’ll see later.</p>
+<p>You start the Python interpreter from the shell by:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span></code></pre>
+<p>And then you are presented with something like:</p>
+<pre class="output"><code>Python 3.4.3 |Anaconda 2.3.0 (x86_64)| (default, Mar  6 2015, 12:07:41) 
+[GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; </code></pre>
+<p>And lo and behold! You are presented with yet another prompt. So, we’re actually running a Python interpreter from the shell - it’s only yet another program we can run from the shell after all. But shell commands won’t work again until we exit the interpreter.</p>
+<p>You can exit the interpreter and get back to the shell by typing:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; exit()</code></pre>
+<p>…or alternatively pressing the Control and D keys at the same time. Then you’ll see:</p>
+<pre class="output"><code>$ </code></pre>
+<p>Phew - back to the shell!</p>
+<p>But let’s get back to the Python interpreter and learn about variables in Python:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span></code></pre>
+<p>And we’re back to the Python interpreter:</p>
+<pre class="output"><code>Python 3.4.3 |Anaconda 2.3.0 (x86_64)| (default, Mar  6 2015, 12:07:41) 
+[GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; </code></pre>
+<p>So from now on, Python only! Let’s get started…</p>
+<h2 id="variables">Variables</h2>
 <p>A variable is just a name for a value, such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. Python’s variables must begin with a letter. A variable in Python is defined through assignment i.e. we can create a new variable simply by assigning a value to it using <code>=</code>. As an illustration, consider the simplest <code>collection</code> of data, a single value. The line below assigns a value to a variable:</p>
 <pre class="sourceCode python"><code class="sourceCode python">weight_kg = <span class="dv">55</span></code></pre>
 <p>Once a variable has a value, we can print it:</p>
