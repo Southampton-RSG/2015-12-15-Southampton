@@ -1,4 +1,4 @@
-POINT_X,POINT_Y,Min_temp_Jul_F,Max_temp_jul_F,Rainfall_jul_inch
+# POINT_X,POINT_Y,Min_temp_Jul_F,Max_temp_jul_F,Rainfall_jul_inch
 461196.8188,1198890.052,47.77,58.53,0.76
 436196.8188,1191890.052,47.93,58.60,0.83
 445196.8188,1168890.052,47.93,58.30,0.74
