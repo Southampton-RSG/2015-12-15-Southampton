@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Making choices</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li></li>
+</ul>
+</div>
+</section>
+<p>So what if we want to do something that’s dependent on whether a given condition is true? In this lesson, we’ll learn how to write code that runs only when certain conditions are true.</p>
+<h2 id="conditionals">Conditionals</h2>
+<p>We can ask Python to take different actions, depending on a condition, with an if statement:</p>
+<pre class="sourceCode python"><code class="sourceCode python">num = <span class="dv">37</span>
+<span class="kw">if</span> num &gt; <span class="dv">100</span>:
+    <span class="dt">print</span>(<span class="st">&quot;greater&quot;</span>)
+<span class="kw">else</span>:
+    <span class="dt">print</span>(<span class="st">&quot;not greater&quot;</span>)
+<span class="dt">print</span>(<span class="st">&quot;done&quot;</span>)</code></pre>
+<pre class="output"><code>not greater
+done</code></pre>
+<p>The second line of this code uses the keyword <code>if</code> to tell Python that we want to make a choice. If the test that follows it is true, the body of the <code>if</code> (i.e., the lines indented underneath it) are executed. If the test is false, the body of the <code>else</code> is executed instead. Only one or the other is ever executed:</p>
+<div class="figure">
+<img src="img/python-flowchart-conditional.svg" alt="Executing a Conditional" />
+<p class="caption">Executing a Conditional</p>
+</div>
+<p>Conditional statements don’t have to necessarily include an <code>else</code>. If there isn’t one, Python simply does nothing if the test is false:</p>
+<pre class="sourceCode python"><code class="sourceCode python">num = <span class="dv">53</span>
+<span class="dt">print</span>(<span class="st">&quot;before conditional...&quot;</span>)
+<span class="kw">if</span> num &gt; <span class="dv">100</span>:
+    <span class="dt">print</span>(<span class="st">&quot;53 is greater than 100&quot;</span>)
+<span class="dt">print</span>(<span class="st">&quot;...after conditional&quot;</span>)</code></pre>
+<pre class="output"><code>before conditional...
+...after conditional</code></pre>
+<p>We can also chain several tests together using <code>elif</code>, which is short for “else if” as shown in the example code chunk below:</p>
+<pre class="sourceCode python"><code class="sourceCode python">num = -<span class="dv">3</span>
+    <span class="kw">if</span> num &gt; <span class="dv">0</span>:
+        <span class="dt">print</span>(<span class="st">&quot;Sign of a number:&quot;</span>,num,<span class="st">&quot;is:&quot;</span>,<span class="dv">1</span>)
+    <span class="kw">elif</span> num == <span class="dv">0</span>:
+        <span class="dt">print</span>(<span class="st">&quot;Sign of a number&quot;</span>,num,<span class="st">&quot;is:&quot;</span>,<span class="dv">0</span>)
+    <span class="kw">else</span>:
+        <span class="dt">print</span>(<span class="st">&quot;Sign of a number&quot;</span>,num, <span class="st">&quot;is:&quot;</span>,-<span class="dv">1</span>)</code></pre>
+<pre class="output"><code>sign of a number -3 is:  -1</code></pre>
+<p>The keyword <code>elif</code> is short for <code>else if</code>, and is useful to avoid excessive indentation. An <code>if ... elif ... elif ...</code> sequence is a substitute for the <code>switch</code> or <code>case</code> statements found in other languages.</p>
+<p>One important thing to notice in the code above is that we use a double equals sign <code>==</code> to test for equality rather than a single equals sign because the latter is used to mean assignment. This convention was inherited from C, and while many other programming languages work the same way, it does take a bit of getting used to…</p>
+<p>We can also combine tests using <code>and</code> and <code>or</code>. <code>and</code> is only true if both parts are true:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> (<span class="dv">1</span> &gt; <span class="dv">0</span>) and (-<span class="dv">1</span> &gt; <span class="dv">0</span>):
+    <span class="dt">print</span>(<span class="st">&quot;both parts are true&quot;</span>)
+<span class="kw">else</span>:
+    <span class="dt">print</span>(<span class="st">&quot;one part is not true&quot;</span>)</code></pre>
+<pre class="output"><code>one part is not true</code></pre>
+<p>while <code>or</code> is true if either part is true:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> (<span class="dv">1</span> &lt; <span class="dv">0</span>) or (<span class="st">&#39;left&#39;</span> &lt; <span class="st">&#39;right&#39;</span>):
+    <span class="dt">print</span>(<span class="st">&quot;at least one test is true&quot;</span>)</code></pre>
+<pre class="output"><code>at least one test is true</code></pre>
+<p>In this case, “either” means “either or both”, not “either one or the other but not both”.</p>
+<h2 id="climate-analysis-adding-a-condition-to-avoid-printing-comments">Climate Analysis: adding a condition to avoid printing comments</h2>
+<p>We’re still getting our column header at the top of our output, and perhaps we don’t want that. We need to able to check whether the line begins with a ‘#’ (which denotes a comment line), and if so, avoid printing it out.</p>
+<p>So let’s use an <code>if</code> statement to do that:</p>
+<pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># print 4th column (max temperature)</span>
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature&#39;</span>, data[<span class="dv">3</span>])</code></pre>
+<pre><code>Max temperature 58.53
+Max temperature 58.60
+Max temperature 58.30
+Max temperature 56.91
+Max temperature 59.86
+Max temperature 58.95
+Max temperature 58.73
+Max temperature 61.41
+Max temperature 61.27
+Max temperature 61.41</code></pre>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

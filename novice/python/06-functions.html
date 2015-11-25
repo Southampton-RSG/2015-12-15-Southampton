@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Modularising your code using functions</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li></li>
+</ul>
+</div>
+</section>
+<h3 id="converting-from-fahrenheit-to-celsius">Converting from Fahrenheit to Celsius</h3>
+<pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        <span class="co"># apply standard fahrenheit to Celsius formula</span>
+        celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
+<pre><code>Max temperature in Celsius 14.73888888888889
+Max temperature in Celsius 14.777777777777779
+Max temperature in Celsius 14.61111111111111
+Max temperature in Celsius 13.838888888888887
+Max temperature in Celsius 15.477777777777778
+Max temperature in Celsius 14.972222222222225
+Max temperature in Celsius 14.85
+Max temperature in Celsius 16.33888888888889
+Max temperature in Celsius 16.261111111111113
+Max temperature in Celsius 16.33888888888889</code></pre>
+<h3 id="modularising-conversion-code-into-a-function">Modularising conversion code into a function</h3>
+<pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">def</span> fahr_to_celsius(fahr):
+    <span class="co"># apply standard fahrenheit to Celsius formula</span>
+    celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+    <span class="kw">return</span> celsius
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        celsius = fahr_to_celsius(fahr)
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
+<p>And when we run it again — which we most definitely should, to make sure it’s still working as expected — we see the same output, which is correct.</p>
+<h3 id="modularising-conversion-code-into-a-library">Modularising conversion code into a library</h3>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;A library to perform temperature conversions&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> fahr_to_celsius(fahr):
+    <span class="co">&quot;&quot;&quot;Convert Fahrenheit to Celsius.</span>
+
+<span class="co">    Uses standard fahrenheit to Celsius formula</span>
+
+<span class="co">    Arguments:</span>
+<span class="co">    fahr -- the temperature in Fahrenheit</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+    <span class="kw">return</span> celsius</code></pre>
+<p>When modules and functions are described in Docstrings, we can ask for these explanations directly from the interpreter, which is very useful:</p>
+<pre class="sourceCode python"><code class="sourceCode python">Python <span class="fl">3.4.3</span> |Anaconda <span class="fl">2.3.0</span> (x86_64)| (default, Mar  <span class="dv">6</span> <span class="dv">2015</span>, <span class="dv">12</span>:<span class="dv">07</span>:<span class="dv">41</span>) 
+[GCC <span class="fl">4.2.1</span> (Apple Inc. build <span class="dv">5577</span>)] on darwin
+Type <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> <span class="kw">for</span> more information.
+&gt;&gt;&gt; <span class="ch">import</span> temp_conversion
+&gt;&gt;&gt; <span class="dt">help</span>(temp_conversion)</code></pre>
+<pre><code>Help on module temp_conversion:
+
+NAME
+    temp_conversion - A library to perform temperature conversions
+
+FUNCTIONS
+    fahr_to_celsius(fahr)
+        Convert Fahrenheit to Celsius.
+        
+        Uses standard fahrenheit to Celsius formula
+        
+        Arguments:
+        fahr -- the temperature in Fahrenheit
+
+FILE
+    /Users/user/Projects/RSG/Training/2015-12-15-Southampton/novice/python/code/temp_conversion.py</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="dt">help</span>(temp_conversion.fahr_to_celsius)</code></pre>
+<pre><code>Help on function fahr_to_celsius in module temp_conversion:
+
+fahr_to_celsius(fahr)
+    Convert Fahrenheit to Celsius.
+    
+    Uses standard fahrenheit to Celsius formula
+    
+    Arguments:
+    fahr -- the temperature in Fahrenheit</code></pre>
+<p>And then we need to <code>import</code> that function from our module into our script, so we can use it.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> temp_conversion <span class="ch">import</span> fahr_to_celsius
+
+climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        celsius = fahr_to_celsius(fahr)
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
+<p>Again, the results should be the same as before.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

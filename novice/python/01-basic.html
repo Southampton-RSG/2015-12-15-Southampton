@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Python Basics - Running the Python interpreter, Variables</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Introduction to running the Python interpreter</li>
+<li>Introduction to Python variables</li>
+<li>Creating and Assigning values to variables</li>
+</ul>
+</div>
+</section>
+<h2 id="running-the-python-interpreter">Running the Python interpreter</h2>
+<p>Normally, you write Python programs in a Python script, which is basically a file of Python commands you can run. But to start with, we’ll take a look at the Python interpreter. It’s similar to the shell in how it works, in that you type in commands and it gives you results back, but instead you use the Python language.</p>
+<p>It’s a really quick and convenient way to get started with Python, particularly when learning about things like how to use variables, and it’s good for playing around with what you can do and quickly testing small things. But as you progress to more interesting and complex things you need to move over to writing proper Python scripts, which we’ll see later.</p>
+<p>You start the Python interpreter from the shell by:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span></code></pre>
+<p>And then you are presented with something like:</p>
+<pre class="output"><code>Python 3.4.3 |Anaconda 2.3.0 (x86_64)| (default, Mar  6 2015, 12:07:41) 
+[GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; </code></pre>
+<p>And lo and behold! You are presented with yet another prompt. So, we’re actually running a Python interpreter from the shell - it’s only yet another program we can run from the shell after all. But shell commands won’t work again until we exit the interpreter.</p>
+<p>You can exit the interpreter and get back to the shell by typing:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; exit()</code></pre>
+<p>…or alternatively pressing the Control and D keys at the same time. Then you’ll see:</p>
+<pre class="output"><code>$ </code></pre>
+<p>Phew - back to the shell!</p>
+<p>But let’s get back to the Python interpreter and learn about variables in Python:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span></code></pre>
+<p>And we’re back to the Python interpreter:</p>
+<pre class="output"><code>Python 3.4.3 |Anaconda 2.3.0 (x86_64)| (default, Mar  6 2015, 12:07:41) 
+[GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; </code></pre>
+<h2 id="variables">Variables</h2>
+<p>A variable is just a name for a value, such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. Python’s variables must begin with a letter. A variable in Python is defined through assignment i.e. we can create a new variable simply by assigning a value to it using <code>=</code>. As an illustration, consider the simplest <code>collection</code> of data, a single value. The line below assigns a value to a variable:</p>
+<pre class="sourceCode python"><code class="sourceCode python">weight_kg = <span class="dv">55</span></code></pre>
+<p>Once a variable has a value, we can print it:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(weight_kg)</code></pre>
+<pre class="output"><code>55</code></pre>
+<p>and do arithmetic with it:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(<span class="st">&#39;weight in pounds:&#39;</span>, <span class="fl">2.2</span> * weight_kg)</code></pre>
+<pre class="output"><code>weight in pounds: 121.0</code></pre>
+<p>In the above example, a floating point number <code>55</code> object has a tag labelled <code>weight_kg</code>.</p>
+<p>If we reassign to <code>weight_kg</code>, we just move the tag to another object as shown below.</p>
+<p>We can change a variable’s value by assigning it a new one:</p>
+<pre class="sourceCode python"><code class="sourceCode python">weight_kg = <span class="fl">57.5</span>
+<span class="dt">print</span>(<span class="st">&#39;weight in kilograms is now:&#39;</span>, weight_kg)</code></pre>
+<pre class="output"><code>weight in kilograms is now: 57.5</code></pre>
+<p>Now the name <code>weight_kg</code> is attached to another floating point number <code>57.5</code> object.</p>
+<p>Hence, in Python, a <code>name</code> or <code>identifier</code> or <code>variable</code> is like a name tag attached to an object. Python has <code>names</code> and everything is an <code>object</code>.</p>
+<p>As the example above shows, we can print several things at once by separating them with commas.</p>
+<p>If we imagine the variable as a sticky note with a name written on it, assignment is like putting the sticky note on a particular value:</p>
+<div class="figure">
+<img src="img/python-sticky-note-variables-01.svg" alt="Variables as Sticky Notes" />
+<p class="caption">Variables as Sticky Notes</p>
+</div>
+<p>This means that assigning a value to one variable does <em>not</em> change the values of other variables. For example, let’s store the subject’s weight in pounds in a variable:</p>
+<pre class="sourceCode python"><code class="sourceCode python">weight_lb = <span class="fl">2.2</span> * weight_kg
+<span class="dt">print</span>(<span class="st">&#39;weight in kilograms:&#39;</span>, weight_kg, <span class="st">&#39;and in pounds:&#39;</span>, weight_lb)</code></pre>
+<pre class="output"><code>weight in kilograms: 57.5 and in pounds: 126.5</code></pre>
+<div class="figure">
+<img src="img/python-sticky-note-variables-02.svg" alt="Creating Another Variable" />
+<p class="caption">Creating Another Variable</p>
+</div>
+<p>and then change <code>weight_kg</code>:</p>
+<pre class="sourceCode python"><code class="sourceCode python">weight_kg = <span class="fl">100.0</span>
+<span class="dt">print</span>(<span class="st">&#39;weight in kilograms is now:&#39;</span>, weight_kg, <span class="st">&#39;and weight in pounds is still:&#39;</span>, weight_lb)</code></pre>
+<pre class="output"><code>weight in kilograms is now: 100.0 and weight in pounds is still: 126.5</code></pre>
+<div class="figure">
+<img src="img/python-sticky-note-variables-03.svg" alt="Updating a Variable" />
+<p class="caption">Updating a Variable</p>
+</div>
+<p>Since <code>weight_lb</code> doesn’t remember where its value came from, it isn’t automatically updated when <code>weight_kg</code> changes. This is different from the way spreadsheets work.</p>
+<p>Although we commonly refer to <code>variables</code> even in Python (because it is the common terminology), we really mean <code>names</code> or <code>identifiers</code>. In Python, <code>variables</code> are name tags for values, not labelled boxes.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="whats-inside-the-box"><span class="glyphicon glyphicon-pencil"></span>What’s inside the box?</h2>
+</div>
+<div class="panel-body">
+<p>Draw diagrams showing what variables refer to what values after each statement in the following program:</p>
+<pre class="sourceCode python"><code class="sourceCode python">weight = <span class="fl">70.5</span>
+age = <span class="dv">35</span>
+<span class="co"># Take a trip to the planet Neptune</span>
+weight = weight * <span class="fl">1.14</span>
+age = age + <span class="dv">20</span></code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="sorting-out-references"><span class="glyphicon glyphicon-pencil"></span>Sorting out references</h2>
+</div>
+<div class="panel-body">
+<p>What does the following program print out?</p>
+<pre class="sourceCode python"><code class="sourceCode python">first, second = <span class="st">&#39;Grace&#39;</span>, <span class="st">&#39;Hopper&#39;</span></code></pre>
+<pre class="output"><code>first = Grace
+second = Hopper</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">third, fourth = second, first
+<span class="dt">print</span>(third, fourth)</code></pre>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
