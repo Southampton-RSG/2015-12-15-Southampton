@@ -10,6 +10,7 @@ minutes: 15
 > *   Build a basic Python script and run it.
 > *   Track changes to a loop variable as the loop runs.
 > *   Track changes to other variables as they are updated by a for loop.
+> *   Write as basic Python script that uses loops
 
 ### Using loops to repeat things
 
@@ -210,7 +211,7 @@ statement belongs to the loop.
 
 ### So what's happening in a loop?
 
-Let's write a different program called `count_vowels.py`, with another loop that repeatedly updates a variable:
+Let's look at a different program called `count_vowels.py`, with another loop that repeatedly updates a variable:
 
 ~~~ {.python}
 length = 0

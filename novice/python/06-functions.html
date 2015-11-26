@@ -34,11 +34,21 @@
 </div>
 <div class="panel-body">
 <ul>
-<li></li>
+<li>Define a function that takes parameters.</li>
+<li>Return a value from a function.</li>
+<li>Documenting a function.</li>
+<li>Understand why we should divide programs into small, single-purpose functions.</li>
+<li>Define and use a module that contains functions.</li>
 </ul>
 </div>
 </section>
+<p>At this point, we’ve written some scripts to do various things, including one to loop through a data file and output its contents. But it’s not hard to imagine our code getting more complicated as we add more features.</p>
+<p>We’ll see how we can amend our code to be better structured to further increase its readability, as well as its maintainability and reuse in other applications.</p>
 <h3 id="converting-from-fahrenheit-to-celsius">Converting from Fahrenheit to Celsius</h3>
+<p>Let’s look at adding a feature to our code to perform a conversion from Fahrenheit to Celsius on the temperature data we are looking at:</p>
+<pre class="sourceCode python"><code class="sourceCode python">celsius = ((data[<span class="dv">3</span>] - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>))</code></pre>
+<p>Now this wouldn’t work as it is - we can’t just apply this formula directly to <code>data[3]</code> since it’s a string. We need to convert it to a number first. To be specific, a floating point number.</p>
+<p>Fortunately, Python has some built-in functions to do conversions:</p>
 <pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
 
 <span class="kw">for</span> line in climate_data:
@@ -55,6 +65,8 @@
         celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
 
         <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
+<p>So we first convert our <code>data[3]</code> value to a floating point number using <code>float()</code>, then we are free to use it in our conversion formula. Depending on the structure of your own data, you may find you end up doing this a lot!</p>
+<p>So now we get:</p>
 <pre><code>Max temperature in Celsius 14.73888888888889
 Max temperature in Celsius 14.777777777777779
 Max temperature in Celsius 14.61111111111111
@@ -151,6 +163,28 @@ climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_cli
 
         <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
 <p>Again, the results should be the same as before.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="combining-strings"><span class="glyphicon glyphicon-pencil"></span>Combining strings</h2>
+</div>
+<div class="panel-body">
+<p>“Adding” two strings produces their concatenation: <code>'a' + 'b'</code> is <code>'ab'</code>. Write a function called <code>fence</code> that takes two parameters called <code>original</code> and <code>wrapper</code> and returns a new string that has the wrapper character at the beginning and end of the original. A call to your function should look like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(fence(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;*&#39;</span>))
+*name*</code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="palindrome-string-check"><span class="glyphicon glyphicon-pencil"></span>Palindrome String check</h2>
+</div>
+<div class="panel-body">
+<p>A “Palindrome” is a word, phrase, number, or other sequence of characters which reads the same backward or forward. Write a function (any name of your choice) that takes <code>input_string</code> as a parameter and returns either <code>True</code> or <code>False</code> based on whether the input string is a palindrome or not respectively. Try to make it case insensitive.<br />Following the function definition, a call to your function should look like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python">is_palindrome(<span class="st">&quot;hello&quot;</span>)
+<span class="ot">False</span>
+is_palindrome(<span class="st">&quot;Deed&quot;</span>)
+<span class="ot">True</span></code></pre>
+</div>
+</section>
         </div>
       </div>
       </article>

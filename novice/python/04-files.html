@@ -34,14 +34,15 @@
 </div>
 <div class="panel-body">
 <ul>
-<li></li>
+<li>Write a script to open a data file and print out its contents.</li>
+<li>Perform some operations on strings to extract desired data from it.</li>
+<li>Understand the basics of how Python handles objects.</li>
+<li>Understand good practices of how and when to write a code comment.</li>
 </ul>
 </div>
 </section>
 <p>So far we’ve seen how to use and manipulate variables, and how to use loops in a script to process strings. But let’s take a look at a more interesting use case - performing some temperature conversions on our CSV data file.</p>
-<p>We’ll start out by looking at how to read the data file and print its contents in a script, and then modify our script to perform some conversions and output that. Along the way, we’ll see how we can make our code more understandable to others (as well as ourselves, when we might come back to it at a later date). <!--
-We'll then see how we can amend our code to be better structured to further increase its readability, as well as its maintainability and reuse in other applications.
---></p>
+<p>We’ll start out by looking at how to read the data file and print its contents in a script, and then modify our script to perform some conversions and output that. Along the way, we’ll see how we can make our code more understandable to others (as well as ourselves, when we might come back to it at a later date).</p>
 <!-- ** Mention CSV specific library -->
 <h3 id="printing-out-the-contents-of-a-data-file">Printing out the contents of a data file</h3>
 <p>We first need to be able to read in our data from the <code>sc_climate_data_10.csv</code> file, and using a loop, print out each line. Let’s write another script called <code>climate_analysis.py</code>, and enter the following:</p>
@@ -146,6 +147,7 @@ Max temperature 58.73
 Max temperature 61.41
 Max temperature 61.27
 Max temperature 61.41</code></pre>
+<p>This perhaps isn’t what we want - the column header is also part of the output!</p>
         </div>
       </div>
       </article>

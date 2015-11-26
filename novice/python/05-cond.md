@@ -6,8 +6,9 @@ minutes: 15
 ---
 > ## Learning Objectives {.objectives}
 >
-> *   
-
+> *   Write conditional statements including `if`, `elif`, and `else` branches.
+> *   Evaluate expressions containing `and` and `or`.
+> *   Use conditionals to conditionally process input data.
 
 So what if we want to do something that's dependent on whether a given condition is true? In this lesson, we'll learn how to write code that runs only when certain conditions are true.
 

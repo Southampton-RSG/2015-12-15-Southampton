@@ -6,7 +6,10 @@ minutes: 15
 ---
 > ## Learning Objectives {.objectives}
 >
-> *   
+> *   Write a script to open a data file and print out its contents.
+> *   Perform some operations on strings to extract desired data from it.
+> *   Understand the basics of how Python handles objects.
+> *   Understand good practices of how and when to write a code comment.
 
 So far we've seen how to use and manipulate variables, and how to use loops in a script to process strings.
 But let's take a look at a more interesting use case - performing some
@@ -17,12 +20,8 @@ its contents in a script, and then modify our script to perform
 some conversions and output that.
 Along the way, we'll see how we can make our code more understandable to 
 others (as well as ourselves, when we might come back to it at a later date).
-<!--
-We'll then see how we can amend our code to be better structured to further increase its readability, as well as its maintainability and reuse in other applications.
--->
 
 <!-- ** Mention CSV specific library -->
-
 
 ### Printing out the contents of a data file
 
@@ -215,3 +214,5 @@ Max temperature 61.41
 Max temperature 61.27
 Max temperature 61.41
 ~~~
+
+This perhaps isn't what we want - the column header is also part of the output!
