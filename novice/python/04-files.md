@@ -23,6 +23,7 @@ others (as well as ourselves, when we might come back to it at a later date).
 
 <!-- ** Mention CSV specific library -->
 
+
 ### Printing out the contents of a data file
 
 We first need to be able to read in our data from the `sc_climate_data_10.csv`
@@ -182,7 +183,7 @@ temperature, is the 4th column. But in Python list indexes start at 0, so in
 fact we need to obtain the value from `data[3]` and **not** `data[4]`. So, we 
 have made a note to that effect in a *comment*.
 
-> ## When should you add a comment? {.callout}
+> ## How and when should you add a comment? {.callout}
 > 
 > The trick is to keep your audience in mind when writing code --- this could
 > be someone else in the lab, or perhaps someone in another institution. A
