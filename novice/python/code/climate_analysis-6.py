@@ -1,7 +1,7 @@
 climate_data = open('../data/sc_climate_data_10.csv', 'r')
 
 def fahr_to_celsius(fahr):
-    # apply standard fahrenheit to Celsius formula
+    # apply standard Fahrenheit to Celsius formula
     celsius = ((fahr - 32) * (5/9)) 
     return celsius
 

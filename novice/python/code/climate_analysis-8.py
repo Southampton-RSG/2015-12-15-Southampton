@@ -1,3 +1,5 @@
+import temp_conversion
+
 climate_data = open('../data/sc_climate_data_10.csv', 'r')
 
 for line in climate_data:
@@ -10,7 +12,7 @@ for line in climate_data:
         # extract our max temperature in Fahrenheit - 4th column
         fahr = float(data[3])
 
-        # apply standard Fahrenheit to Celsius formula
-        celsius = ((fahr - 32) * (5/9)) 
+        celsius = temp_conversion.fahr_to_celsius(fahr)
+        kelvin = temp_conversion.fahr_to_kelvin(fahr)
 
-        print('Max temperature in Celsius', celsius)
+        print('Max temperature in Celsius', celsius, 'Kelvin', kelvin)
