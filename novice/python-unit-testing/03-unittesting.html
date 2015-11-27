@@ -32,7 +32,7 @@
           <h2 class="subtitle">Unit Testing</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -114,15 +114,32 @@ FAILED (failures=1)</code></pre>
 <p><code>nose</code> is an xUnit testing library. The name “xUnit” comes from the fact that many of them are imitations of a Java testing library called JUnit. The <a href="http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks">Wikipedia page</a> on the subject lists dozens of similar frameworks in almost as many languages, all of which have a similar structure: each test is a single function that follows some naming convention (e.g., starts with <code>'test_'</code>), and the framework runs them in some order and reports how many passed, failed, or were broken.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pencil"></span>Challenges</h2>
+<h2 id="challenge"><span class="glyphicon glyphicon-pencil"></span>Challenge</h2>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
-<li><p>A colleague of yours has written a function that calculates the running total of all the values in a list, e.g., <code>running([0, 1, 2])</code> produces the list <code>[0, 1, 3]</code>. Write some unit test functions for it in a <code>test_running.py</code> file (including <code>from running import running</code> at the top), and then use <code>nose</code> to see what bugs you can find.</p></li>
-<li><p>Some programmers put assertions in their programs to catch errors when they occur; others prefer to write unit tests to check that the program is behaving properly. Which do you think makes programs easier to read? Which do you think makes them easier to maintain as they change over time?</p></li>
+<li>A colleague of yours has written a function that calculates the running total of all the values in a list, e.g., <code>running([0, 1, 2])</code> produces the list <code>[0, 1, 3]</code>. Write some unit test functions for it in a <code>test_running.py</code> file (including <code>from running import running</code> at the top), and then use <code>nose</code> to see what bugs you can find.</li>
 </ol>
 </div>
 </section>
+<h2 id="revisiting-climate-analysis">Revisiting Climate Analysis</h2>
+<p>Going back to our climate analysis code, you’ll remember we wrote two temperature conversion functions. Let’s write some unit tests for them.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenge-1"><span class="glyphicon glyphicon-pencil"></span>Challenge</h2>
+</div>
+<div class="panel-body">
+<ol style="list-style-type: decimal">
+<li>Write some unit tests for the <code>fahr_to_kelvin</code> function in <code>temp_conversion.py</code>, which you can find in <code>python-unit-testing/code/temp_conversion.py</code>. Place your unit tests in a new file called <code>test_climate_analysis.py</code> in the <code>python-unit-testing/code</code> directory, and use <code>nose</code> to run the tests.</li>
+</ol>
+<p>Try and think about tests that could <strong>break</strong> your code — what are its limits?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Once you’ve completed your tests, add them to version control along with your climate code.</li>
+</ol>
+</div>
+</section>
+<p>So why are we checking in our tests as well to version control?</p>
+<p>The big advantage is that as our code develops, we can update our test cases and check these in, ensuring that ourselves (and others) always have a set of tests to verify our code at each step of development. This way, when we implement a new feature, we can check a) that the feature works using a test we write for it, and b) that the development of the new feature doesn’t break any existing functionality.</p>
         </div>
       </div>
       </article>

@@ -119,14 +119,40 @@ def rectangle_area(coords):
 `nose` is an xUnit testing library. The name "xUnit" comes from the fact that many of them are imitations of a Java testing library called JUnit. The [Wikipedia page](http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks) on the subject lists dozens of similar frameworks in almost as many languages,
 all of which have a similar structure: each test is a single function that follows some naming convention (e.g., starts with `'test_'`), and the framework runs them in some order and reports how many passed, failed, or were broken.
 
-> ## Challenges {.challenge}
+> ## Challenge {.challenge}
 > 
 > 1.  A colleague of yours has written a function that calculates the running total of all the values in a list, e.g.,
 >     `running([0, 1, 2])` produces the list `[0, 1, 3]`.
 >     Write some unit test functions for it in a `test_running.py` file
 >     (including `from running import running` at the top), and then use `nose` 
 >     to see what bugs you can find.
+
+## Revisiting Climate Analysis
+
+Going back to our climate analysis code, you'll remember we wrote two
+temperature conversion functions. Let's write some unit tests for them.
+
+> ## Challenge {.challenge}
 > 
-> 2.  Some programmers put assertions in their programs to catch errors when they occur; others prefer to write unit tests to check that the program is behaving properly.
->     Which do you think makes programs easier to read?
->     Which do you think makes them easier to maintain as they change over time?
+> 1. Write some unit tests for the `fahr_to_kelvin` function in 
+>    `temp_conversion.py`, which you can find in 
+>    `python-unit-testing/code/temp_conversion.py`.
+>    Place your unit tests in a new file called `test_climate_analysis.py`
+>    in the `python-unit-testing/code` directory, and use `nose` to run
+>    the tests.
+> 
+>    Try and think about tests that could **break** your code --- what
+>    are its limits?
+> 
+> 2. Once you've completed your tests, add them to version control along
+>    with your climate code.
+
+So why are we checking in our tests as well to version control?
+
+The big advantage is that as our code develops, we can update our test
+cases and check these in, ensuring that ourselves (and others) always have a set 
+of tests to verify our code at each step of development. This way, when we
+implement a new feature, we can check a) that the feature works using a test
+we write for it, and b) that the development of the new feature doesn't break
+any existing functionality.
+
