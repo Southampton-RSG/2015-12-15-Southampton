@@ -140,7 +140,6 @@ temperature conversion functions. Let's write some unit tests for them.
 >    Place your unit tests in a new file called `test_climate_analysis.py`
 >    in the `python-unit-testing/code` directory, and use `nose` to run
 >    the tests.
-> 
 >    Try and think about tests that could **break** your code --- what
 >    are its limits?
 > 
