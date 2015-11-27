@@ -145,6 +145,29 @@ multiply_by_10(<span class="dv">8</span>)
 <p>This is really useful, since it means we don’t have to worry about conflicts with variable names that are defined outside of our function that may cause it to behave incorrectly.</p>
 </div>
 </section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="combining-strings"><span class="glyphicon glyphicon-pencil"></span>Combining strings</h2>
+</div>
+<div class="panel-body">
+<p>“Adding” two strings produces their concatenation: <code>'a' + 'b'</code> is <code>'ab'</code>. Write a function called <code>fence</code> that takes two parameters called <code>original</code> and <code>wrapper</code> and returns a new string that has the wrapper character at the beginning and end of the original. A call to your function should look like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(fence(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;*&#39;</span>))
+*name*</code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="palindrome-string-check"><span class="glyphicon glyphicon-pencil"></span>Palindrome String check</h2>
+</div>
+<div class="panel-body">
+<p>A “Palindrome” is a word, phrase, number, or other sequence of characters which reads the same backward or forward. Write a function (any name of your choice) that takes <code>input_string</code> as a parameter and returns either <code>True</code> or <code>False</code> based on whether the input string is a palindrome or not respectively. Try to make it case insensitive.<br />Following the function definition, a call to your function should look like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python">is_palindrome(<span class="st">&quot;hello&quot;</span>)
+<span class="ot">False</span>
+is_palindrome(<span class="st">&quot;Deed&quot;</span>)
+<span class="ot">True</span></code></pre>
+</div>
+</section>
+<h2 id="performing-more-temperature-conversions">Performing more temperature conversions</h2>
 <p>Of course, we can also add more functions. Let’s add another, which performs a conversion from Fahrenheight to Kelvin. The formula looks like this:</p>
 <pre class="sourceCode python"><code class="sourceCode python">kelvin = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) + <span class="fl">273.15</span></code></pre>
 <p>Now, we could just add a new function that does this exact conversion. But Kelvin uses the same units as Celsius, the part of the formula that converts to Celsius units is the same. We could just used our <code>fahr_to_celsius</code> function for the unit conversion, and add 273.15 to that to get Kelvin. So our new function becomes:</p>
@@ -277,28 +300,6 @@ climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_cli
         <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius, <span class="st">&#39;Kelvin&#39;</span>, kelvin)</code></pre>
 <p>Like when we used the interpreter to ask for help on the <code>fahr_to_celsius()</code> function, we need to prefix the function with its <code>temp_conversion</code> module name.</p>
 <p>Again, the results should be the same as before.</p>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="combining-strings"><span class="glyphicon glyphicon-pencil"></span>Combining strings</h2>
-</div>
-<div class="panel-body">
-<p>“Adding” two strings produces their concatenation: <code>'a' + 'b'</code> is <code>'ab'</code>. Write a function called <code>fence</code> that takes two parameters called <code>original</code> and <code>wrapper</code> and returns a new string that has the wrapper character at the beginning and end of the original. A call to your function should look like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(fence(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;*&#39;</span>))
-*name*</code></pre>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="palindrome-string-check"><span class="glyphicon glyphicon-pencil"></span>Palindrome String check</h2>
-</div>
-<div class="panel-body">
-<p>A “Palindrome” is a word, phrase, number, or other sequence of characters which reads the same backward or forward. Write a function (any name of your choice) that takes <code>input_string</code> as a parameter and returns either <code>True</code> or <code>False</code> based on whether the input string is a palindrome or not respectively. Try to make it case insensitive.<br />Following the function definition, a call to your function should look like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python">is_palindrome(<span class="st">&quot;hello&quot;</span>)
-<span class="ot">False</span>
-is_palindrome(<span class="st">&quot;Deed&quot;</span>)
-<span class="ot">True</span></code></pre>
-</div>
-</section>
         </div>
       </div>
       </article>

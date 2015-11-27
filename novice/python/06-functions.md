@@ -179,6 +179,36 @@ And when we run it again --- which we most definitely should, to make sure it's 
 > conflicts with variable names that are defined outside of our function
 > that may cause it to behave incorrectly.
 
+> ## Combining strings {.challenge}
+>
+> "Adding" two strings produces their concatenation:
+> `'a' + 'b'` is `'ab'`.
+> Write a function called `fence` that takes two parameters called `original` and `wrapper`
+> and returns a new string that has the wrapper character at the beginning and end of the original.
+> A call to your function should look like this:
+>
+> ~~~ {.python}
+> print(fence('name', '*'))
+> *name*
+> ~~~
+
+> ## Palindrome String check {.challenge}
+>
+> A "Palindrome" is a word, phrase, number, or other sequence of characters which reads the same backward or forward.
+>Write a function (any name of your choice) that takes `input_string` as a parameter
+>and returns either `True` or `False` based on whether the input string is a palindrome or not respectively. 
+>Try to make it case insensitive.  
+>Following the function definition, a call to your function should look like this:
+>
+> ~~~{.python}
+> is_palindrome("hello")
+> False
+> is_palindrome("Deed")
+> True
+> ~~~
+
+## Performing more temperature conversions
+
 Of course, we can also add more functions. Let's add another, which performs
 a conversion from Fahrenheight to Kelvin. The formula looks like this:
 
@@ -396,32 +426,4 @@ Like when we used the interpreter to ask for help on the `fahr_to_celsius()`
 function, we need to prefix the function with its `temp_conversion` module name.
 
 Again, the results should be the same as before.
-
-> ## Combining strings {.challenge}
->
-> "Adding" two strings produces their concatenation:
-> `'a' + 'b'` is `'ab'`.
-> Write a function called `fence` that takes two parameters called `original` and `wrapper`
-> and returns a new string that has the wrapper character at the beginning and end of the original.
-> A call to your function should look like this:
->
-> ~~~ {.python}
-> print(fence('name', '*'))
-> *name*
-> ~~~
-
-> ## Palindrome String check {.challenge}
->
-> A "Palindrome" is a word, phrase, number, or other sequence of characters which reads the same backward or forward.
->Write a function (any name of your choice) that takes `input_string` as a parameter
->and returns either `True` or `False` based on whether the input string is a palindrome or not respectively. 
->Try to make it case insensitive.  
->Following the function definition, a call to your function should look like this:
->
-> ~~~{.python}
-> is_palindrome("hello")
-> False
-> is_palindrome("Deed")
-> True
-> ~~~
 
