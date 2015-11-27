@@ -21,7 +21,7 @@ But the two most important things are to use whatever language your colleagues a
 *  [Repeating actions with loops](03-loops.html)
 *  [Processing data files](04-files.html)
 *  [Making choices](05-cond.html)
-*  [Creating functions](06-func.html)
+*  [Creating functions](06-functions.html)
 *  [Command-Line Programs](07-cmdline.html)
 *  [Reading and analysing Patient data using libraries](08-numpy.html)
 *  [Visualising data using libraries](09-matplotlib.html)

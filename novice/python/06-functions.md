@@ -237,11 +237,21 @@ What could we do to make it clearer and less cluttered?
 
 ### Modularising conversion code into a library
 
-Fortunately, we can go one step further to improve the structure of our
-code. We can separate out the two functions and have them in a separate
-Python file --- called a library --- which we can use.
+Words are useful,
+but what's more useful are the sentences and stories we build with them.
+Similarly,
+while a lot of powerful tools are built into languages like Python,
+even more live in the [libraries](../../reference.html#software-library) they are used to build.
 
-Create a new file (known as a Python module, or library) called 
+A library is a collection of code (precompiled routines, functions) that a program can use. They are particularly 
+useful for storing frequently used routines because you don't need to explicitly link them to every program 
+that uses them. Libraries will be automatically looked for routines that are not found elsewhere.
+
+So we can go one step further to improve the structure of our
+code. We can separate out the two functions and have them in a separate
+Python module (or library) which we can use.
+
+Create a new file called 
 `temp_conversion.py` and copy and paste those two functions into it, then 
 save it, and remove those functions from the original `climate_analysis.py` 
 script and save that. We'll see how to use those library functions 
