@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Modularising your code using functions</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Define a function that takes parameters.</li>
+<li>Return a value from a function.</li>
+<li>Understand the scope of function variables and parameters.</li>
+<li>Documenting a function.</li>
+<li>Understand why we should divide programs into small, single-purpose functions.</li>
+<li>Define and use a module that contains functions.</li>
+</ul>
+</div>
+</section>
+<p>At this point, we’ve written some scripts to do various things, including one to loop through a data file and output its contents. But it’s not hard to imagine our code getting more complicated as we add more features.</p>
+<p>We’ll see how we can amend our code to be better structured to further increase its readability, as well as its maintainability and reuse in other applications.</p>
+<h3 id="converting-from-fahrenheit-to-celsius">Converting from Fahrenheit to Celsius</h3>
+<p>Let’s look at adding a feature to our code to perform a conversion from Fahrenheit to Celsius on the temperature data we are looking at:</p>
+<pre class="sourceCode python"><code class="sourceCode python">celsius = ((data[<span class="dv">3</span>] - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>))</code></pre>
+<p>Now this wouldn’t work as it is - we can’t just apply this formula directly to <code>data[3]</code> since it’s a string. We need to convert it to a number first. To be specific, a floating point number.</p>
+<p>Fortunately, Python has some built-in functions to do these <code>type</code> conversions:</p>
+<pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        <span class="co"># apply standard Fahrenheit to Celsius formula</span>
+        celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
+<p>So we first convert our <code>data[3]</code> value to a floating point number using <code>float()</code>, then we are free to use it in our conversion formula. Depending on the structure of your own data, you may find you end up doing this a lot!</p>
+<p>So now we get:</p>
+<pre><code>Max temperature in Celsius 14.73888888888889
+Max temperature in Celsius 14.777777777777779
+Max temperature in Celsius 14.61111111111111
+Max temperature in Celsius 13.838888888888887
+Max temperature in Celsius 15.477777777777778
+Max temperature in Celsius 14.972222222222225
+Max temperature in Celsius 14.85
+Max temperature in Celsius 16.33888888888889
+Max temperature in Celsius 16.261111111111113
+Max temperature in Celsius 16.33888888888889</code></pre>
+<h3 id="modularising-conversion-code-into-a-function">Modularising conversion code into a function</h3>
+<p>Whilst this is a simple calculation, there are many things we may want to do that are more complex. What is essentially a single task may require a number of lines of code to accomplish it, and with many of these our code could become quite messy.</p>
+<p>We’d also like a way to package our code so that it is easier to reuse, and Python provides for this by letting us define things called ‘functions’ - a shorthand way of re-executing longer pieces of code.</p>
+<pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">def</span> fahr_to_celsius(fahr):
+    <span class="co"># apply standard Fahrenheit to Celsius formula</span>
+    celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+    <span class="kw">return</span> celsius
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        celsius = fahr_to_celsius(fahr)
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius)</code></pre>
+<p>The definition opens with the word <code>def</code>, which is followed by the name of the function and a parenthesized list of parameter names. The <a href="../../reference.html#function-body">body</a> of the function — the statements that are executed when it runs — is indented below the definition line, typically by four spaces.</p>
+<p>When we call the function, the values we pass to it are assigned to those variables so that we can use them inside the function. Inside the function, we use a <a href="../../reference.html#return-statement">return statement</a> to send a result back to whoever asked for it.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="how-large-should-functions-be"><span class="glyphicon glyphicon-pushpin"></span>How large should functions be?</h2>
+</div>
+<div class="panel-body">
+<p>We use functions to define a big task in terms of smaller ones. This helps to make our code more readable, as well as allowing us to more easily reuse and maintain that code.</p>
+<p>The trick when writing functions is to ensure they don’t themselves become unmanageable, and it’s very easy to write large functions. So when your function starts getting large, consider decomposing it further into separate functions. There’s no hard and fast rule for when a function is too ‘large’ — some say 15-20 lines, some say no more than a page long. But in general, think about how complex it is to understand, generally how readable it is, and whether it would benefit from splitting up into more functions.</p>
+</div>
+</aside>
+<p>Note that the function is at the top of the script. This is because Python reads the script from top to bottom, and if we called the function before we defined it, Python wouldn’t know about it and throw an error like this:</p>
+<pre><code>Traceback (most recent call last):
+  File &quot;climate_analysis-6.py&quot;, line 13, in &lt;module&gt;
+    celsius = fahr_to_celsius(fahr)
+NameError: name &#39;fahr_to_celsius&#39; is not defined</code></pre>
+<p>And when we run it again — which we most definitely should, to make sure it’s still working as expected — we see the same output, which is correct.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="how-do-function-parameters-work"><span class="glyphicon glyphicon-pencil"></span>How do function parameters work?</h2>
+</div>
+<div class="panel-body">
+<p>We actually used the same variable name <code>fahr</code> in our main code and and the function. But it’s important to note that even though they share the same name, they don’t refer to the same thing. This is because of variable <strong>scoping</strong>.</p>
+<p>Within a function, any variables that are created (such as parameters or other variables), only exist within the <strong>scope</strong> of the function.</p>
+<p>For example, what would be the output from the following:</p>
+<pre class="sourceCode python"><code class="sourceCode python">f = <span class="dv">0</span>
+k = <span class="dv">0</span>
+
+<span class="kw">def</span> multiply_by_10(f):
+  k = f * <span class="dv">10</span>
+  <span class="kw">return</span> k
+
+multiply_by_10(<span class="dv">2</span>)
+multiply_by_10(<span class="dv">8</span>)
+
+<span class="dt">print</span>(k)</code></pre>
+<ol style="list-style-type: decimal">
+<li>20</li>
+<li>80</li>
+<li>0</li>
+</ol>
+<p>This is really useful, since it means we don’t have to worry about conflicts with variable names that are defined outside of our function that may cause it to behave incorrectly.</p>
+</div>
+</section>
+<p>Of course, we can also add more functions. Let’s add another, which performs a conversion from Fahrenheight to Kelvin. The formula looks like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python">kelvin = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) + <span class="fl">273.15</span></code></pre>
+<p>Now, we could just add a new function that does this exact conversion. But Kelvin uses the same units as Celsius, the part of the formula that converts to Celsius units is the same. We could just used our <code>fahr_to_celsius</code> function for the unit conversion, and add 273.15 to that to get Kelvin. So our new function becomes:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fahr_to_kelvin(fahr):
+    <span class="co"># apply standard Fahrenheit to Kelvin formula</span>
+    kelvin = fahr_to_celsius(fahr) + <span class="fl">273.15</span>
+    <span class="kw">return</span> kelvin</code></pre>
+<p>Which we insert after the <code>fahr_to_celsius</code> function (since our new function needs to call that one). We can then amend our code to also call that new function and output the result. Our code then becomes:</p>
+<pre class="sourceCode python"><code class="sourceCode python">climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">def</span> fahr_to_celsius(fahr):
+    <span class="co"># apply standard Fahrenheit to Celsius formula</span>
+    celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+    <span class="kw">return</span> celsius
+
+<span class="kw">def</span> fahr_to_kelvin(fahr):
+    <span class="co"># apply standard Fahrenheit to Kelvin formula</span>
+    kelvin = fahr_to_celsius(fahr) + <span class="fl">273.15</span>
+    <span class="kw">return</span> kelvin
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        celsius = fahr_to_celsius(fahr)
+        kelvin = fahr_to_kelvin(fahr)
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius, <span class="st">&#39;Kelvin&#39;</span>, kelvin)</code></pre>
+<p>Hmm… our code is starting to get a little large with these functions. What could we do to make it clearer and less cluttered?</p>
+<h3 id="modularising-conversion-code-into-a-library">Modularising conversion code into a library</h3>
+<p>Words are useful, but what’s more useful are the sentences and stories we build with them. Similarly, while a lot of powerful tools are built into languages like Python, even more live in the <a href="../../reference.html#software-library">libraries</a> they are used to build.</p>
+<p>A library is a collection of code (precompiled routines, functions) that a program can use. They are particularly useful for storing frequently used routines because you don’t need to explicitly link them to every program that uses them. Libraries will be automatically looked for routines that are not found elsewhere.</p>
+<p>So we can go one step further to improve the structure of our code. We can separate out the two functions and have them in a separate Python module (or library) which we can use.</p>
+<p>Create a new file called <code>temp_conversion.py</code> and copy and paste those two functions into it, then save it, and remove those functions from the original <code>climate_analysis.py</code> script and save that. We’ll see how to use those library functions shortly. But first, let’s take this opportunity to improve our documentation of those functions!</p>
+<p>The usual way to put documentation in software is to add comments, as we’ve already seen. But when describing functions, there’s a better way. If the first thing in a function is a string that isn’t assigned to a variable, that string is attached to the function as its documentation:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="co">&quot;&quot;&quot;A library to perform temperature conversions&quot;&quot;&quot;</span>
+
+<span class="kw">def</span> fahr_to_celsius(fahr):
+    <span class="co">&quot;&quot;&quot;Convert Fahrenheit to Celsius.</span>
+
+<span class="co">    Uses standard Fahrenheit to Celsius formula</span>
+
+<span class="co">    Arguments:</span>
+<span class="co">    fahr -- the temperature in Fahrenheit</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    celsius = ((fahr - <span class="dv">32</span>) * (<span class="dv">5</span>/<span class="dv">9</span>)) 
+    <span class="kw">return</span> celsius
+
+<span class="kw">def</span> fahr_to_kelvin(fahr):
+    <span class="co">&quot;&quot;&quot;Convert Fahrenheight to Kelvin.</span>
+
+<span class="co">    Uses standard Fahrenheit to Kelvin formula</span>
+
+<span class="co">    Arguments:</span>
+<span class="co">    fahr -- the temperature in Fahrenheit</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    kelvin = fahr_to_celsius(fahr) + <span class="fl">273.15</span>
+    <span class="kw">return</span> kelvin</code></pre>
+<p>A string like this is called a <a href="../../reference.html#docstring">docstring</a>. We don’t need to use triple quotes when we write one, but if we do, we can break the string across multiple lines. This also applies to modules</p>
+<p>So how would we use this module and its functions in code? We do this by <code>import</code>ing the module into Python.</p>
+<pre class="sourceCode python"><code class="sourceCode python">Python <span class="fl">3.4.3</span> |Anaconda <span class="fl">2.3.0</span> (x86_64)| (default, Mar  <span class="dv">6</span> <span class="dv">2015</span>, <span class="dv">12</span>:<span class="dv">07</span>:<span class="dv">41</span>) 
+[GCC <span class="fl">4.2.1</span> (Apple Inc. build <span class="dv">5577</span>)] on darwin
+Type <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> <span class="kw">for</span> more information.
+&gt;&gt;&gt; <span class="ch">import</span> temp_conversion</code></pre>
+<p>When modules and functions are described in docstrings, we can ask for these explanations directly from the interpreter which can be useful. Following on from the above:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="dt">help</span>(temp_conversion)</code></pre>
+<p>So here’s the help we get for the module:</p>
+<pre><code>Help on module temp_conversion:
+
+NAME
+    temp_conversion - A library to perform temperature conversions
+
+FUNCTIONS
+    fahr_to_celsius(fahr)
+        Convert Fahrenheit to Celsius.
+        
+        Uses standard Fahrenheit to Celsius formula
+        
+        Arguments:
+        fahr -- the temperature in Fahrenheit
+    
+    fahr_to_kelvin(fahr)
+        Convert Fahrenheight to Kelvin.
+        
+        Uses standard Fahrenheit to Kelvin formula
+        
+        Arguments:
+        fahr -- the temperature in Fahrenheit
+
+FILE
+    /Users/user/Projects/RSG/Training/2015-12-15-Southampton/novice/python/code/temp_conversion.py</code></pre>
+<p>Here, note we’ve used the term <code>library</code> in the code documentation. This is a more conventional, general term for a set of routines in any language.</p>
+<p>Similarly, for Docstrings in functions, e.g.:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="dt">help</span>(temp_conversion.fahr_to_celsius)</code></pre>
+<p>Note that we need to put in <code>temp_conversion.</code> prior the function name. We need to do this to specify that the function we want help on is within the <code>temp_conversion</code> module.</p>
+<p>So we get:</p>
+<pre><code>Help on function fahr_to_celsius in module temp_conversion:
+
+fahr_to_celsius(fahr)
+    Convert Fahrenheit to Celsius.
+    
+    Uses standard fahrenheit to Celsius formula
+    
+    Arguments:
+    fahr -- the temperature in Fahrenheit</code></pre>
+<p>And then we need to <code>import</code> that function from our module into our script, so we can use it.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> temp_conversion
+
+climate_data = <span class="dt">open</span>(<span class="st">&#39;../data/sc_climate_data_10.csv&#39;</span>, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        celsius = temp_conversion.fahr_to_celsius(fahr)
+        kelvin = temp_conversion.fahr_to_kelvin(fahr)
+
+        <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius, <span class="st">&#39;Kelvin&#39;</span>, kelvin)</code></pre>
+<p>Like when we used the interpreter to ask for help on the <code>fahr_to_celsius()</code> function, we need to prefix the function with its <code>temp_conversion</code> module name.</p>
+<p>Again, the results should be the same as before.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="combining-strings"><span class="glyphicon glyphicon-pencil"></span>Combining strings</h2>
+</div>
+<div class="panel-body">
+<p>“Adding” two strings produces their concatenation: <code>'a' + 'b'</code> is <code>'ab'</code>. Write a function called <code>fence</code> that takes two parameters called <code>original</code> and <code>wrapper</code> and returns a new string that has the wrapper character at the beginning and end of the original. A call to your function should look like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(fence(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;*&#39;</span>))
+*name*</code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="palindrome-string-check"><span class="glyphicon glyphicon-pencil"></span>Palindrome String check</h2>
+</div>
+<div class="panel-body">
+<p>A “Palindrome” is a word, phrase, number, or other sequence of characters which reads the same backward or forward. Write a function (any name of your choice) that takes <code>input_string</code> as a parameter and returns either <code>True</code> or <code>False</code> based on whether the input string is a palindrome or not respectively. Try to make it case insensitive.<br />Following the function definition, a call to your function should look like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python">is_palindrome(<span class="st">&quot;hello&quot;</span>)
+<span class="ot">False</span>
+is_palindrome(<span class="st">&quot;Deed&quot;</span>)
+<span class="ot">True</span></code></pre>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
