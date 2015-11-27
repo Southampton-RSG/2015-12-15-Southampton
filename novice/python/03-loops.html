@@ -142,6 +142,10 @@ n</code></pre>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="kw">for</span> variable in collection:
     do things <span class="kw">with</span> variable</code></pre>
 <p>We can call the <a href="../../reference.html#loop-variable">loop variable</a> anything we like, but there must be a colon at the end of the line starting the loop, and we must indent the body of the loop. Unlike many other languages, there is no command to end a loop (e.g. end for); what is indented after the for statement belongs to the loop.</p>
+<blockquote>
+<p>What’s in a name? {.callout}</p>
+<p>Whilst we can name variables anything we like, it’s a good idea to ensure the name helps you to understand what is going on. Calling our <code>char</code> loop variable earlier <code>x</code> may still be clear in that small script, but if our loop were quite large (and/or more complex, with other similarly named variables) it would become difficult to understand. So pick something that’s meaningful to help others, and yourself at a later date, understand what is happening.</p>
+</blockquote>
 <h3 id="so-whats-happening-in-a-loop">So what’s happening in a loop?</h3>
 <p>Let’s look at a different program called <code>count_vowels.py</code>, with another loop that repeatedly updates a variable:</p>
 <pre class="sourceCode python"><code class="sourceCode python">length = <span class="dv">0</span>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Building programs with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Building programs with Python</h1></a>
+          <h2 class="subtitle">Command-Line Programs</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Use the values of command-line arguments in a program.</li>
+<li>Handle flags and files separately in a command-line program.</li>
+<li>Read data from standard input in a program so that it can be used in a pipeline.</li>
+</ul>
+</div>
+</section>
+<p>At some point we may want to use our program in a pipeline or run it in a shell script to process thousands of data files. Our climate data is a good example - we have a sample set of 10 rows for development, but also a data file with 1000 rows. We may of course want to process many more. In order to do that, we need to make our programs work like other Unix command-line tools.</p>
+<h2 id="passing-in-the-file-to-process-as-an-argument">Passing in the file to process as an argument</h2>
+<p>So perhaps the biggest limitation is that our script only deals with one data file, which is <strong>hardcoded</strong> into the script. Like with functions, we’d ideally want to be able to pass in the filename to process as a parameter. Then, we can run the script on any data file we like.</p>
+<p>Fortunately, Python can handle <strong>command line arguments</strong>, which are passed to our script in the list <code>sys.argv[]</code> we we can use. This feature is provided by the Python standard <code>sys</code> library, so similarly to how we imported our temperature conversion functions, we need to import the <code>sys</code> library.</p>
+<p>The first argument (<code>sys.argv[0]</code>) always contains the name of the script, with the arguments passed in as <code>sys.argv[1]</code>, <code>sys.argv[2]</code>, etc.</p>
+<p>So we can change our script to handle a filename argument:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> sys
+<span class="ch">import</span> temp_conversion
+
+filename = sys.argv[<span class="dv">1</span>]
+
+climate_data = <span class="dt">open</span>(filename, <span class="st">&#39;r&#39;</span>)
+
+<span class="kw">for</span> line in climate_data:
+    data = line.split(<span class="st">&#39;,&#39;</span>)
+
+    <span class="kw">if</span> data[<span class="dv">0</span>][<span class="dv">0</span>] == <span class="st">&#39;#&#39;</span>:
+        <span class="co"># don&#39;t want to process comment lines, which start with &#39;#&#39;</span>
+        <span class="kw">pass</span>
+    <span class="kw">else</span>:
+        <span class="co"># extract our max temperature in Fahrenheit - 4th column</span>
+        fahr = <span class="dt">float</span>(data[<span class="dv">3</span>])
+
+        <span class="co"># don&#39;t process invalid temperature readings of -9999</span>
+        <span class="kw">if</span> fahr != -<span class="dv">9999</span>:
+            celsius = temp_conversion.fahr_to_celsius(fahr)
+            kelvin = temp_conversion.fahr_to_kelvin(fahr)
+
+            <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius, <span class="st">&#39;Kelvin&#39;</span>, kelvin)</code></pre>
+<p>And if we run that from the shell, with</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span> climate_analysis.py ../data/sc_climate_data_10.csv</code></pre>
+<p>So we pass in the filename as argument that gets picked up and used. Handy! When we run it, we get the following (same as before):</p>
+<pre><code>Max temperature in Celsius 14.73888888888889 Kelvin 287.88888888888886
+Max temperature in Celsius 14.777777777777779 Kelvin 287.92777777777775
+Max temperature in Celsius 14.61111111111111 Kelvin 287.76111111111106
+Max temperature in Celsius 13.838888888888887 Kelvin 286.9888888888889
+Max temperature in Celsius 15.477777777777778 Kelvin 288.62777777777774
+Max temperature in Celsius 14.972222222222225 Kelvin 288.1222222222222
+Max temperature in Celsius 14.85 Kelvin 288.0
+Max temperature in Celsius 16.33888888888889 Kelvin 289.4888888888889
+Max temperature in Celsius 16.261111111111113 Kelvin 289.4111111111111
+Max temperature in Celsius 16.33888888888889 Kelvin 289.4888888888889</code></pre>
+<h2 id="running-our-script-on-other-data-files">Running our script on other data files</h2>
+<p>But now we can run it on any file, for example:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span> climate_analysis.py ../data/sc_climate_data_1000.csv</code></pre>
+<p>But wait!</p>
+<pre><code>Max temperature in Celsius 14.73888888888889 Kelvin 287.88888888888886
+Max temperature in Celsius 14.777777777777779 Kelvin 287.92777777777775
+Max temperature in Celsius 14.61111111111111 Kelvin 287.76111111111106
+Max temperature in Celsius 13.838888888888887 Kelvin 286.9888888888889
+Max temperature in Celsius 15.477777777777778 Kelvin 288.62777777777774
+Max temperature in Celsius 14.972222222222225 Kelvin 288.1222222222222
+Max temperature in Celsius 14.85 Kelvin 288.0
+Max temperature in Celsius 16.33888888888889 Kelvin 289.4888888888889
+Max temperature in Celsius 16.261111111111113 Kelvin 289.4111111111111
+Max temperature in Celsius 16.33888888888889 Kelvin 289.4888888888889
+Max temperature in Celsius -5572.777777777778 Kelvin -5299.627777777779
+Max temperature in Celsius 16.077777777777776 Kelvin 289.22777777777776
+...</code></pre>
+<p>What’s this <code>-5572.777777777778</code>? If we look at our <code>sc_climate_data_1000.csv</code> file, we can see there are some maximum temperature values of -9999. As it turns out, this value represents an invalid temperature reading!</p>
+<p>This is a consequence of dealing with real data, and sometimes we need to be able to deal with anomalies such as this. In particular, we should make sure we fully understand the data we are using, and what it means. Otherwise, we run the risk of making assumptions and processing the data incorrectly.</p>
+<p>In this case, we can fix our code by adding in a condition:</p>
+<pre class="sourceCode python"><code class="sourceCode python">        <span class="co"># don&#39;t process invalid temperature readings of -9999</span>
+        <span class="kw">if</span> fahr != -<span class="dv">9999</span>:
+            celsius = temp_conversion.fahr_to_celsius(fahr)
+            kelvin = temp_conversion.fahr_to_kelvin(fahr)
+
+            <span class="dt">print</span>(<span class="st">&#39;Max temperature in Celsius&#39;</span>, celsius, <span class="st">&#39;Kelvin&#39;</span>, kelvin)</code></pre>
+<p>So in this special case, we ensure that we aren’t processing these invalid values. In practice, we’d also need to make sure that any conclusions we may reach from processing the data in this way are also still valid.</p>
+<h2 id="adding-in-a-checks-for-the-right-number-of-arguments">Adding in a checks for the right number of arguments</h2>
+<p>But if we (or someone else) runs our script accidentally with no filename, we get:</p>
+<pre><code>Traceback (most recent call last):
+  File &quot;climate_analysis.py&quot;, line 5, in &lt;module&gt;
+    filename = sys.argv[1]
+IndexError: list index out of range</code></pre>
+<p>Since our filename is reading from an element in <code>sys.argv</code> that isn’t present. This is not very helpful! To make it easier to diagnose such problems, we can implement a simple check to ensure the right number of arguments are given to our script.</p>
+<p>Insert the following before the <code>filename</code> assignment:</p>
+<pre class="sourceCode python"><code class="sourceCode python">script = sys.argv[<span class="dv">0</span>]
+<span class="kw">assert</span> <span class="dt">len</span>(sys.argv) == <span class="dv">2</span>, script + <span class="st">&quot;: requires filename&quot;</span></code></pre>
+<p>Now when we run it with no arguments, we get:</p>
+<pre><code>Traceback (most recent call last):
+  File &quot;climate_analysis.py&quot;, line 5, in &lt;module&gt;
+    assert len(sys.argv) == 2, script + &quot;: requires filename&quot;
+AssertionError: climate_analysis.py: requires filename</code></pre>
+<p>More helpful! We could make this even more helpful by providing more information about the file that is required.</p>
+<h2 id="using-our-script-in-a-pipeline">Using our script in a pipeline</h2>
+<p>Currently, our script outputs some friendly text to show what the data means. But when it comes to using it within a pipeline, where we might process the output data in some way, the additional text may make this more difficult.</p>
+<p>Assuming we’ve documented our code properly and the nature of the output is clearly understood, we can simplify the output by changing the <code>print()</code> statement:</p>
+<pre class="sourceCode python"><code class="sourceCode python">            <span class="dt">print</span>(<span class="dt">str</span>(celsius)+<span class="st">&quot;, &quot;</span>+<span class="dt">str</span>(kelvin))</code></pre>
+<p>Here, we are using Python’s <code>+</code> operator to <strong>concatenate</strong> strings together, so we can get output such as <code>20.561111111111114, 293.7111111111111</code>.</p>
+<p>We could run the script now in a pipeline, for example, to get the first 10 rows of output:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">python</span> climate_analysis-12.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="kw">head</span> -10</code></pre>
+<p>But now we get a really odd error:</p>
+<pre><code>...
+Traceback (most recent call last):
+  File &quot;climate_analysis-12.py&quot;, line 25, in &lt;module&gt;
+    print(str(celsius)+&quot;, &quot;+str(kelvin))
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: &lt;_io.TextIOWrapper name=&#39;&lt;stdout&gt;&#39; mode=&#39;w&#39; encoding=&#39;UTF-8&#39;&gt;
+BrokenPipeError: [Errno 32] Broken pipe</code></pre>
+<p>This is an odd consequence of using Python in a command line pipeline — it doesn’t cope with piping output to other commands very well.</p>
+<p>We can fix this by including the following at the top, after our <code>temp_conversion</code> import:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">import</span> signal
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)</code></pre>
+<p>We’re telling our Python script to ignore any pipe errors — not ideal, but solves our problem. We can now do things like:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">python</span> climate_analysis-12.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="kw">wc</span> -l</code></pre>
+<p>Which tells us the number of lines it processed, taking into account the -9999 values it ignored:</p>
+<pre><code>     923</code></pre>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="the-right-way-to-do-it"><span class="glyphicon glyphicon-pushpin"></span>The Right Way to Do It</h2>
+</div>
+<div class="panel-body">
+<p>If our programs can take complex parameters or multiple filenames, we shouldn’t handle <code>sys.argv</code> directly. Instead, we should use Python’s <code>argparse</code> library, which handles common cases in a systematic way, and also makes it easy for us to provide sensible error messages for our users.</p>
+</div>
+</aside>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

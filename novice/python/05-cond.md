@@ -109,6 +109,24 @@ at least one test is true
 In this case,
 "either" means "either or both", not "either one or the other but not both".
 
+> ## How many paths? {.challenge}
+> 
+> Which of the following would be printed if you were to run this code? Why did you pick this answer?
+>
+> * A
+> * B
+> * C
+> * B and C
+> 
+> ~~~ {.python}
+> if 4 > 5:
+>     print('A')
+> elif 4 <= 5:
+>     print('B')
+> elif 4 < 5:
+>     print('C')
+> ~~~
+
 ## Climate Analysis: adding a condition to avoid printing comments
 
 We're still getting our column header at the top of our output, and perhaps

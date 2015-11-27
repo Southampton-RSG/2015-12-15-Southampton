@@ -209,6 +209,15 @@ and we must indent the body of the loop. Unlike many other languages, there is
 no command to end a loop (e.g. end for); what is indented after the for 
 statement belongs to the loop.
 
+> What's in a name? {.callout}
+> 
+> Whilst we can name variables anything we like, it's a good idea to ensure the
+> name helps you to understand what is going on. Calling our `char` loop 
+> variable earlier `x` may still be clear in that small script, but if our loop
+> were quite large (and/or more complex, with other similarly named variables)
+> it would become difficult to understand. So pick something that's meaningful
+> to help others, and yourself at a later date, understand what is happening.
+
 ### So what's happening in a loop?
 
 Let's look at a different program called `count_vowels.py`, with another loop that repeatedly updates a variable:

@@ -86,6 +86,26 @@ done</code></pre>
     <span class="dt">print</span>(<span class="st">&quot;at least one test is true&quot;</span>)</code></pre>
 <pre class="output"><code>at least one test is true</code></pre>
 <p>In this case, “either” means “either or both”, not “either one or the other but not both”.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="how-many-paths"><span class="glyphicon glyphicon-pencil"></span>How many paths?</h2>
+</div>
+<div class="panel-body">
+<p>Which of the following would be printed if you were to run this code? Why did you pick this answer?</p>
+<ul>
+<li>A</li>
+<li>B</li>
+<li>C</li>
+<li>B and C</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> <span class="dv">4</span> &gt; <span class="dv">5</span>:
+    <span class="dt">print</span>(<span class="st">&#39;A&#39;</span>)
+<span class="kw">elif</span> <span class="dv">4</span> &lt;= <span class="dv">5</span>:
+    <span class="dt">print</span>(<span class="st">&#39;B&#39;</span>)
+<span class="kw">elif</span> <span class="dv">4</span> &lt; <span class="dv">5</span>:
+    <span class="dt">print</span>(<span class="st">&#39;C&#39;</span>)</code></pre>
+</div>
+</section>
 <h2 id="climate-analysis-adding-a-condition-to-avoid-printing-comments">Climate Analysis: adding a condition to avoid printing comments</h2>
 <p>We’re still getting our column header at the top of our output, and perhaps we don’t want that. We need to able to check whether the line begins with a ‘#’ (which denotes a comment line), and if so, avoid printing it out.</p>
 <p>So let’s use an <code>if</code> statement to do that:</p>
