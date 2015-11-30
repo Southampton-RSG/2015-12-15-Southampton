@@ -90,9 +90,9 @@ $ nosetests
 FAIL: test_rectangle2.test_actual_rectangle
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Library/Python/2.7/site-packages/nose-1.3.7-py2.7.egg/nose/case.py", line 197, in runTest
+  File "/Users/user/anaconda/lib/python3.5/site-packages/nose/case.py", line 198, in runTest
     self.test(*self.arg)
-  File "/Users/user/Projects/SSI/NGCM/novice/python-unit-testing/code/test_rectangle2.py", line 10, in test_actual_rectangle
+  File "/Users/user/Work/Python Codes/python-unit-testing/code/test_rectangle2.py", line 10, in test_actual_rectangle
     assert rectangle_area([0, 1, 4, 7]) == 24.0
 AssertionError
 
