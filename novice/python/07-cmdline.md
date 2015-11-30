@@ -159,6 +159,10 @@ script = sys.argv[0]
 assert len(sys.argv) == 2, script + ": requires filename"
 ~~~
 
+Here, we use the Python `assert` statement, which accepts a condition and a 
+string to output if the condition is false, to **assert** that we have only
+2 arguments. If not, an error message is displayed.
+
 Now when we run it with no arguments, we get:
 
 ~~~

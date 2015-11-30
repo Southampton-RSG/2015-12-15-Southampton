@@ -119,6 +119,7 @@ IndexError: list index out of range</code></pre>
 <p>Insert the following before the <code>filename</code> assignment:</p>
 <pre class="sourceCode python"><code class="sourceCode python">script = sys.argv[<span class="dv">0</span>]
 <span class="kw">assert</span> <span class="dt">len</span>(sys.argv) == <span class="dv">2</span>, script + <span class="st">&quot;: requires filename&quot;</span></code></pre>
+<p>Here, we use the Python <code>assert</code> statement, which accepts a condition and a string to output if the condition is false, to <strong>assert</strong> that we have only 2 arguments. If not, an error message is displayed.</p>
 <p>Now when we run it with no arguments, we get:</p>
 <pre><code>Traceback (most recent call last):
   File &quot;climate_analysis.py&quot;, line 5, in &lt;module&gt;

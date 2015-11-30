@@ -209,7 +209,25 @@ and we must indent the body of the loop. Unlike many other languages, there is
 no command to end a loop (e.g. end for); what is indented after the for 
 statement belongs to the loop.
 
-> What's in a name? {.callout}
+The great thing about Python is that the simplicity of how it handles loops
+means we can use the same loop structure for handling other types of data, like
+lists instead. So with one minor alteration:
+
+~~~ {.python}
+word = ['oxygen', 'lead', 'tin']
+for char in word:
+    print(char)
+~~~
+
+~~~
+oxygen
+lead
+tin
+~~~
+
+Which is really helpful, and means we don't need to remember a different way to do something else for a loop. Although, our variable names are now a bit misleading!
+
+> ## What's in a name? {.callout}
 > 
 > Whilst we can name variables anything we like, it's a good idea to ensure the
 > name helps you to understand what is going on. Calling our `char` loop 
