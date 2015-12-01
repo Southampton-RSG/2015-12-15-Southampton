@@ -24,7 +24,7 @@ $ cd ..
 $ cd data
 ~~~
 
-Doing `ls` shows us three files:
+Doing `ls` shows us three files in this directory:
 
 ~~~ {.output}
 sc_climate_data.csv      sc_climate_data_10.csv   sc_climate_data_1000.csv

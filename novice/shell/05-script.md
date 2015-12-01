@@ -145,7 +145,7 @@ $ bash middle.sh sc_climate_data_1000.csv -20 -5
 326196.8188,957890.0521,47.44,61.36,0.80
 ~~~
 
-This works,
+This does work,
 but it may take the next person who reads `middle.sh` a moment to figure out what it does.
 We can improve our script by adding some **comments** at the top:
 
