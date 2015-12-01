@@ -19,18 +19,14 @@ a bunch of commands saved in a file is usually called a **shell script**,
 but make no mistake:
 these are actually small programs.
 
-Let's start by going back to `molecules/` and putting the following line in the file `middle.sh`:
+Let's start by going back to `novice/shell/data` and putting the following line into a new file called `middle.sh` using an editor:
 
 ~~~ {.bash}
-$ cd molecules
-$ cat middle.sh
-~~~
-~~~
-head -15 octane.pdb | tail -5
+head -15 sc_climate_data_1000.csv | tail -5
 ~~~
 
 This is a variation on the pipe we constructed earlier:
-it selects lines 11-15 of the file `octane.pdb`.
+it selects lines 11-15 of the file `sc_climate_data_1000.csv`.
 Remember, we are *not* running it as a command just yet:
 we are putting the commands in a file.
 
@@ -42,11 +38,11 @@ Our shell is called `bash`, so we run the following command:
 $ bash middle.sh
 ~~~
 ~~~ {.output}
-ATOM      9  H           1      -4.502   0.681   0.785  1.00  0.00
-ATOM     10  H           1      -5.254  -0.243  -0.537  1.00  0.00
-ATOM     11  H           1      -4.357   1.252  -0.895  1.00  0.00
-ATOM     12  H           1      -3.009  -0.741  -1.467  1.00  0.00
-ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
+299196.8188,972890.0521,48.07,61.41,0.78
+324196.8188,972890.0521,48.20,-9999.00,0.72
+274196.8188,968890.0521,47.86,60.94,0.83
+275196.8188,968890.0521,47.86,61.27,0.83
+248196.8188,961890.0521,46.22,58.98,1.43
 ~~~
 
 Sure enough,
@@ -68,7 +64,7 @@ What if we want to select lines from an arbitrary file?
 We could edit `middle.sh` each time to change the filename,
 but that would probably take longer than just retyping the command.
 Instead,
-let's edit `middle.sh` and replace `octane.pdb` with a special variable called `$1`:
+let's edit `middle.sh` and replace `sc_climate_data_1000.csv` with a special variable called `$1`:
 
 ~~~ {.bash}
 $ cat middle.sh
@@ -82,27 +78,27 @@ Inside a shell script,
 We can now run our script like this:
 
 ~~~ {.bash}
-$ bash middle.sh octane.pdb
+$ bash middle.sh sc_climate_data_1000.csv
 ~~~
 ~~~ {.output}
-ATOM      9  H           1      -4.502   0.681   0.785  1.00  0.00
-ATOM     10  H           1      -5.254  -0.243  -0.537  1.00  0.00
-ATOM     11  H           1      -4.357   1.252  -0.895  1.00  0.00
-ATOM     12  H           1      -3.009  -0.741  -1.467  1.00  0.00
-ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
+299196.8188,972890.0521,48.07,61.41,0.78
+324196.8188,972890.0521,48.20,-9999.00,0.72
+274196.8188,968890.0521,47.86,60.94,0.83
+275196.8188,968890.0521,47.86,61.27,0.83
+248196.8188,961890.0521,46.22,58.98,1.43
 ~~~
 
-or on a different file like this:
+or on a different file like this (our full data set!):
 
 ~~~ {.bash}
-$ bash middle.sh pentane.pdb
+$ bash middle.sh sc_climate_data.csv
 ~~~
 ~~~ {.output}
-ATOM      9  H           1       1.324   0.350  -1.332  1.00  0.00
-ATOM     10  H           1       1.271   1.378   0.122  1.00  0.00
-ATOM     11  H           1      -0.074  -0.384   1.288  1.00  0.00
-ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
-ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
+359196.8188,1017890.052,49.39,58.95,0.70
+338196.8188,1011890.052,49.28,58.73,0.74
+321196.8188,981890.0521,48.20,61.41,0.72
+296196.8188,974890.0521,48.07,61.27,0.78
+299196.8188,972890.0521,48.07,61.41,0.78
 ~~~
 
 
@@ -112,12 +108,12 @@ ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
 > The shell uses whitespace to separate arguments,
 > so we have to be careful when using arguments that might have whitespace in them.
 > If we left out these quotes, and `$1` expanded to a filename like
-> `methyl butane.pdb`,
+> `climate data.csv`,
 > the command in the script would effectively be:
 >
->     head -15 methyl butane.pdb | tail -5
+>     head -15 climate data.csv | tail -5
 >
-> This would call `head` on two separate files, `methyl` and `butane.pdb`,
+> This would call `head` on two separate files, `climate` and `data.csv`,
 > which is probably not what we intended.
 
 
@@ -132,14 +128,14 @@ $ cat middle.sh
 head "$2" "$1" | tail "$3"
 ~~~
 ~~~ {.bash}
-$ bash middle.sh pentane.pdb -20 -5
+$ bash middle.sh sc_climate_data_1000.csv -20 -5
 ~~~
 ~~~ {.output}
-ATOM     14  H           1      -1.259   1.420   0.112  1.00  0.00
-ATOM     15  H           1      -2.608  -0.407   1.130  1.00  0.00
-ATOM     16  H           1      -2.540  -1.303  -0.404  1.00  0.00
-ATOM     17  H           1      -3.393   0.254  -0.321  1.00  0.00
-TER      18              1
+252196.8188,961890.0521,46.22,60.94,1.43
+152196.8188,960890.0521,48.81,-9999.00,1.08
+148196.8188,959890.0521,48.81,59.43,1.08
+325196.8188,957890.0521,48.20,61.36,0.72
+326196.8188,957890.0521,47.44,61.36,0.80
 ~~~
 
 This works,
@@ -160,17 +156,17 @@ The computer ignores comments,
 but they're invaluable for helping people understand and use scripts.
 
 What if we want to process many files in a single pipeline?
-For example, if we want to sort our `.pdb` files by length, we would type:
+For example, if we want to sort our `.csv` files by length, we would type:
 
 ~~~ {.bash}
-$ wc -l *.pdb | sort -n
+$ wc -l *.csv | sort -n
 ~~~
 
 because `wc -l` lists the number of lines in the files
 (recall that wc stands for 'word count', adding the -l flag means 'count lines' instead)
 and `sort -n` sorts things numerically.
 We could put this in a file,
-but then it would only ever sort a list of `.pdb` files in the current directory.
+but then it would only ever sort a list of `.csv` files in the current directory.
 If we want to be able to get a sorted list of other kinds of files,
 we need a way to get all those names into the script.
 We can't use `$1`, `$2`, and so on
@@ -190,17 +186,16 @@ $ cat sorted.sh
 wc -l "$@" | sort -n
 ~~~
 ~~~ {.bash}
-$ bash sorted.sh *.pdb ../creatures/*.dat
+$ bash sorted.sh *.csv ../test_directory/creatures/*.dat
 ~~~
 ~~~ {.output}
-9 methane.pdb
-12 ethane.pdb
-15 propane.pdb
-20 cubane.pdb
-21 pentane.pdb
-30 octane.pdb
-163 ../creatures/basilisk.dat
-163 ../creatures/unicorn.dat
+      11 sc_climate_data_10.csv
+     155 ../test_directory/creatures/minotaur.dat
+     163 ../test_directory/creatures/basilisk.dat
+     163 ../test_directory/creatures/unicorn.dat
+    1001 sc_climate_data_1000.csv
+ 1048580 sc_climate_data.csv
+ 1050073 total
 ~~~
 
 > ## Why Isn't It Doing Anything? {.callout}
@@ -301,7 +296,7 @@ and save it as a shell script.
 
 > ## Variables in shell scripts {.challenge}
 >
-> In the molecules directory, you have a shell script called `script.sh` containing the 
+> In the test_directory/molecules directory, you have a shell script called `script.sh` containing the 
 > following commands:
 >
 > ~~~
@@ -342,20 +337,6 @@ and save it as a shell script.
 > filenames as command-line parameters, and uses `cut`, `sort`, and
 > `uniq` to print a list of the unique species appearing in each of
 > those files separately.
-
-> ## Find the longest file with a given extension {.challenge}
-> 
-> Write a shell script called `longest.sh` that takes the name of a
-> directory and a filename extension as its parameters, and prints
-> out the name of the file with the most lines in that directory
-> with that extension. For example:
-> 
-> ~~~
-> $ bash longest.sh /tmp/data pdb
-> ~~~
-> 
-> would print the name of the `.pdb` file in `/tmp/data` that has
-> the most lines.
 
 > ## Why record commands in the history before running them? {.challenge}
 > 

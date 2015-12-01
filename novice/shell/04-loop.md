@@ -16,7 +16,7 @@ Wildcards and tab completion are two ways to reduce typing (and typing mistakes)
 Another is to tell the shell to do something over and over again.
 Suppose we have several hundred genome data files named `basilisk.dat`, `minotaur.dat`, `unicorn.dat`, and so on.
 In this example,
-we'll use the `creatures` directory which only has three example files,
+we'll use the `test_directory/creatures` directory which only has three example files,
 but the principles can be applied to many many more files at once.
 We would like to modify these files, but also save a version of the original files and rename them 
 as `original-basilisk.dat`, `original-minotaur.dat`, `original-unicorn.dat`.

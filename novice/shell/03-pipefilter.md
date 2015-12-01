@@ -15,48 +15,69 @@ minutes: 15
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
 the ease with which it lets us combine existing programs in new ways.
-We'll start with a directory called `molecules`
-that contains six files describing some simple organic molecules.
-The `.pdb` extension indicates that these files are in Protein Data Bank format,
-a simple text format that specifies the type and position of each atom in the molecule.
+
+We'll start with a directory called `data`, which is in the `novice/shell` 
+directory, one directory up from `test_directory`. i.e. from `test_directory`:
 
 ~~~ {.bash}
-$ ls molecules
-~~~
-~~~ {.output}
-cubane.pdb    ethane.pdb    methane.pdb
-octane.pdb    pentane.pdb   propane.pdb
+$ cd ..
+$ cd data
 ~~~
 
-Let's go into that directory with `cd` and run the command `wc *.pdb`:
+Doing `ls` shows us three files:
+
+~~~ {.output}
+sc_climate_data.csv      sc_climate_data_10.csv   sc_climate_data_1000.csv
+~~~
+
+The data in these files is taken from a real climate science research project 
+that is looking into woody biomass yields. The files are as follows:
+
+* sc_climate_data.csv: the entire 20MB data set.
+* sc_climate_data_1000.csv: a subset of the entire data, but only 1000 data rows.
+* sc_climate_data_10.csv: a much smaller subset with only 10 rows of data.
+
+We'll largely be working on the 10-row version, since this allows us to more
+easily reason about the data in the file and the operations we're performing on
+it.
+Running various commands over a 20MB data set could take some time. 
+It's generally good practice when developing code, scripts, or just using 
+shell commands, to use a representative subset of data that is manageable to 
+start with, in order to make progress efficiently.
+Otherwise, we'll be here all day!
+Once we're confident our commands, code, scripts, etc. work the way we want, we 
+can then test them on the entire data set.
+
+The `.csv` extension indicates that these files are in Comma Separated Value 
+format,
+a simple text format that specifies data in columns separated by commas
+with lines in the file equating to rows.
+
+Let's run the command `wc *.csv`:
 
 * `wc` is the "word count" command, it counts the number of lines, words, and characters in files.
-* The `*` in `*.pdb` matches zero or more characters, so the shell turns `*.pdb` into a complete list of `.pdb` files:
+* The `*` in `*.csv` matches zero or more characters, so the shell turns `*.csv` into a complete list of `.csv` files:
 
 ~~~ {.bash}
 $ cd molecules
-$ wc *.pdb
+$ wc *.csv
 ~~~
 ~~~ {.output}
-  20  156 1158 cubane.pdb
-  12   84  622 ethane.pdb
-   9   57  422 methane.pdb
-  30  246 1828 octane.pdb
-  21  165 1226 pentane.pdb
-  15  111  825 propane.pdb
- 107  819 6081 total
+ 1048580 1048583 21005146 sc_climate_data.csv
+      11      12     487 sc_climate_data_10.csv
+    1001    1002   42301 sc_climate_data_1000.csv
+ 1049592 1049597 21047934 total
 ~~~
 
 > ## Wildcards {.callout}
 > 
 > `*` is a **wildcard**. It matches zero or more
-> characters, so `*.pdb` matches `ethane.pdb`, `propane.pdb`, and so on.
-> On the other hand, `p*.pdb` only matches `pentane.pdb` and
-> `propane.pdb`, because the 'p' at the front only matches itself.
+> characters, so `*.csv` matches `sc_climate_data.csv`, `sc_climate_data_10.csv`, and so on.
+> On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the 'sc_climate_data_100' at the front only matches those two files.
 > 
 > `?` is also a wildcard, but it only matches a single character. This
-> means that `p?.pdb` matches `pi.pdb` or `p5.pdb`, but not `propane.pdb`.
-> We can use any number of wildcards at a time: for example, `p*.p?*`
+> means that `s?.csv` matches `si.csv` or `s5.csv`, but not `sc_climate_data.csv`, for example.
+> We can use any number of wildcards at a time: for example, `s*.c?*`
 > matches anything that starts with a 'p' and ends with '.', 'p', and at
 > least one more character (since the '?' has to match one character, and
 > the final '\*' can match any number of characters). Thus, `p*.p?*` would
@@ -69,8 +90,8 @@ $ wc *.pdb
 > list of matching filenames *before* running the command that was
 > asked for. As an exception, if a wildcard expression does not match
 > any file, Bash will pass the expression as a parameter to the command
-> as it is. For example typing `ls *.pdf` in the molecules directory
-> (which contains only files with names ending with `.pdb`) results in
+> as it is. For example typing `ls *.pdf` in the data directory
+> (which contains only files with names ending with `.csv`) results in
 > an error message that there is no file called `*.pdf`.
 > However, generally commands like `wc` and `ls` see the lists of
 > file names matching these expressions, but not the wildcards
@@ -81,28 +102,25 @@ If we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
 
 ~~~ {.bash}
-$ wc -l *.pdb
+$ wc -l *.csv
 ~~~
 ~~~ {.output}
-  20  cubane.pdb
-  12  ethane.pdb
-   9  methane.pdb
-  30  octane.pdb
-  21  pentane.pdb
-  15  propane.pdb
- 107  total
-~~~
+ 1048580 sc_climate_data.csv
+      11 sc_climate_data_10.csv
+    1001 sc_climate_data_1000.csv
+ 1049592 total
+ ~~~
 
 We can also use `-w` to get only the number of words,
 or `-c` to get only the number of characters.
 
 Which of these files is shortest?
-It's an easy question to answer when there are only six files,
+It's an easy question to answer when there are only three files,
 but what if there were 6000?
 Our first step toward a solution is to run the command:
 
 ~~~ {.bash}
-$ wc -l *.pdb > lengths.txt
+$ wc -l *.csv > lengths.txt
 ~~~
 
 The greater than symbol, `>`, tells the shell to **redirect** the command's output
@@ -130,14 +148,11 @@ so `cat` just shows us what it contains:
 $ cat lengths.txt
 ~~~
 ~~~ {.output}
-  20  cubane.pdb
-  12  ethane.pdb
-   9  methane.pdb
-  30  octane.pdb
-  21  pentane.pdb
-  15  propane.pdb
- 107  total
-~~~
+ 1048580 sc_climate_data.csv
+      11 sc_climate_data_10.csv
+    1001 sc_climate_data_1000.csv
+ 1049592 total
+ ~~~
 
 Now let's use the `sort` command to sort its contents.
 We will also use the -n flag to specify that the sort is 
@@ -149,13 +164,10 @@ instead, it sends the sorted result to the screen:
 $ sort -n lengths.txt
 ~~~
 ~~~ {.output}
-  9  methane.pdb
- 12  ethane.pdb
- 15  propane.pdb
- 20  cubane.pdb
- 21  pentane.pdb
- 30  octane.pdb
-107  total
+      11 sc_climate_data_10.csv
+    1001 sc_climate_data_1000.csv
+ 1048580 sc_climate_data.csv
+ 1049592 total
 ~~~
 
 We can put the sorted list of lines in another temporary file called `sorted-lengths.txt`
@@ -169,7 +181,7 @@ $ sort -n lengths.txt > sorted-lengths.txt
 $ head -1 sorted-lengths.txt
 ~~~
 ~~~ {.output}
-  9  methane.pdb
+      11 sc_climate_data_10.csv
 ~~~
 
 Using the parameter `-1` with `head` tells it that
@@ -189,7 +201,7 @@ We can make it easier to understand by running `sort` and `head` together:
 $ sort -n lengths.txt | head -1
 ~~~
 ~~~ {.output}
-  9  methane.pdb
+      11 sc_climate_data_10.csv
 ~~~
 
 The vertical bar between the two commands is called a **pipe**.
@@ -205,16 +217,16 @@ We can use another pipe to send the output of `wc` directly to `sort`,
 which then sends its output to `head`:
 
 ~~~ {.bash}
-$ wc -l *.pdb | sort -n | head -1
+$ wc -l *.csv | sort -n | head -1
 ~~~
 ~~~ {.output}
-  9  methane.pdb
+      11 sc_climate_data_10.csv
 ~~~
 
 This is exactly like a mathematician nesting functions like *log(3x)*
 and saying "the log of three times *x*".
 In our case,
-the calculation is "head of sort of line count of `*.pdb`".
+the calculation is "head of sort of line count of `*.csv`".
 
 Here's what actually happens behind the scenes when we create a pipe.
 When a computer runs a program --- any program --- it creates a **process**
@@ -234,21 +246,21 @@ it creates a new process
 and temporarily sends whatever we type on our keyboard to that process's standard input,
 and whatever the process sends to standard output to the screen.
 
-Here's what happens when we run `wc -l *.pdb > lengths.txt`.
+Here's what happens when we run `wc -l *.csv > lengths.txt`.
 The shell starts by telling the computer to create a new process to run the `wc` program.
 Since we've provided some filenames as parameters,
 `wc` reads from them instead of from standard input.
 And since we've used `>` to redirect output to a file,
 the shell connects the process's standard output to that file.
 
-If we run `wc -l *.pdb | sort -n` instead,
+If we run `wc -l *.csv | sort -n` instead,
 the shell creates two processes
 (one for each process in the pipe)
 so that `wc` and `sort` run simultaneously.
 The standard output of `wc` is fed directly to the standard input of `sort`;
 since there's no redirection with `>`,
 `sort`'s output goes to the screen.
-And if we run `wc -l *.pdb | sort -n | head -1`,
+And if we run `wc -l *.csv | sort -n | head -1`,
 we get three processes with data flowing from the files,
 through `wc` to `sort`,
 and from `sort` through `head` to the screen.
@@ -279,11 +291,11 @@ so that you and other people can put those programs into pipes to multiply their
 > 
 > As well as using `>` to redirect a program's output, we can use `<` to
 > redirect its input, i.e., to read from a file instead of from standard
-> input. For example, instead of writing `wc ammonia.pdb`, we could write
-> `wc < ammonia.pdb`. In the first case, `wc` gets a command line
+> input. For example, instead of writing `wc sc_climate_data_10.csv`, we could write
+> `wc < sc_climate_data_10.csv`. In the first case, `wc` gets a command line
 > parameter telling it what file to open. In the second, `wc` doesn't have
 > any command line parameters, so it reads from standard input, but we
-> have told the shell to send the contents of `ammonia.pdb` to `wc`'s
+> have told the shell to send the contents of `sc_climate_data_10.csv` to `wc`'s
 > standard input.
 
 > ## What does `sort -n` do? {.challenge}
