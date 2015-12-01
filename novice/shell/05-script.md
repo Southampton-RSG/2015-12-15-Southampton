@@ -37,6 +37,7 @@ Our shell is called `bash`, so we run the following command:
 ~~~ {.bash}
 $ bash middle.sh
 ~~~
+
 ~~~ {.output}
 299196.8188,972890.0521,48.07,61.41,0.78
 324196.8188,972890.0521,48.20,-9999.00,0.72
@@ -69,6 +70,7 @@ let's edit `middle.sh` and replace `sc_climate_data_1000.csv` with a special var
 ~~~ {.bash}
 $ cat middle.sh
 ~~~
+
 ~~~ {.output}
 head -15 "$1" | tail -5
 ~~~
@@ -80,6 +82,7 @@ We can now run our script like this:
 ~~~ {.bash}
 $ bash middle.sh sc_climate_data_1000.csv
 ~~~
+
 ~~~ {.output}
 299196.8188,972890.0521,48.07,61.41,0.78
 324196.8188,972890.0521,48.20,-9999.00,0.72
@@ -93,6 +96,7 @@ or on a different file like this (our full data set!):
 ~~~ {.bash}
 $ bash middle.sh sc_climate_data.csv
 ~~~
+
 ~~~ {.output}
 359196.8188,1017890.052,49.39,58.95,0.70
 338196.8188,1011890.052,49.28,58.73,0.74
@@ -124,12 +128,15 @@ Let's fix that by using the special variables `$2` and `$3`:
 ~~~ {.bash}
 $ cat middle.sh
 ~~~
+
 ~~~ {.output}
 head "$2" "$1" | tail "$3"
 ~~~
+
 ~~~ {.bash}
 $ bash middle.sh sc_climate_data_1000.csv -20 -5
 ~~~
+
 ~~~ {.output}
 252196.8188,961890.0521,46.22,60.94,1.43
 152196.8188,960890.0521,48.81,-9999.00,1.08
@@ -145,6 +152,7 @@ We can improve our script by adding some **comments** at the top:
 ~~~ {.bash}
 $ cat middle.sh
 ~~~
+
 ~~~ {.output}
 # Select lines from the middle of a file.
 # Usage: middle.sh filename -end_line -num_lines
@@ -182,12 +190,15 @@ Here's an example:
 ~~~ {.bash}
 $ cat sorted.sh
 ~~~
+
 ~~~ {.output}
 wc -l "$@" | sort -n
 ~~~
+
 ~~~ {.bash}
 $ bash sorted.sh *.csv ../test_directory/creatures/*.dat
 ~~~
+
 ~~~ {.output}
       11 sc_climate_data_10.csv
      155 ../test_directory/creatures/minotaur.dat

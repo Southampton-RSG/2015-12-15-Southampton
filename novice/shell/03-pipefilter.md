@@ -59,7 +59,6 @@ Let's run the command `wc *.csv`:
 * The `*` in `*.csv` matches zero or more characters, so the shell turns `*.csv` into a complete list of `.csv` files:
 
 ~~~ {.bash}
-$ cd molecules
 $ wc *.csv
 ~~~
 
@@ -105,6 +104,7 @@ the output shows only the number of lines per file:
 ~~~ {.bash}
 $ wc -l *.csv
 ~~~
+
 ~~~ {.output}
  1048580 sc_climate_data.csv
       11 sc_climate_data_10.csv
@@ -135,6 +135,7 @@ everything that `wc` would have printed has gone into the file `lengths.txt` ins
 ~~~ {.bash}
 $ ls lengths.txt
 ~~~
+
 ~~~ {.output}
 lengths.txt
 ~~~
@@ -148,6 +149,7 @@ so `cat` just shows us what it contains:
 ~~~ {.bash}
 $ cat lengths.txt
 ~~~
+
 ~~~ {.output}
  1048580 sc_climate_data.csv
       11 sc_climate_data_10.csv
@@ -164,6 +166,7 @@ instead, it sends the sorted result to the screen:
 ~~~ {.bash}
 $ sort -n lengths.txt
 ~~~
+
 ~~~ {.output}
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
@@ -181,6 +184,7 @@ we can run another command called `head` to get the first few lines in `sorted-l
 $ sort -n lengths.txt > sorted-lengths.txt
 $ head -1 sorted-lengths.txt
 ~~~
+
 ~~~ {.output}
       11 sc_climate_data_10.csv
 ~~~
@@ -201,6 +205,7 @@ We can make it easier to understand by running `sort` and `head` together:
 ~~~ {.bash}
 $ sort -n lengths.txt | head -1
 ~~~
+
 ~~~ {.output}
       11 sc_climate_data_10.csv
 ~~~
@@ -220,6 +225,7 @@ which then sends its output to `head`:
 ~~~ {.bash}
 $ wc -l *.csv | sort -n | head -1
 ~~~
+
 ~~~ {.output}
       11 sc_climate_data_10.csv
 ~~~
