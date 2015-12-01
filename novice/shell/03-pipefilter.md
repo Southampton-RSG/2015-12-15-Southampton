@@ -62,6 +62,7 @@ Let's run the command `wc *.csv`:
 $ cd molecules
 $ wc *.csv
 ~~~
+
 ~~~ {.output}
  1048580 1048583 21005146 sc_climate_data.csv
       11      12     487 sc_climate_data_10.csv
