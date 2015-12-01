@@ -110,7 +110,7 @@ $ wc -l *.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1049592 total
- ~~~
+~~~
 
 We can also use `-w` to get only the number of words,
 or `-c` to get only the number of characters.
@@ -155,7 +155,7 @@ $ cat lengths.txt
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1049592 total
- ~~~
+~~~
 
 Now let's use the `sort` command to sort its contents.
 We will also use the -n flag to specify that the sort is 

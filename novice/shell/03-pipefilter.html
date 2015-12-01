@@ -78,7 +78,10 @@ $ <span class="kw">cd</span> data</code></pre>
 </aside>
 <p>If we run <code>wc -l</code> instead of just <code>wc</code>, the output shows only the number of lines per file:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wc</span> -l *.csv</code></pre>
-<p><sub>~</sub> {.output} 1048580 sc_climate_data.csv 11 sc_climate_data_10.csv 1001 sc_climate_data_1000.csv 1049592 total <sub>~</sub></p>
+<pre class="output"><code> 1048580 sc_climate_data.csv
+      11 sc_climate_data_10.csv
+    1001 sc_climate_data_1000.csv
+ 1049592 total</code></pre>
 <p>We can also use <code>-w</code> to get only the number of words, or <code>-c</code> to get only the number of characters.</p>
 <p>Which of these files is shortest? It’s an easy question to answer when there are only three files, but what if there were 6000? Our first step toward a solution is to run the command:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wc</span> -l *.csv <span class="kw">&gt;</span> lengths.txt</code></pre>
@@ -87,7 +90,10 @@ $ <span class="kw">cd</span> data</code></pre>
 <pre class="output"><code>lengths.txt</code></pre>
 <p>We can now send the content of <code>lengths.txt</code> to the screen using <code>cat lengths.txt</code>. <code>cat</code> stands for “concatenate”: it prints the contents of files one after another. There’s only one file in this case, so <code>cat</code> just shows us what it contains:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> lengths.txt</code></pre>
-<p><sub>~</sub> {.output} 1048580 sc_climate_data.csv 11 sc_climate_data_10.csv 1001 sc_climate_data_1000.csv 1049592 total <sub>~</sub></p>
+<pre class="output"><code> 1048580 sc_climate_data.csv
+      11 sc_climate_data_10.csv
+    1001 sc_climate_data_1000.csv
+ 1049592 total</code></pre>
 <p>Now let’s use the <code>sort</code> command to sort its contents. We will also use the -n flag to specify that the sort is numerical instead of alphabetical. This does <em>not</em> change the file; instead, it sends the sorted result to the screen:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sort</span> -n lengths.txt</code></pre>
 <pre class="output"><code>      11 sc_climate_data_10.csv
