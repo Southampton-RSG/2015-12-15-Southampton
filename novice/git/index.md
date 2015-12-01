@@ -18,20 +18,17 @@ subtitle: 0. Introduction
 >
 > *   Understand when version control is useful and how it works
 
-![Welcome](img/slides/version-control-with-git-slides-01.jpg)
+![Welcome](img/slides/version-control-with-git-slides - 01.jpg)
 
 **START**
 
 ![What is Version Control?](img/slides/version-control-with-git-slides - 02.jpg)
 
-## What is Version Control ##
+## What is Version Control & Why should I use it? ##
 
 Version control tools, also known as **revision control** or **source control** tools, track **changes** to files.  
 
-It's worth noting that although most version control system can deal with any file type, 
-because they tracks incremental change, many features, like diffs and merges work only with human readable text, not binary files lke images, or Word docs.
-
-### 1. A Better Backup ###
+### 1. A More Efficient Backup ###
 
 ![Why Use Version Control? #1](img/slides/version-control-with-git-slides - 03.jpg)
 
@@ -61,7 +58,7 @@ We'll look at both the backup and collaboration scenarios, but first it's useful
 
 ![Changes are tracked sequentially](img/slides/version-control-with-git-slides - 05.jpg)
 
-**Version control systems start by storing the base version** of the file that you save and then **record just the changes** you made at each step on the way. You can think of it as a tape: if you rewind the tape and **start** at the base document, then you can **play back** each change and end up with your latest version.
+**Version control systems start by storing the base version** of the file that you save and then **store just the changes** you made at each step on the way. You can think of it as a tape: if you rewind the tape and **start** at the base document, then you can **play back** each change and end up with your latest version.
 
 
 ---------------------------------------------------------------
@@ -78,6 +75,7 @@ Once you think of **changes as separate from the document** itself, you can then
 ![Multiple versions can be merged](img/slides/version-control-with-git-slides - 07.jpg)
 
 If there aren't conflicts, you can even try to play two sets of changes onto the same base document.  A process call **merging**.
+
 
 ---------------------------------------------------------------
 ## 3. Version Control Alternatives ##

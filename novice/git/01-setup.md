@@ -15,26 +15,20 @@ minutes: 10
 > Some previous experience with the shell is expected,
 > *but isn't mandatory*.
 
-## Get Started - The Scenario - Comedy Monsters plan a space mission
+## Get Started - Continuing our climate data processing
 
-Lets walk through a (painfully contrived) little scenario to get some hands on experience using Git.
 
 **Linux and Mac** users should open a **terminal**, windows users to should go to the Start Menu open GitBash from the Git group.
 
 **Post-Its**
 
-![Monsters](img/slides/version-control-with-git-slides - 09.jpg)
-![in Space](img/slides/version-control-with-git-slides - 10.jpg)
-
-We've have been hired by the **Transylvanian Space Agency**
-to investigate if it is possible to send their next planetary lander to Mars.
 
 **Switch out of fullscreen**
 
 **Open Terminal** **Use other projector**
 
 
-![Local Configuration](img/slides/version-control-with-git-slides - 11.jpg)
+![Local Configuration](img/slides/version-control-with-git-slides - 09.jpg)
 
 **Working individually**, we’ll start by exploring how version control can be used to keep track of what *one person* did and when.
 
@@ -52,11 +46,11 @@ $ cd
 Set some global options
 
 ~~~ {.bash}
-$ git config --global user.name "Vlad Dracula"
-$ git config --global user.email "vlad@tran.sylvan.ia"
+$ git config --global user.name "Norbert Nodinkle"
+$ git config --global user.email "norbert@nodinkle.com"
 ~~~
 
-(Please use your own name and email address instead of Dracula's.)
+(Please use your own name and email address instead of Norbert's.)
 
 You can set your favourite text editor, following this table:
 

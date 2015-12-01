@@ -8,14 +8,19 @@ minutes: 10
 > 
 > *   Explain how to create a Git repository locally.
 
-![Creating a Repository](img/slides/version-control-with-git-slides - 12.jpg)
+![Creating a Repository](img/slides/version-control-with-git-slides - 10.jpg)
 
-So, first Let's create a directory for our work.
+So, first let's change to our code directory.  Note that this is *not* the directory that you were using in the **Python** lesson, but should contain
 
 ~~~ {.bash}
-$ mkdir planets
-$ cd planets
+$ cd ~/2015-12-15-Southampton/novice/git/code
+$ ls
 ~~~
+
+~~~ {.output}
+climate_analysis.py  temp_conversion.py
+~~~~
+
 Once Git is configured,
 we can start using it.
 
