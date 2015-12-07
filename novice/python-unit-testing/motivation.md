@@ -92,6 +92,14 @@ Write some unit test functions for it in a **test_running.py** file (including *
 
 ## Challenge
 
+1. Write some unit tests for the 	`fahr_to_kelvin` function in `temp_conversion.py`, which you can find in `python-unit-testing/code/temp_conversion.py`. Place your unit tests in a 
+new file  called `test_climate_analysis.py` in the `python-unit-testing/code` directory, and use `nose` to run the tests. Try and think  about tests that could **break** your code - what 
+are its limits?
+
+2. Once you've completed your tests, add them to version control along with your climate code.
+
+## Challenge
+
 Write a function called **addnumbers** in **addnumbers.py** that passes the unit tests in **test_addnumbers.py**.
 
 All addnumbers should do is add together all the numbers in a list and return the result.
