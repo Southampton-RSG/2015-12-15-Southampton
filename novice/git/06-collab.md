@@ -12,7 +12,7 @@ minutes: 55
 
 So far, we've seen how Version control can help us **track the changes** we make to our files, and to **revisit** any point in their history.
 
-![Git Workflow - Local Repo](img/slides/version-control-with-git-slides - 20.jpg)
+![Git Workflow - Local Repo](img/slides/version-control-with-git-slides - 18.jpg)
 
 (there are a few extra commands we haven't covered today for you to look at).
 
@@ -23,7 +23,7 @@ when we begin to **collaborate** with other people.
 We already have most of the machinery we need to do this;
 the only thing missing is to copy changes from one repository to another.
 
-![Collaboration](img/slides/version-control-with-git-slides - 21.jpg)
+![Collaboration](img/slides/version-control-with-git-slides - 19.jpg)
 
 Systems like Git allow us to **synchronise** work between any two repositories.
 
@@ -38,7 +38,7 @@ to hold those master copies;  we'll explore the pros and cons of these a bit lat
 
 But first let's explore the collaborative process.  Time to buddy up.
 
-![Collaboration](img/slides/version-control-with-git-slides - 22.jpg)
+![Collaboration](img/slides/version-control-with-git-slides - 20.jpg)
 
 So far we have been working in splendid isolation.  We're going to use **GitHub** to set up a remote repository and start **"collaborating"** with our partners.
 
@@ -51,7 +51,7 @@ In your pairs, **decide** who will be Developer A and Developer B while Olivier 
 
 ###Developer A - To GitHub ###
 
-![Remote Repositories #1](img/slides/version-control-with-git-slides - 23.jpg)
+![Remote Repositories #1](img/slides/version-control-with-git-slides - 21.jpg)
 
 Now, **Bs just sit back** for a moment and **watch A** until told otherwise
 
@@ -168,7 +168,7 @@ If someone else had pushed some changes to the repository on GitHub, this comman
 
 ###Developer B - Cloning the remote repository###
 
-![Remote Repositories #2](img/slides/version-control-with-git-slides - 24.jpg)
+![Remote Repositories #2](img/slides/version-control-with-git-slides - 22.jpg)
 
 Now **Developer B gets a go**! -  **Developer A**, you can **take a break** and watch.
 
@@ -243,7 +243,7 @@ when we were setting up remotes by hand.)
 
 ###Developer A - Pull in the changes###
 
-![Remote Repositories #3](img/slides/version-control-with-git-slides - 25.jpg)
+![Remote Repositories #3](img/slides/version-control-with-git-slides - 23.jpg)
 
 Developer A can now update their repository with the changes made by B:
 
@@ -273,6 +273,6 @@ Fast-forward
 > Add / commit them to their local repository and push them to github.>
 > Developer B can pull the updates
 
-![Remote Repositories #4](img/slides/version-control-with-git-slides - 26.jpg)
+![Remote Repositories #4](img/slides/version-control-with-git-slides - 24.jpg)
 [Next - Conflicts](07-conflict.html)
 

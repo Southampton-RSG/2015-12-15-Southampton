@@ -10,7 +10,7 @@ minutes: 25
 > *   Compare files with old versions of themselves.
 > *   Restore old versions of files.
 
-![Git diff #2](img/slides/version-control-with-git-slides - 17.jpg)
+![Git diff #2](img/slides/version-control-with-git-slides - 15.jpg)
 
 ###Relative History###
 
@@ -28,32 +28,41 @@ means "the previous revision",
 while `HEAD~123` goes back 123 revisions from where we are now.
 
 ~~~ {.bash}
-$ git diff HEAD~1 mars.txt
+$ git diff HEAD~1 climate_analysis.py
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/climate_analysis.py b/climate_analysis.py
+index d5b442d..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -26,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+", "+str(kelvin))
++
++# TODO(me): Add call to process rainfall
 ~~~
 So we see the difference between the file as it is now, and as it was **before the last commit**
 
 ~~~ {.bash}
-$ git diff HEAD~2 mars.txt
+$ git diff HEAD~2 climate_analysis.py
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,3 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++""" Climate Analysis Tools """
+ import sys
+ import temp_conversion
+ import signal
+@@ -25,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+", "+str(kelvin))
++
++# TODO(me): Add call to process rainfall
 ~~~
 And here we see the state **before the last two commits**, HEAD minus2 
 
@@ -68,43 +77,57 @@ and "unique" really does mean unique:
 every change to any set of files on any machine
 has a unique 40-character identifier. (A SHA-1 hash of the new, post-commit state of the repository).
 
-Our first commit was given the ID: **(bottom ID from git log)**
+Our first commit was given the ID: **[bottom ID from git log]**
 
-f22b25e3233b4645dabd0d81e651fe074bd8e73b,
+a10bd8f6192f9ab29b1821d7d7929fbf6484686a,
 so let's try this:
 
 ~~~ {.bash}
-$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
+$ git diff a10bd8f6192f9ab29b1821d7d7929fbf6484686a climate_analysis.py
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,3 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++""" Climate Analysis Tools """
+ import sys
+ import temp_conversion
+ import signal
+@@ -25,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+", "+str(kelvin))
++
++# TODO(me): Add call to process rainfall
 ~~~
 So that's all the changes since our first commit.
 That's the right answer,but typing random 40-character strings is annoying,
 so Git lets us use just the first **seven**:
 
 ~~~ {.bash}
-$ git diff f22b25e mars.txt
+$ git diff a10bd8f climate_analysis.py
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,3 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++""" Climate Analysis Tools """
+ import sys
+ import temp_conversion
+ import signal
+@@ -25,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+", "+str(kelvin))
++
++# TODO(me): Add call to process rainfall
 ~~~
 
-![Restoring Files](img/slides/version-control-with-git-slides - 18.jpg)
+![Restoring Files](img/slides/version-control-with-git-slides - 16.jpg)
 
 ###Restoring Files###
 
@@ -114,11 +137,12 @@ we can **save changes** to files and **see what we've changed** &mdash; suppose 
 Let's suppose we **accidentally** overwrite our file:
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ nano climate_analysis.py
+$ cat climate_analysis.py
 ~~~
 ~~~ {.output}
-We will need to manufacture our own oxygen
+Dear Mum,
+I'm really getting the hang of this version control thing!!
 ~~~
 
 **Whoops!**
@@ -130,13 +154,13 @@ but those changes haven't been staged:
 $ git status
 ~~~
 ~~~ {.output}
-# On branch master
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#	modified:   mars.txt
-#
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   climate_analysis.py
+
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 
@@ -144,13 +168,11 @@ Following the helpful hint in that output, we can put things back the way they w
 by using `git checkout`:
 
 ~~~ {.bash}
-$ git checkout HEAD mars.txt
-$ cat mars.txt
+$ git checkout HEAD climate_analysis.py
+$ cat climate_analysis.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+[SNIPPED - but changes rolled back]
 ~~~
 
 As you might guess from its name,
@@ -161,14 +183,14 @@ we're telling Git that we want to recover the version of the file recorded in `H
 which is the last saved revision.
 
 If we want to go back even further,
-we can use a revision identifier instead:
+we could use a revision identifier instead:
 
 
 ~~~ {.bash}
-$ git checkout <last but one rev> mars.txt
+$ git checkout <last but one rev> climate_analysis.py
 ~~~
 
-![Restoring Files](img/slides/version-control-with-git-slides - 19.jpg)
+![Restoring Files](img/slides/version-control-with-git-slides - 17.jpg)
 
 The fact that files can be reverted one by one
 tends to change the way people organize their work.
@@ -180,6 +202,6 @@ without also undoing changes made later to the conclusion.
 If the introduction and conclusion are stored in **separate files**,
 on the other hand, moving backward and forward in time becomes much easier.
 
-###IF TIME###
+###IF TIME LIMITED GO STRAIGHT TO [Collaboration](06-collab.html)###
 
 [Next - Ignoring Things](05-ignore.html) 

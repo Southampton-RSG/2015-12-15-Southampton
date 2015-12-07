@@ -37,7 +37,7 @@ But the Mummy will appreciate the lack of humidity
 
 ###Developer A - Modify and Push###
 
-![Conflicts](img/slides/version-control-with-git-slides - 27.jpg)
+![Conflicts](img/slides/version-control-with-git-slides - 25.jpg)
 
 Let's add a line to Developer A's copy only:
 
@@ -117,7 +117,7 @@ hint: before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ~~~
 
-![Conflicts #2](img/slides/version-control-with-git-slides - 28.jpg)
+![Conflicts #2](img/slides/version-control-with-git-slides - 26.jpg)
 
 Git **detects** that the **changes** made in one copy **overlap** with those made in the other
 and **stops us from trampling** on our collaborators work.

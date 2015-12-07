@@ -42,78 +42,55 @@
 </div>
 </section>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2013.jpg" alt="Tracking changes to files" /><p class="caption">Tracking changes to files</p>
+<img src="img/slides/version-control-with-git-slides%20-%2011.jpg" alt="Tracking changes to files" /><p class="caption">Tracking changes to files</p>
 </div>
-<h3 id="create-a-file">Create a file</h3>
-<p>Let’s create a file called <code>mars.txt</code> that contains some notes about the Red Planet’s suitability as a base. (We’ll use <code>nano</code> to edit the file; you can use whatever editor you like.)</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> mars.txt</code></pre>
-<p>Under Windows, you’ll need to choose to save it to under your home directory “C:\Users\Me\planets”</p>
-<p>Type the text below into the <code>mars.txt</code> file:</p>
-<pre class="output"><code>Cold and dry, but everything is my favorite color (You&#39;re Dracula - right?)</code></pre>
-<p><code>mars.txt</code> now contains a single line:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
-<pre class="output"><code>mars.txt</code></pre>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>Cold and dry, but everything is my favorite color</code></pre>
-<h3 id="check-status">Check Status</h3>
-<p>If we check the status of our project again, Git tells us that it’s noticed the new file:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-# Untracked files:
-#   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-#
-#   mars.txt
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
-<p>The “untracked files” message means that there’s a file in the directory that Git isn’t keeping track of.</p>
 <h3 id="add-to-version-control">Add to Version Control</h3>
 <p>We can tell Git to track a file using <code>git add</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add mars.txt</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add climate_analysis.py temp_conversion.py</code></pre>
 <p>and then check that the right thing happened:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-# Changes to be committed:
-#   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
-#
-#   new file:   mars.txt
-#</code></pre>
-<p>Git now knows that it’s supposed to keep track of <code>mars.txt</code>, but it hasn’t recorded these changes as a commit yet.</p>
+<pre class="output"><code>On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+
+        new file:   climate_analysis.py
+        new file:   temp_conversion.py</code></pre>
+<p>Git now knows that it’s supposed to keep track of <code>climate_analysis.py</code> and <code>temp_conversion.py</code>, but it hasn’t recorded these changes as a commit yet.</p>
 <h3 id="initial-commit">Initial Commit</h3>
 <p>To get it to do that, we need to run one more command:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Start notes on Mars as a base&quot;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Initial commit of climate analysis code&quot;</span></code></pre>
 <p>We use the <code>-m</code> flag (for “<strong>message</strong>”) to record a short, descriptive, and specific comment that will help us remember later on what we did and why. If we just run <code>git commit</code> without the <code>-m</code> option, Git will launch <code>nano</code> (or whatever other editor we configured at the start) so that we can write a longer message.</p>
 <p><strong>Good commit messages</strong> start with a brief (&lt;50 characters) summary of changes made in the commit.</p>
-<p><strong>NOT Bug Fixes</strong> or <strong>Changes</strong>!</p>
+<p><strong>NOT “Bug Fixes”</strong> or <strong>“Changes”</strong>!</p>
 <p>If you want to go into more detail, add a blank line between the summary line and your additional notes.</p>
-<pre class="output"><code>[master (root-commit) f22b25e] Start notes on Mars as a base
- 1 file changed, 1 insertion(+)
- create mode 100644 mars.txt</code></pre>
-<p>When we run <code>git commit</code>, Git takes everything we have told it to save by using <code>git add</code> and stores a copy permanently inside the special <code>.git</code> directory. This permanent copy is called a <a href="reference.html#revision">revision</a> and its short identifier is <code>f22b25e</code>. (Your revision will have different identifier.)</p>
+<pre class="output"><code>[master (root-commit) a10bd8f] Initial commit of climate analysis code
+ 2 files changed, 50 insertions(+)
+ create mode 100644 climate_analysis.py
+ create mode 100644 temp_conversion.py</code></pre>
+<p>When we run <code>git commit</code>, Git takes everything we have told it to save by using <code>git add</code> and stores a copy permanently inside the special <code>.git</code> directory. This permanent copy is called a <a href="reference.html#revision">revision</a> and its short identifier is <code>a10bd8f</code>. (Your revision will have different identifier.)</p>
 <p>If we run <code>git status</code> now:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
 <pre class="output"><code># On branch master
 nothing to commit, working directory clean</code></pre>
 <p>it tells us everything is up to date.</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2014.jpg" alt="Add and Commit" /><p class="caption">Add and Commit</p>
+<img src="img/slides/version-control-with-git-slides%20-%2012.jpg" alt="Add and Commit" /><p class="caption">Add and Commit</p>
 </div>
-<p>Git has a special <strong>staging</strong> area where it keeps track of things that have been <strong>added</strong> to the current <a href="reference.html#change-set">change set</a> but <strong>not yet committed</strong>. <code>git add</code> puts things in this area, and <code>git commit</code> then copies them to long-term storage (as a commit):</p>
+<p>Git has a special <strong>staging</strong> area where it keeps track of things that have been <strong>added</strong> to the current <a href="reference.html#change-set">change set</a> but <strong>not yet committed</strong>. <code>git add</code> puts things in this area, and <code>git commit</code> then copies them to long-term storage (as a commit)</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2015.jpg" alt="Exploring history #1" /><p class="caption">Exploring history #1</p>
+<img src="img/slides/version-control-with-git-slides%20-%2013.jpg" alt="Exploring history #1" /><p class="caption">Exploring history #1</p>
 </div>
 <h3 id="review-the-log">Review the Log</h3>
 <p>If we want to know what we’ve done recently, we can ask Git to show us the project’s history using <code>git log</code>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log</code></pre>
-<pre class="output"><code>commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula &lt;vlad@tran.sylvan.ia&gt;
-Date:   Thu Aug 22 09:51:46 2013 -0400
+<pre class="output"><code>commit a10bd8f6192f9ab29b1821d7d7929fbf6484686a
+Author: John R &lt;j.robinson@software.ac.uk&gt;
+Date:   Mon Dec 7 14:13:32 2015 +0000
 
-    Start notes on Mars as a base</code></pre>
+    Initial commit of climate analysis code</code></pre>
 <p><code>git log</code> lists all revisions made to a repository in reverse chronological order.</p>
 <p>The listing for each revision includes the revision’s full identifier (which starts with the same characters as the short identifier printed by the <code>git commit</code> command earlier), the revision’s author, when it was created, and the log message Git was given when the revision was created.</p>
 <aside class="callout panel panel-info">
@@ -121,38 +98,38 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 <h2><span class="glyphicon glyphicon-pushpin"></span>Where Are My Changes?</h2>
 </div>
 <div class="panel-body">
-<p>If we run <code>ls</code> at this point, we will still see just one file called <code>mars.txt</code>. That’s because Git saves information about files’ history in the special <code>.git</code> directory mentioned earlier so that our filesystem doesn’t become cluttered (and so that we can’t accidentally edit or delete an old version).</p>
+<p>If we run <code>ls</code> at this point, we will still see just our original files called <code>climate_analysis.py</code> and <code>temp_conversion.py</code>. That’s because Git saves information about files’ history in the special <code>.git</code> directory mentioned earlier so that our filesystem doesn’t become cluttered (and so that we can’t accidentally edit or delete an old version).</p>
 </div>
 </aside>
-<h3 id="modify-the-file-1">Modify the file (1)</h3>
-<p>Now suppose we add more information to the file:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> mars.txt
-$ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman</code></pre>
+<h3 id="modify-a-file-1">Modify a file (1)</h3>
+<p>Now suppose we add more information, a <strong>Docstring</strong>, to the <strong>top</strong> of one of the files:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> climate_analysis.py</code></pre>
+<pre class="output"><code>&quot;&quot;&quot; Climate Analysis Tools &quot;&quot;&quot;</code></pre>
 <p>When we run <code>git status</code> now, it tells us that a file it already knows about has been modified:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   mars.txt
-#
+<pre class="output"><code>On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   climate_analysis.py
+
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
 <p>The last line is the key phrase: “no changes added to <strong>commit</strong>”.</p>
 <p>So, while we have changed this file, but we haven’t told Git we will want to save those changes (which we do with <code>git add</code>) much less actually saved them (which we do with <code>git commit</code>).</p>
 <p><strong>It’s important to remember that git only stores changes when you make a commit</strong></p>
-<h3 id="review-changes-and-commit">Review Changes and Commit*</h3>
+<h3 id="review-changes-and-commit">Review Changes and Commit</h3>
 <p>It is good practice to always review our changes before saving them. We do this using <code>git diff</code>. This shows us the differences between the current state of the file and the most recently saved version:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index df0654a..315bf3a 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,2 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..d5b442d 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++&quot;&quot;&quot; Climate Analysis Tools &quot;&quot;&quot;
+import sys
+import temp_conversion
+import signal</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pushpin"></span>Windows users note</h2>
@@ -170,91 +147,90 @@ index df0654a..315bf3a 100644
 <li>Below that, the changes - note the ‘<strong>+</strong>’ marker which shows an addtion</li>
 </ol>
 <p>After reviewing our change, it’s time to commit it:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Add concerns about effects of Mars&#39;s moons on Wolfman&quot;</span></code></pre>
-<pre class="output"><code># On branch master
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   mars.txt
-#
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Add Docstring&quot;</span></code></pre>
+<pre class="output"><code>On branch master
+Changes not staged for commit:
+        modified:   climate_analysis.py
+
+no changes added to commit</code></pre>
 <p><strong>Whoops</strong>: Git won’t commit because we didn’t use <code>git add</code> first. Let’s fix that:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add mars.txt
-$ <span class="kw">git</span> commit -m <span class="st">&quot;Add concerns about effects of Mars&#39; moons on Wolfman&quot;</span></code></pre>
-<pre class="output"><code>[master 34961b1] Add concerns about effects of Mars&#39; moons on Wolfman
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add climate_analysis.py
+$ <span class="kw">git</span> commit -m <span class="st">&quot;Add Docstring&quot;</span></code></pre>
+<pre class="output"><code>[master 6077ba7] Add Docstring
  1 file changed, 1 insertion(+)</code></pre>
-<p><img src="img/slides/version-control-with-git-slides%20-%2014.jpg" alt="Add and Commit" /> ** Recapping add / commit**</p>
+<p><img src="img/slides/version-control-with-git-slides%20-%2012.jpg" alt="Add and Commit" /> ** Recapping add / commit**</p>
 <p>Git insists that we <strong>add</strong> files to the set we want to commit before actually committing anything because we may not want to commit everything at once.</p>
 <p>For example, suppose we’re adding a few citations to our supervisor’s work to our thesis. We might want to commit those additions, and the corresponding addition to the bibliography, but <em>not</em> commit the work we’re doing on the conclusion (which we haven’t finished yet).</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2015.jpg" alt="Exploring history #1" /><p class="caption">Exploring history #1</p>
+<img src="img/slides/version-control-with-git-slides%20-%2013.jpg" alt="Exploring history #1" /><p class="caption">Exploring history #1</p>
 </div>
 <h3 id="one-more-addition">One more addition</h3>
-<p>Let’s add another line to the file:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> mars.txt
-$ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity</code></pre>
+<p>Let’s add another line to the end of the file:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> climate_analysis.py</code></pre>
+<pre class="output"><code># TODO(js-robinson): Add call to process rainfall</code></pre>
 <p>Check what’s changed with <strong>diff</strong>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index d5b442d..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -26,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+&quot;, &quot;+str(kelvin))
++
++# TODO(js-robinson): Add call to process rainfall</code></pre>
 <p>So far, so good: we’ve added one line to the end of the file (shown with a <code>+</code> in the first column).</p>
 <p>Now let’s put that change in the staging area (or <strong>add it to the change set</strong>) and see what <code>git diff</code> reports:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add mars.txt
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add climate_analysis.py
 $ <span class="kw">git</span> diff</code></pre>
 <pre class="output"><code></code></pre>
 <p><strong>There is no output</strong>:</p>
 <p><strong>git diff</strong> shows us the differences between the <em>working copy</em> and what’s been added to the <strong>change set</strong> in staging area.</p>
 <p>However, if we do this:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff --staged</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index d5b442d..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -26,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+&quot;, &quot;+str(kelvin))
++
++# TODO(me): Add call to process rainfall</code></pre>
 <p>it shows us the difference between the last <strong>committed change</strong> and what’s in the <strong>staging area</strong>.</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2016.jpg" alt="Git diff #1" /><p class="caption">Git diff #1</p>
+<img src="img/slides/version-control-with-git-slides%20-%2014.jpg" alt="Git diff #1" /><p class="caption">Git diff #1</p>
 </div>
 <p>Let’s <strong>commit</strong> our changes:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Discuss concerns about Mars&#39;s climate for Mummy&quot;</span></code></pre>
-<pre class="output"><code>[master 005937f] Discuss concerns about Mars&#39;s climate for Mummy
- 1 file changed, 1 insertion(+)</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit -m <span class="st">&quot;Add rainfall processing placeholder&quot;</span></code></pre>
+<pre class="output"><code>[master dab17a9] Add rainfall processing placeholder
+ 1 file changed, 2 insertions(+)</code></pre>
 <p>check our status:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
 <pre class="output"><code># On branch master
 nothing to commit, working directory clean</code></pre>
 <p>and now look at the history of what we’ve done so far:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log</code></pre>
-<pre class="output"><code>commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
-Author: Vlad Dracula &lt;vlad@tran.sylvan.ia&gt;
-Date:   Thu Aug 22 10:14:07 2013 -0400
+<pre class="output"><code>commit dab17a9f0d2e8e598522a1c06dcaf396084f60e6
+Author: John R &lt;j.robinson@software.ac.uk&gt;
+Date:   Mon Dec 7 14:57:39 2015 +0000
 
-    Discuss concerns about Mars&#39; climate for Mummy
+    Add rainfall processing placeholder
 
-commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
-Author: Vlad Dracula &lt;vlad@tran.sylvan.ia&gt;
-Date:   Thu Aug 22 10:07:21 2013 -0400
+commit 6077ba7b614de65fa28cc58c6cb8a4c55735a9d8
+Author: John R &lt;j.robinson@software.ac.uk&gt;
+Date:   Mon Dec 7 14:40:02 2015 +0000
 
-    Add concerns about effects of Mars&#39; moons on Wolfman
+    Add Docstring
 
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula &lt;vlad@tran.sylvan.ia&gt;
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit a10bd8f6192f9ab29b1821d7d7929fbf6484686a
+Author: John R &lt;j.robinson@software.ac.uk&gt;
+Date:   Mon Dec 7 14:13:32 2015 +0000
 
-    Start notes on Mars as a base</code></pre>
+    Initial commit of climate analysis code
+</code></pre>
 <p>To recap, when we want to add changes to our repository, we first need to add the changed files to the staging area (<code>git add</code>) and then commit the staged changes to the repository (<code>git commit</code>):</p>
 <p><a href="04-history.html">Next - Exploring History</a></p>
         </div>

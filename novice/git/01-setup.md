@@ -20,12 +20,9 @@ minutes: 10
 
 **Linux and Mac** users should open a **terminal**, windows users to should go to the Start Menu open GitBash from the Git group.
 
-**Post-Its**
+**[Post-Its Reminder]** / **[Switch out of fullscreen]**
 
-
-**Switch out of fullscreen**
-
-**Open Terminal** **Use other projector**
+**[Open Terminal]** / **[Use other projector]**
 
 
 ![Local Configuration](img/slides/version-control-with-git-slides - 09.jpg)

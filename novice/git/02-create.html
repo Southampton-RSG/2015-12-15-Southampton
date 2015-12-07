@@ -43,7 +43,7 @@
 <div class="figure">
 <img src="img/slides/version-control-with-git-slides%20-%2010.jpg" alt="Creating a Repository" /><p class="caption">Creating a Repository</p>
 </div>
-<p>So, first let’s change to our code directory. Note that this is <em>not</em> the directory that you were using in the <strong>Python</strong> lesson, but should contain</p>
+<p>So, first let’s change to our code directory. Note that this is <em>not</em> the directory that you were using in the <strong>Python</strong> lesson, but should contain clean versions of the same files you were working on. This is to ensure that everyone has the same files to start the lesson.</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> ~/2015-12-15-Southampton/novice/git/code
 $ <span class="kw">ls</span></code></pre>
 <pre class="output"><code>climate_analysis.py  temp_conversion.py</code></pre>
@@ -54,16 +54,24 @@ $ <span class="kw">ls</span></code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span></code></pre>
 <p>But, if we add the <code>-a</code> flag to show everything, we can see that Git has created a hidden directory called <code>.git</code>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a</code></pre>
-<pre class="output"><code>.   ..  .git</code></pre>
+<pre class="output"><code>.  ..  climate_analysis.py  .git  temp_conversion.py</code></pre>
 <p>Git stores information about the project in here. If we ever delete it, we will lose the project’s history.</p>
+<h3 id="check-status">Check Status</h3>
 <p>We can check that everything is set up correctly by asking Git to tell us the status of our project with the <strong>status</strong> command:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-#
-# Initial commit
-#
-nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<pre class="output"><code>On branch master
+
+Initial commit
+
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+    climate_analysis.py
+    temp_conversion.py
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
 <p>A <strong>branch</strong> is an independent line of development. We have only one, and the default name is <strong>master</strong>.</p>
+<p>The <strong>untracked files</strong> message means that there are files in the directory that Git isn’t keeping track of.</p>
 <p><a href="03-changes.html">Next - Tracking Changes</a></p>
         </div>
       </div>

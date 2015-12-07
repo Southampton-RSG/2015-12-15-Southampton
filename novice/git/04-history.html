@@ -43,94 +43,116 @@
 </div>
 </section>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2017.jpg" alt="Git diff #2" /><p class="caption">Git diff #2</p>
+<img src="img/slides/version-control-with-git-slides%20-%2015.jpg" alt="Git diff #2" /><p class="caption">Git diff #2</p>
 </div>
 <h3 id="relative-history">Relative History</h3>
 <p>Let’s look a bit deeper at how we can see <strong>what we changed when</strong></p>
 <p>We use <code>git diff</code> again, but refer to old versions using the notation <code>HEAD~1</code>, <code>HEAD~2</code>, and so on.</p>
 <p><strong>HEAD</strong> is the conventional name used to refer to the <strong>most recent</strong> end of the chain of revisions.</p>
 <p>We can refer to previous revisions using the <code>~</code> notation, so <code>HEAD~1</code> (pronounced “head minus one”) means “the previous revision”, while <code>HEAD~123</code> goes back 123 revisions from where we are now.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD~1 mars.txt</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD~1 climate_analysis.py</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index d5b442d..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -26,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+&quot;, &quot;+str(kelvin))
++
++# TODO(me): Add call to process rainfall</code></pre>
 <p>So we see the difference between the file as it is now, and as it was <strong>before the last commit</strong></p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD~2 mars.txt</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,3 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD~2 climate_analysis.py</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++&quot;&quot;&quot; Climate Analysis Tools &quot;&quot;&quot;
+ import sys
+ import temp_conversion
+ import signal
+@@ -25,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+&quot;, &quot;+str(kelvin))
++
++# TODO(me): Add call to process rainfall</code></pre>
 <p>And here we see the state <strong>before the last two commits</strong>, HEAD minus2</p>
 <h3 id="absolute-history">Absolute History</h3>
 <p>So, that’s useful as far as it goes, but we can also refer to revisions using those long strings of digits and letters that <code>git log</code> displays.</p>
 <p>These are unique IDs for the changes, and “unique” really does mean unique: every change to any set of files on any machine has a unique 40-character identifier. (A SHA-1 hash of the new, post-commit state of the repository).</p>
-<p>Our first commit was given the ID: <strong>(bottom ID from git log)</strong></p>
-<p>f22b25e3233b4645dabd0d81e651fe074bd8e73b, so let’s try this:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,3 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity</code></pre>
+<p>Our first commit was given the ID: <strong>[bottom ID from git log]</strong></p>
+<p>a10bd8f6192f9ab29b1821d7d7929fbf6484686a, so let’s try this:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff a10bd8f6192f9ab29b1821d7d7929fbf6484686a climate_analysis.py</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++&quot;&quot;&quot; Climate Analysis Tools &quot;&quot;&quot;
+ import sys
+ import temp_conversion
+ import signal
+@@ -25,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+&quot;, &quot;+str(kelvin))
++
++# TODO(me): Add call to process rainfall</code></pre>
 <p>So that’s all the changes since our first commit. That’s the right answer,but typing random 40-character strings is annoying, so Git lets us use just the first <strong>seven</strong>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff f22b25e mars.txt</code></pre>
-<pre class="output"><code>diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,3 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff a10bd8f climate_analysis.py</code></pre>
+<pre class="output"><code>diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++&quot;&quot;&quot; Climate Analysis Tools &quot;&quot;&quot;
+ import sys
+ import temp_conversion
+ import signal
+@@ -25,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+&quot;, &quot;+str(kelvin))
++
++# TODO(me): Add call to process rainfall</code></pre>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2018.jpg" alt="Restoring Files" /><p class="caption">Restoring Files</p>
+<img src="img/slides/version-control-with-git-slides%20-%2016.jpg" alt="Restoring Files" /><p class="caption">Restoring Files</p>
 </div>
 <h3 id="restoring-files">Restoring Files</h3>
 <p>All right: we can <strong>save changes</strong> to files and <strong>see what we’ve changed</strong> — suppose we need to <strong>restore</strong> older versions of things?</p>
 <p>Let’s suppose we <strong>accidentally</strong> overwrite our file:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> mars.txt
-$ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>We will need to manufacture our own oxygen</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> climate_analysis.py
+$ <span class="kw">cat</span> climate_analysis.py</code></pre>
+<pre class="output"><code>Dear Mum,
+I&#39;m really getting the hang of this version control thing!!</code></pre>
 <p><strong>Whoops!</strong></p>
 <p><code>git status</code> now tells us that the file has been changed, but those changes haven’t been staged:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
-<pre class="output"><code># On branch master
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   mars.txt
-#
+<pre class="output"><code>On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   climate_analysis.py
+
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
 <p>Following the helpful hint in that output, we can put things back the way they were by using <code>git checkout</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> checkout HEAD mars.txt
-$ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> checkout HEAD climate_analysis.py
+$ <span class="kw">cat</span> climate_analysis.py</code></pre>
+<pre class="output"><code>[SNIPPED - but changes rolled back]</code></pre>
 <p>As you might guess from its name, <code>git checkout</code> checks out (i.e., restores) an old version of a file.</p>
 <p>In this case, we’re telling Git that we want to recover the version of the file recorded in <code>HEAD</code>, which is the last saved revision.</p>
-<p>If we want to go back even further, we can use a revision identifier instead:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> checkout <span class="kw">&lt;</span>last but one rev<span class="kw">&gt;</span> mars.txt</code></pre>
+<p>If we want to go back even further, we could use a revision identifier instead:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> checkout <span class="kw">&lt;</span>last but one rev<span class="kw">&gt;</span> climate_analysis.py</code></pre>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2019.jpg" alt="Restoring Files" /><p class="caption">Restoring Files</p>
+<img src="img/slides/version-control-with-git-slides%20-%2017.jpg" alt="Restoring Files" /><p class="caption">Restoring Files</p>
 </div>
 <p>The fact that files can be reverted one by one tends to change the way people organize their work.</p>
 <p>If everything is in one large document, it’s hard (but not impossible) to undo changes to the introduction without also undoing changes made later to the conclusion.</p>
 <p>If the introduction and conclusion are stored in <strong>separate files</strong>, on the other hand, moving backward and forward in time becomes much easier.</p>
-<h3 id="if-time">IF TIME</h3>
+<h3 id="if-time-limited-go-straight-to-collaboration">IF TIME LIMITED GO STRAIGHT TO <a href="06-collab.html">Collaboration</a></h3>
 <p><a href="05-ignore.html">Next - Ignoring Things</a></p>
         </div>
       </div>

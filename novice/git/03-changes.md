@@ -9,71 +9,14 @@ minutes: 20
 > *   Go through the modify-add-commit cycle for single and multiple files.
 > *   Explain where information is stored at each stage.
 
-![Tracking changes to files](img/slides/version-control-with-git-slides - 13.jpg)
-
-###Create a file###
-
-Let's create a file called `mars.txt` that contains some notes
-about the Red Planet's suitability as a base.
-(We'll use `nano` to edit the file;
-you can use whatever editor you like.)
-
-~~~ {.bash}
-$ nano mars.txt
-~~~
-
-Under Windows, you'll need to choose to save it to under your home directory "C\:\\Users\\Me\\planets"
-
-
-Type the text below into the `mars.txt` file:
-
-~~~ {.output}
-Cold and dry, but everything is my favorite color (You're Dracula - right?)
-~~~
-
-`mars.txt` now contains a single line:
-
-~~~ {.bash}
-$ ls
-~~~
-~~~ {.output}
-mars.txt
-~~~
-~~~ {.bash}
-$ cat mars.txt
-~~~
-~~~ {.output}
-Cold and dry, but everything is my favorite color
-~~~
-
-###Check Status###
-If we check the status of our project again,
-Git tells us that it's noticed the new file:
-
-~~~ {.bash}
-$ git status
-~~~
-~~~ {.output}
-# On branch master
-#
-# Initial commit
-#
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	mars.txt
-nothing added to commit but untracked files present (use "git add" to track)
-~~~
-
-The "untracked files" message means that there's a file in the directory
-that Git isn't keeping track of.
+![Tracking changes to files](img/slides/version-control-with-git-slides - 11.jpg)
 
 ###Add to Version Control###
 
 We can tell Git to track a file using `git add`:
 
 ~~~ {.bash}
-$ git add mars.txt
+$ git add climate_analysis.py temp_conversion.py
 ~~~
 
 and then check that the right thing happened:
@@ -82,18 +25,18 @@ and then check that the right thing happened:
 $ git status
 ~~~
 ~~~ {.output}
-# On branch master
-#
-# Initial commit
-#
-# Changes to be committed:
-#   (use "git rm --cached <file>..." to unstage)
-#
-#	new file:   mars.txt
-#
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   climate_analysis.py
+        new file:   temp_conversion.py
 ~~~
 
-Git now knows that it's supposed to keep track of `mars.txt`,
+Git now knows that it's supposed to keep track of `climate_analysis.py` and `temp_conversion.py`,
 but it hasn't recorded these changes as a commit yet.
 
 ###Initial Commit###
@@ -101,7 +44,7 @@ To get it to do that,
 we need to run one more command:
 
 ~~~ {.bash}
-$ git commit -m "Start notes on Mars as a base"
+$ git commit -m "Initial commit of climate analysis code"
 ~~~
 
 We use the `-m` flag (for "**message**")
@@ -113,22 +56,23 @@ so that we can write a longer message.
 **Good commit messages** start with a brief (<50 characters) summary of
 changes made in the commit.  
 
-**NOT Bug Fixes** or **Changes**!
+**NOT "Bug Fixes"** or **"Changes"**!
 
 If you want to go into more detail, add
 a blank line between the summary line and your additional notes.
 
 ~~~ {.output}
-[master (root-commit) f22b25e] Start notes on Mars as a base
- 1 file changed, 1 insertion(+)
- create mode 100644 mars.txt
+[master (root-commit) a10bd8f] Initial commit of climate analysis code
+ 2 files changed, 50 insertions(+)
+ create mode 100644 climate_analysis.py
+ create mode 100644 temp_conversion.py
 ~~~
 
 When we run `git commit`,
 Git takes everything we have told it to save by using `git add`
 and stores a copy permanently inside the special `.git` directory.
 This permanent copy is called a [revision](reference.html#revision)
-and its short identifier is `f22b25e`.
+and its short identifier is `a10bd8f`.
 (Your revision will have different identifier.)
 
 
@@ -143,16 +87,16 @@ nothing to commit, working directory clean
 ~~~
 it tells us everything is up to date.
 
-![Add and Commit](img/slides/version-control-with-git-slides - 14.jpg)
+![Add and Commit](img/slides/version-control-with-git-slides - 12.jpg)
 
 Git has a special **staging** area
 where it keeps track of things that have been **added** to
 the current [change set](reference.html#change-set)
 but **not yet committed**.
 `git add` puts things in this area,
-and `git commit` then copies them to long-term storage (as a commit):
+and `git commit` then copies them to long-term storage (as a commit)
 
-![Exploring history #1](img/slides/version-control-with-git-slides - 15.jpg)
+![Exploring history #1](img/slides/version-control-with-git-slides - 13.jpg)
 
 ###Review the Log###
 If we want to know what we've done recently,
@@ -162,11 +106,11 @@ we can ask Git to show us the project's history using `git log`:
 $ git log
 ~~~
 ~~~ {.output}
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit a10bd8f6192f9ab29b1821d7d7929fbf6484686a
+Author: John R <j.robinson@software.ac.uk>
+Date:   Mon Dec 7 14:13:32 2015 +0000
 
-    Start notes on Mars as a base
+    Initial commit of climate analysis code
 ~~~
 
 `git log` lists all revisions  made to a repository in reverse chronological order.
@@ -181,22 +125,20 @@ and the log message Git was given when the revision was created.
 
 > ## Where Are My Changes? {.callout}
 >
-> If we run `ls` at this point, we will still see just one file called `mars.txt`.
+> If we run `ls` at this point, we will still see just our original files called `climate_analysis.py` and `temp_conversion.py`.
 > That's because Git saves information about files' history
 > in the special `.git` directory mentioned earlier
 > so that our filesystem doesn't become cluttered
 > (and so that we can't accidentally edit or delete an old version).
 
-###Modify the file (1)###
-Now suppose we add more information to the file:
+###Modify a file (1)###
+Now suppose we add more information, a **Docstring**, to the **top** of one of the files:
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ nano climate_analysis.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
+""" Climate Analysis Tools """
 ~~~
 
 When we run `git status` now,
@@ -206,13 +148,13 @@ it tells us that a file it already knows about has been modified:
 $ git status
 ~~~
 ~~~ {.output}
-# On branch master
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#	modified:   mars.txt
-#
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+		modified:   climate_analysis.py
+
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
 
@@ -227,7 +169,7 @@ much less actually saved them (which we do with `git commit`).
 
 **It's important to remember that git only stores changes when you make a commit**
 
-###Review Changes and Commit* ###
+###Review Changes and Commit###
 It is good practice to always review
 our changes before saving them. We do this using `git diff`.
 This shows us the differences between the current state
@@ -237,13 +179,15 @@ of the file and the most recently saved version:
 $ git diff
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index df0654a..315bf3a 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,2 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
+diff --git a/climate_analysis.py b/climate_analysis.py
+index 277d6c7..d5b442d 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -1,3 +1,4 @@
++""" Climate Analysis Tools """
+import sys
+import temp_conversion
+import signal
 ~~~
 
 > ## Windows users note {.callout}
@@ -268,17 +212,14 @@ The key things to note are:
 After reviewing our change, it's time to commit it:
 
 ~~~ {.bash}
-$ git commit -m "Add concerns about effects of Mars's moons on Wolfman"
+$ git commit -m "Add Docstring"
 ~~~
 ~~~ {.output}
-# On branch master
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#	modified:   mars.txt
-#
-no changes added to commit (use "git add" and/or "git commit -a")
+On branch master
+Changes not staged for commit:
+        modified:   climate_analysis.py
+
+no changes added to commit
 ~~~
 
 **Whoops**:
@@ -286,15 +227,15 @@ Git won't commit because we didn't use `git add` first.
 Let's fix that:
 
 ~~~ {.bash}
-$ git add mars.txt
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git add climate_analysis.py
+$ git commit -m "Add Docstring"
 ~~~
 ~~~ {.output}
-[master 34961b1] Add concerns about effects of Mars' moons on Wolfman
+[master 6077ba7] Add Docstring
  1 file changed, 1 insertion(+)
 ~~~
 
-![Add and Commit](img/slides/version-control-with-git-slides - 14.jpg)
+![Add and Commit](img/slides/version-control-with-git-slides - 12.jpg)
 ** Recapping add / commit**
 
 Git insists that we **add** files to the set we want to commit
@@ -310,20 +251,17 @@ but *not* commit the work we're doing on the conclusion
 (which we haven't finished yet).
 
 
-![Exploring history #1](img/slides/version-control-with-git-slides - 15.jpg)
+![Exploring history #1](img/slides/version-control-with-git-slides - 13.jpg)
 
 ###One more addition###
 
-Let's add another line to the file:
+Let's add another line to the end of the file:
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ nano climate_analysis.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+# TODO(js-robinson): Add call to process rainfall
 ~~~
 Check what's changed with **diff**:
 
@@ -331,14 +269,16 @@ Check what's changed with **diff**:
 $ git diff
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/climate_analysis.py b/climate_analysis.py
+index d5b442d..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -26,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+", "+str(kelvin))
++
++# TODO(js-robinson): Add call to process rainfall
 ~~~
 
 So far, so good:
@@ -349,7 +289,7 @@ Now let's put that change in the staging area (or **add it to the change set**)
 and see what `git diff` reports:
 
 ~~~ {.bash}
-$ git add mars.txt
+$ git add climate_analysis.py
 $ git diff
 ~~~
 
@@ -366,30 +306,32 @@ However, if we do this:
 $ git diff --staged
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/climate_analysis.py b/climate_analysis.py
+index d5b442d..c463f71 100644
+--- a/climate_analysis.py
++++ b/climate_analysis.py
+@@ -26,3 +26,5 @@ for line in climate_data:
+             kelvin = temp_conversion.fahr_to_kelvin(fahr)
+ 
+             print(str(celsius)+", "+str(kelvin))
++
++# TODO(me): Add call to process rainfall
 ~~~
 
 it shows us the difference between
 the last **committed change**
 and what's in the **staging area**.
 
-![Git diff #1](img/slides/version-control-with-git-slides - 16.jpg)
+![Git diff #1](img/slides/version-control-with-git-slides - 14.jpg)
 
 Let's **commit** our changes:
 
 ~~~ {.bash}
-$ git commit -m "Discuss concerns about Mars's climate for Mummy"
+$ git commit -m "Add rainfall processing placeholder"
 ~~~
 ~~~ {.output}
-[master 005937f] Discuss concerns about Mars's climate for Mummy
- 1 file changed, 1 insertion(+)
+[master dab17a9] Add rainfall processing placeholder
+ 1 file changed, 2 insertions(+)
 ~~~
 
 check our status:
@@ -408,23 +350,24 @@ and now look at the history of what we've done so far:
 $ git log
 ~~~
 ~~~ {.output}
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:14:07 2013 -0400
+commit dab17a9f0d2e8e598522a1c06dcaf396084f60e6
+Author: John R <j.robinson@software.ac.uk>
+Date:   Mon Dec 7 14:57:39 2015 +0000
 
-    Discuss concerns about Mars' climate for Mummy
+    Add rainfall processing placeholder
 
-commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:07:21 2013 -0400
+commit 6077ba7b614de65fa28cc58c6cb8a4c55735a9d8
+Author: John R <j.robinson@software.ac.uk>
+Date:   Mon Dec 7 14:40:02 2015 +0000
 
-    Add concerns about effects of Mars' moons on Wolfman
+    Add Docstring
 
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit a10bd8f6192f9ab29b1821d7d7929fbf6484686a
+Author: John R <j.robinson@software.ac.uk>
+Date:   Mon Dec 7 14:13:32 2015 +0000
 
-    Start notes on Mars as a base
+    Initial commit of climate analysis code
+
 ~~~
 
 To recap, when we want to add changes to our repository,

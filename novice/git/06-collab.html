@@ -44,14 +44,14 @@
 </section>
 <p>So far, we’ve seen how Version control can help us <strong>track the changes</strong> we make to our files, and to <strong>revisit</strong> any point in their history.</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2020.jpg" alt="Git Workflow - Local Repo" /><p class="caption">Git Workflow - Local Repo</p>
+<img src="img/slides/version-control-with-git-slides%20-%2018.jpg" alt="Git Workflow - Local Repo" /><p class="caption">Git Workflow - Local Repo</p>
 </div>
 <p>(there are a few extra commands we haven’t covered today for you to look at).</p>
 <p>But, version control really comes into its own when we begin to <strong>collaborate</strong> with other people.</p>
 <h3 id="the-missing-link">The missing link</h3>
 <p>We already have most of the machinery we need to do this; the only thing missing is to copy changes from one repository to another.</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2021.jpg" alt="Collaboration" /><p class="caption">Collaboration</p>
+<img src="img/slides/version-control-with-git-slides%20-%2019.jpg" alt="Collaboration" /><p class="caption">Collaboration</p>
 </div>
 <p>Systems like Git allow us to <strong>synchronise</strong> work between any two repositories.</p>
 <p>In practice, though, it’s easiest to use one copy as a <strong>central hub</strong>, and to keep it on the web rather than on someone’s laptop.</p>
@@ -59,7 +59,7 @@
 <h3 id="exploring-the-collaborative-process">Exploring the collaborative process</h3>
 <p>But first let’s explore the collaborative process. Time to buddy up.</p>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2022.jpg" alt="Collaboration" /><p class="caption">Collaboration</p>
+<img src="img/slides/version-control-with-git-slides%20-%2020.jpg" alt="Collaboration" /><p class="caption">Collaboration</p>
 </div>
 <p>So far we have been working in splendid isolation. We’re going to use <strong>GitHub</strong> to set up a remote repository and start <strong>“collaborating”</strong> with our partners.</p>
 <p><strong>Developer A</strong> is going to take the role of the project originator. <strong>Developer B</strong> is going to take now on the role of a colleague joining the project and collaborating in development.</p>
@@ -67,7 +67,7 @@
 <p>In your pairs, <strong>decide</strong> who will be Developer A and Developer B while Olivier and I get set up.</p>
 <h3 id="developer-a---to-github">Developer A - To GitHub</h3>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2023.jpg" alt="Remote Repositories #1" /><p class="caption">Remote Repositories #1</p>
+<img src="img/slides/version-control-with-git-slides%20-%2021.jpg" alt="Remote Repositories #1" /><p class="caption">Remote Repositories #1</p>
 </div>
 <p>Now, <strong>Bs just sit back</strong> for a moment and <strong>watch A</strong> until told otherwise</p>
 <p><strong>JUST A’s</strong>. Let’s start by sharing the changes we’ve made to our current project with the world. <strong>Log in to GitHub</strong>, then click on the icon in the top right corner to create a <strong>new repository</strong> called <code>planets</code>:</p>
@@ -122,7 +122,7 @@ Already up-to-date.</code></pre>
 <p><strong>Lastly</strong>, let’s <strong>add Developer B</strong> as a collaborator on our project. Return to the repos GitHub page, and click the <strong>Settings</strong> link on the <strong>right</strong>, followed by the <strong>collaborators</strong> link on the <strong>left</strong>. Add Developer B with there GitHub username.</p>
 <h3 id="developer-b---cloning-the-remote-repository">Developer B - Cloning the remote repository</h3>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2024.jpg" alt="Remote Repositories #2" /><p class="caption">Remote Repositories #2</p>
+<img src="img/slides/version-control-with-git-slides%20-%2022.jpg" alt="Remote Repositories #2" /><p class="caption">Remote Repositories #2</p>
 </div>
 <p>Now <strong>Developer B gets a go</strong>! - <strong>Developer A</strong>, you can <strong>take a break</strong> and watch.</p>
 <p>First, we need to move our own files out of the way to avoid confusion:</p>
@@ -155,7 +155,7 @@ To https://github.com/vlad/planets.git
 <p>Note that we <strong>didn’t</strong> have to create a <strong>remote</strong> called <code>origin</code>: Git does this automatically, using that name, when we clone a repository. (This is why <code>origin</code> was a sensible choice earlier when we were setting up remotes by hand.)</p>
 <h3 id="developer-a---pull-in-the-changes">Developer A - Pull in the changes</h3>
 <div class="figure">
-<img src="img/slides/version-control-with-git-slides%20-%2025.jpg" alt="Remote Repositories #3" /><p class="caption">Remote Repositories #3</p>
+<img src="img/slides/version-control-with-git-slides%20-%2023.jpg" alt="Remote Repositories #3" /><p class="caption">Remote Repositories #3</p>
 </div>
 <p>Developer A can now update their repository with the changes made by B:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/planets
@@ -180,7 +180,7 @@ Fast-forward
 <p>Now lets work it the other way. Developer A can share their thoughts on Neptune.<br />Add / commit them to their local repository and push them to github.&gt; Developer B can pull the updates</p>
 </div>
 </section>
-<p><img src="img/slides/version-control-with-git-slides%20-%2026.jpg" alt="Remote Repositories #4" /> <a href="07-conflict.html">Next - Conflicts</a></p>
+<p><img src="img/slides/version-control-with-git-slides%20-%2024.jpg" alt="Remote Repositories #4" /> <a href="07-conflict.html">Next - Conflicts</a></p>
         </div>
       </div>
       </article>
