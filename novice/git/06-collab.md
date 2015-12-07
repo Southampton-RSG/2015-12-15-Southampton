@@ -45,11 +45,10 @@ So far we have been working in splendid isolation.  We're going to use **GitHub*
 **Developer A** is going to take the role of the project originator. 
 **Developer B** is going to take now on the role of a colleague joining the project and collaborating in development. 
 
-**Olivier** is going to be my **Developer B**.  Hello and welcome to the Transylvanian Space Agency, Olivier.
+With the help of two terminals (opened in different directories on the same computer), **I'll be taking on both roles**.
+In your pairs, **decide** who will be Developer A and Developer B while I get set up.
 
-In your pairs, **decide** who will be Developer A and Developer B while Olivier and I get set up.
-
-###Developer A - To GitHub ###
+###Developer A - To GitHub! ###
 
 ![Remote Repositories #1](img/slides/version-control-with-git-slides - 21.jpg)
 
@@ -57,13 +56,13 @@ Now, **Bs just sit back** for a moment and **watch A** until told otherwise
 
 **JUST A's**. Let's start by sharing the changes we've made to our current project with the world.
 **Log in to GitHub**,
-then click on the icon in the top right corner to create a **new repository** called `planets`:
+then click on the icon in the top right corner to create a **new repository** called `climate-analysis`:
 
 
 ![Creating a Repository on GitHub (Step 1)](img/github-create-repo-01.png)
 
 
-**Name your repository** "planets" 
+**Name your repository** "climate-analysis" 
 You can optionally give it a friendly **description** and prove a **README.md** which is rendered on the front page of the web interface.
 
 GitHub will host **Publicly** accessible repositories **free** of charge, but makes a charge for Private ones.  **BitBucket** offers free private repositories for teams of up to 5.  
@@ -77,7 +76,7 @@ and then click **"Create Repository"**:
 
 ###Connecting the remote repository###
 
-Our **local** repository still contains our earlier work on `mars.txt`,
+Our **local** repository still contains our earlier work on `climate-analysis.py` and `temp_conversion.py`,
 but the **remote** repository on GitHub doesn't contain any files yet:
 
 The next step is to **connect** the two repositories.
@@ -95,7 +94,7 @@ go into the local `planets` repository,
 and run this command:
 
 ~~~ {.bash}
-$ git remote add origin https://github.com/vlad/planets.git
+$ git remote add origin https://github.com/js-robinson/climate-analysis.git
 ~~~
 
 The name `origin` is a **local nickname** for your **remote repository**:
@@ -103,7 +102,7 @@ we **could** use something else if we wanted to,
 but `origin` is **conventional**, and will come in useful later.
 
 Make sure to use the URL for your repository rather than Vlad's:
-the only difference should be your username instead of `vlad`.
+the only difference should be your username instead of `js-robinson`.
 :
 Where to Find Repository URL on GitHub
 We can check that the command has worked by running `git remote -v`:
@@ -112,8 +111,8 @@ We can check that the command has worked by running `git remote -v`:
 $ git remote -v
 ~~~
 ~~~ {.output}
-origin   https://github.com/vlad/planets.git (push)
-origin   https://github.com/vlad/planets.git (fetch)
+origin  https://github.com/js-robinson/climate-analysis.git (fetch)
+origin  https://github.com/js-robinson/climate-analysis.git (push)
 ~~~
 
 ###Push commits from local to remote###
@@ -125,14 +124,13 @@ to the repository on GitHub:
 $ git push origin master
 ~~~
 ~~~ {.output}
-Counting objects: 9, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (9/9), 821 bytes, done.
-Total 9 (delta 2), reused 0 (delta 0)
-To https://github.com/vlad/planets
+Counting objects: 10, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 1.47 KiB | 0 bytes/s, done.
+Total 10 (delta 2), reused 0 (delta 0)
+To https://github.com/js-robinson/climate-analysis.git
  * [new branch]      master -> master
-Branch master set up to track remote branch master from origin.
 ~~~
 The push command takes two arguments, the **remote name** ('origin') and a **branch name** ('master').
 
@@ -154,7 +152,7 @@ So, for **Developer A**, our local and remote repositories are now **in sync**!
 $ git pull origin master
 ~~~
 ~~~ {.output}
-From https://github.com/vlad/planets
+From https://github.com/js-robinson/climate-analysis
  * branch            master     -> FETCH_HEAD
 Already up-to-date.
 ~~~
@@ -172,51 +170,67 @@ If someone else had pushed some changes to the repository on GitHub, this comman
 
 Now **Developer B gets a go**! -  **Developer A**, you can **take a break** and watch.
 
-First, we need to move our own files out of the way to avoid confusion: 
+First, we need to move away from our own copies of the filse, to avoif confusion.  Remember, in this example, Developer B is playing the role of a fresh collaborator on the project 
 
 ~~~ {.bash}
 $ cd
-$ mv planets planets.old
 ~~~ 
 
 ~~~ {.bash}
-$ git clone https://github.com/vlad/planets.git
+$ git clone https://github.com/js-robinson/climate-analysis.git
 ~~~
-
+~~~ {.output}
+Cloning into 'climate-analysis'...
+remote: Counting objects: 10, done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 2), reused 10 (delta 2), pack-reused 0
+Unpacking objects: 100% (10/10), done.
+Checking connectivity... done.
+~~~
 `git clone` creates a fresh local copy of a remote repository.
 
 
 Let check what we've got:
 
 ~~~ {.bash}
-$ cd planets
+$ cd climate-analysis
 $ ls
 ~~~
 
 ~~~ {.output}
- mars.txt 
+climate_analysis.py  temp_conversion.py
 ~~~
 
-###Developer B - Add Pluto ###
-Lets expand our survey of suitable planets for exploration to the outer edge of the solar system:
+###Developer B - Add rainfall_conversion.py ###
+Lets expand our library of climate analysis functions by adding a new module:
 
 ~~~ {.bash}
-$ nano pluto.txt
-$ cat pluto.txt
+$ nano rainfall_conversion.py
+$ cat rainfall_conversion.py
 ~~~
 
 ~~~ {.output}
-It is so a planet!
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
 ~~~
 
 
 ~~~ {.bash}
-$ git add pluto.txt
-$ git commit -m "Some notes about Pluto"
+$ git add rainfall_conversion.py
+$ git commit -m "Add rainfall module"
 ~~~
 ~~~ {.output}
- 1 file changed, 1 insertion(+)
- create mode 100644 pluto.txt
+[master bcbf9be] Add rainfall module
+ 1 file changed, 11 insertions(+)
+ create mode 100644 rainfall_conversion.py
 ~~~
 
 then push the change to GitHub:
@@ -226,12 +240,12 @@ $ git push origin master
 ~~~
 ~~~ {.output}
 Counting objects: 4, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 306 bytes, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/vlad/planets.git
-   9272da5..29aba7c  master -> master
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 475 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)                                                                                                 
+To https://github.com/js-robinson/climate-analysis.git                                                                                
+   dab17a9..bcbf9be  master -> master
 ~~~
 
 Note that we **didn't** have to create a **remote** called `origin`:
@@ -247,30 +261,33 @@ when we were setting up remotes by hand.)
 
 Developer A can now update their repository with the changes made by B:
 
+[** Check Working Directory**]
+
 ~~~ {.bash}
-cd ~/planets
 $ git pull origin master
 ~~~
+
 ~~~ {.output}
-remote: Counting objects: 4, done.
-remote: Compressing objects: 100% (2/2), done.
-remote: Total 3 (delta 0), reused 3 (delta 0)
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), done.
-From https://github.com/vlad/planets
+From https://github.com/js-robinson/climate-analysis
  * branch            master     -> FETCH_HEAD
-Updating 9272da5..29aba7c
+   dab17a9..bcbf9be  master     -> origin/master
+Updating dab17a9..bcbf9be
 Fast-forward
- pluto.txt | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 pluto.txt
+ rainfall_conversion.py | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 rainfall_conversion.py
 ~~~
 
 **Hey look: We're collaborating!**
 
 > ## Exercise: Two way collaboration {.challenge}
 > Now lets work it the other way.
-> Developer A can share their thoughts on Neptune.  
-> Add / commit them to their local repository and push them to github.>
+> Developer A can add a brief README.md outlining the prerequisites of the package we're developing and the license under which it is released.  
+> Add / commit them to their local repository and push them to github.
 > Developer B can pull the updates
 
 ![Remote Repositories #4](img/slides/version-control-with-git-slides - 24.jpg)
