@@ -131,9 +131,9 @@ but Git won't let us push it to GitHub:
 $ git push origin master
 ~~~
 ~~~ {.output}
-To https://github.com/vlad/planets.git
+To https://github.com/js-robinson/climate-analysis.git
  ! [rejected]        master -> master (non-fast-forward)
-error: failed to push some refs to 'https://github.com/vlad/planets.git'
+error: failed to push some refs to 'https://github.com/js-robinson/climate-analysis.git'
 hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
 hint: before pushing again.
@@ -160,10 +160,10 @@ remote: Counting objects: 5, done.
 remote: Compressing objects: 100% (2/2), done.        
 remote: Total 3 (delta 1), reused 3 (delta 1)        
 Unpacking objects: 100% (3/3), done.
-From https://github.com/vlad/planets
+From https://github.com/js-robinson/climate-analysis
  * branch            master     -> FETCH_HEAD
-Auto-merging mars.txt
-CONFLICT (content): Merge conflict in mars.txt
+Auto-merging rainfall_conversion.py
+CONFLICT (content): Merge conflict in rainfall_conversion.py
 Automatic merge failed; fix conflicts and then commit the result.
 ~~~
 
@@ -171,16 +171,24 @@ Automatic merge failed; fix conflicts and then commit the result.
 and marks that conflict in the affected file:
 
 ~~~ {.bash}
-$ cat mars.txt
+$ cat rainfall_conversion.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
+
 <<<<<<< HEAD
-This was added by Dev B
+# TODO(Developer A): Add function to convert from inches to centimetres
 =======
-Developer A added this line
+# TODO(Developer B): Add function to convert from inches to centimetres
 >>>>>>> dabb4c8c450e8475aee9b14b4383acc99f42af1d
 ~~~
 
@@ -200,21 +208,29 @@ or **get rid of the change** entirely.
 Let's **replace** both so that the file looks like this:
 
 ~~~ {.bash}
-$ cat mars.txt
+$ cat rainfall_conversion.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-We removed the conflict on this line
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
+
+# TODO(all): Hire a new developer
 ~~~
 ###Developer B - Add, Commit and Push###
 To finish merging,
-we add `mars.txt` to the changes being made by the merge
+we add `rainfall_conversion.py` to the changes being made by the merge
 and then commit:
 
 ~~~ {.bash}
-$ git add mars.txt
+$ git add rainfall_conversion.py
 $ git status
 ~~~
 ~~~ {.output}
@@ -224,7 +240,7 @@ $ git status
 #
 # Changes to be committed:
 #
-#	modified:   mars.txt
+#	modified:   rainfall_conversion.py
 #
 ~~~
 ~~~ {.bash}
@@ -245,7 +261,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
 Writing objects: 100% (6/6), 697 bytes, done.
 Total 6 (delta 2), reused 0 (delta 0)
-To https://github.com/vlad/planets.git
+To https://github.com/js-robinson/climate-analysis.git
    dabb4c8..2abf2b1  master -> master
 ~~~
 
@@ -263,25 +279,35 @@ remote: Counting objects: 10, done.
 remote: Compressing objects: 100% (4/4), done.        
 remote: Total 6 (delta 2), reused 6 (delta 2)        
 Unpacking objects: 100% (6/6), done.
-From https://github.com/vlad/planets
+From https://github.com/js-robinson/climate-analysis
  * branch            master     -> FETCH_HEAD
 Updating dabb4c8..2abf2b1
 Fast-forward
- mars.txt | 2 +-
+rainfall_conversion.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 ~~~
 
 we get the merged file:
 
 ~~~ {.bash}
-$ cat mars.txt 
+$ cat rainfall_conversion.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-We removed the conflict on this line
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
+
+# TODO(all): Hire a new developer
 ~~~
+
+We have resolved the conflict
 
 We don't need to merge again because Git knows someone has already done that.
 
@@ -295,7 +321,7 @@ that they ought to clarify who's responsible for what,
 or find a way to divide the work up differently.
 
 > ## Reverse {.challenge}
-> Now, Each add another line (perhaps to Neptune or Pluto) and Developer B push first.
+> Now, Each add another line and Developer B push first.
 > Developer A resolves the conflict
 > Get yourselves back in sync
 
