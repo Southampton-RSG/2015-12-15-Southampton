@@ -16,25 +16,25 @@ If you still have trouble, we will run a **Software Installation surgery from 09
 
 #### Windows
 
-Bash is provided as part of the Git for Windows installation described below. No explicit installation is required.
+Bash will be provided as part of the Git for Windows installation as described below.
 
 #### Mac OS X
 
-The Bash shell is accessible via the Terminal application under Applications -> Utilities.
+The Bash shell is accessed by opening the "Terminal" application. The Terminal application can be found in the "Utilities folder which is in your "Applications" folder.
 
 #### Linux
 
-The Bash shell is accessible via the Terminal application.
+The Bash shell is accessed via the Terminal application.
 
 ## Text Editor
 
-You are free to use your preferred text editor. If you don&#39;t have one, we recommend:
+A text editor is the piece of software you use to view and write code. You are free to use your preferred text editor. If you don&#39;t have one, we recommend:
 
 #### Windows
 
-[Notepad++](https://notepad-plus-plus.org/download/).
+[Notepad++](https://notepad-plus-plus.org/download/). Just download the installer and run it.
 
-#### Mac OS X, Linux
+#### Mac OS X and Linux
 
 Nano, which is terminal based and is installed by default. You can verify you have this installed by typing the following at a terminal:</p>
 
@@ -42,12 +42,14 @@ Nano, which is terminal based and is installed by default. You can verify you ha
 nano
 ~~~
 
-Whilst in Nano, press CTRL+X to exit (this will prompt you to save or discard any modified file).
+If nano is not installed, you will receive an error. If it is installed, nano will open (appearing not dissimilar to the terminal window, but with menu items at the bottom of the window).
+
+To exit nano press CTRL+X (you might be prompted you to save or discard modified buffer - just type "N" to exit without saving).
 
 
 ## Python
 
-We teach with Python 3.4, since it is on a clear path to becoming the most widely used version. We will also employ the numpy and matplotlib libraries and the nose unit testing framework. Python3.4 Anaconda Installation provides all of these required libraries and frameworks.
+We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the  "Python3.4 Anaconda" installation provides everything you will need.
 
 #### Windows
 
