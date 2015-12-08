@@ -9,7 +9,7 @@ title: Software Prerequisites
 
 We maintain a list of common problems that can occur during installation and ways of solving them. Take a look at the [Configuration Problems and Solutions wiki page](https://github.com/swcarpentry/workshop-template/wiki/Configuration-Problems-and-Solutions) for help.
 
-If you still have trouble, we will run a **Software Installation surgery from 09.30 AM until 12.30 PM** on  ***Monday, December 14, 2015***. This will take place in room 3013 (Simon Hettrick's office), Building 32, Highfield campus. If you would like to come along to the surgery, [email us to arrange a time](rsg-info@soton.ac.uk). 
+If you still have trouble, we will run a **Software Installation surgery from 09.30 AM until 12.30 PM** on  ***Monday, December 14, 2015***. This will take place in room 3013 (Simon Hettrick's office), Building 32, Highfield campus. If you would like to come along to the surgery, [email us to arrange a time](mailto:rsg-info@soton.ac.uk). 
 
 
 ## Bash
