@@ -30,7 +30,7 @@
           <h2 class="subtitle">Reading and analysing Patient data using libraries</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -102,7 +102,7 @@ As a result,
 --> So if we have an M×N array in Python, its indices go from 0 to M-1 on the first axis and 0 to N-1 on the second. It takes a bit of getting used to, but one way to remember the rule is that the index is how many steps we have to take from the start to get the item we want.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="in-the-corner"><span class="glyphicon glyphicon-pushpin"></span>In the Corner</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>In the Corner</h2>
 </div>
 <div class="panel-body">
 <p>What may also surprise you is that when Python displays an array, it shows the element with index <code>[0, 0]</code> in the upper left corner rather than the lower left. This is consistent with the way mathematicians draw matrices, but different from the Cartesian coordinates. The indices are (row, column) instead of (column, row) for the same reason, which can be confusing when plotting data.</p>
@@ -174,8 +174,7 @@ standard deviation: 4.61383319712</code></pre>
 <pre class="output"><code>maximum inflammation for patient 2: 19.0</code></pre>
 <p>What if we need the maximum inflammation for <em>all</em> patients, or the average for each day? As the diagram below shows, we want to perform the operation across an axis:</p>
 <div class="figure">
-<img src="img/python-operations-across-axes.svg" alt="Operations Across Axes" />
-<p class="caption">Operations Across Axes</p>
+<img src="img/python-operations-across-axes.svg" alt="Operations Across Axes" /><p class="caption">Operations Across Axes</p>
 </div>
 <p>To support this, most array methods allow us to specify the axis we want to work on. If we ask for the average across axis 0, we get:</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="dt">print</span>(data.mean(axis=<span class="dv">0</span>))</code></pre>
@@ -201,7 +200,7 @@ standard deviation: 4.61383319712</code></pre>
 <p>which is the average inflammation per patient across all days.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="thin-slices"><span class="glyphicon glyphicon-pencil"></span>Thin slices</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Thin slices</h2>
 </div>
 <div class="panel-body">
 <p>From our previous topic, the expression <code>element[3:3]</code> produces an <a href="../../reference.html#empty-string">empty string</a>, i.e., a string that contains no characters. If <code>data</code> holds our array of patient data, what does <code>data[3:3, 4:4]</code> produce? What about <code>data[3:3, :]</code>?</p>
@@ -213,7 +212,7 @@ standard deviation: 4.61383319712</code></pre>
       <div class="footer">
         This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
-        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/Southampton-RSG/2015-12-15-Southampton">Source</a>
       </div>
     </div>
     <!-- Javascript placed at the end of the document so the pages load faster -->

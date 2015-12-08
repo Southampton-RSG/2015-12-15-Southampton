@@ -30,7 +30,7 @@
           <h2 class="subtitle">Data Visualisation</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -45,29 +45,25 @@
 image  = pyplot.imshow(data)
 pyplot.show(image)</code></pre>
 <div class="figure">
-<img src="01-numpy_files/novice/python/01-numpy_74_0.png" alt="Heatmap of the Data" />
-<p class="caption">Heatmap of the Data</p>
+<img src="01-numpy_files/novice/python/01-numpy_74_0.png" alt="Heatmap of the Data" /><p class="caption">Heatmap of the Data</p>
 </div>
 <p>Blue regions in this heat map are low values, while red shows high values. As we can see, inflammation rises and falls over a 40-day period. Let’s take a look at the average inflammation over time:</p>
 <pre class="sourceCode python"><code class="sourceCode python">ave_inflammation = data.mean(axis=<span class="dv">0</span>)
 ave_plot = pyplot.plot(ave_inflammation)
 pyplot.show(ave_plot)</code></pre>
 <div class="figure">
-<img src="01-numpy_files/novice/python/01-numpy_76_0.png" alt="Average Inflammation Over Time" />
-<p class="caption">Average Inflammation Over Time</p>
+<img src="01-numpy_files/novice/python/01-numpy_76_0.png" alt="Average Inflammation Over Time" /><p class="caption">Average Inflammation Over Time</p>
 </div>
 <p>Here, we have put the average per day across all patients in the variable <code>ave_inflammation</code>, then asked <code>pyplot</code> to create and display a line graph of those values. The result is roughly a linear rise and fall, which is suspicious: based on other studies, we expect a sharper rise and slower fall. Let’s have a look at two other statistics:</p>
 <pre class="sourceCode python"><code class="sourceCode python">max_plot = pyplot.plot(data.<span class="dt">max</span>(axis=<span class="dv">0</span>))
 pyplot.show(max_plot)</code></pre>
 <div class="figure">
-<img src="01-numpy_files/novice/python/01-numpy_78_1.png" alt="Maximum Value Along The First Axis" />
-<p class="caption">Maximum Value Along The First Axis</p>
+<img src="01-numpy_files/novice/python/01-numpy_78_1.png" alt="Maximum Value Along The First Axis" /><p class="caption">Maximum Value Along The First Axis</p>
 </div>
 <pre class="sourceCode python"><code class="sourceCode python">min_plot = pyplot.plot(data.<span class="dt">min</span>(axis=<span class="dv">0</span>))
 pyplot.show(min_plot)</code></pre>
 <div class="figure">
-<img src="01-numpy_files/novice/python/01-numpy_78_3.png" alt="Minimum Value Along The First Axis" />
-<p class="caption">Minimum Value Along The First Axis</p>
+<img src="01-numpy_files/novice/python/01-numpy_78_3.png" alt="Minimum Value Along The First Axis" /><p class="caption">Minimum Value Along The First Axis</p>
 </div>
 <p>The maximum value rises and falls perfectly smoothly, while the minimum seems to be a step function. Neither result seems particularly likely, so either there’s a mistake in our calculations or something is wrong with our data.</p>
 <p>It’s very common to create an <a href="../../reference.html#alias">alias</a> for a library when importing it in order to reduce the amount of typing we have to do. Here are our three plots side by side using aliases for <code>numpy</code> and <code>pyplot</code>:</p>
@@ -98,13 +94,12 @@ plt.show(fig)</code></pre>
 <p><code>/Users/user/anaconda/lib/python3.4/site-packages/matplotlib/tight_layout.py:225: UserWarning: tight_layout : falling back to Agg renderer   warnings.warn(&quot;tight_layout : falling back to Agg renderer&quot;)</code></p>
 <p><code>tight_layout</code> still works by falling back to the Agg renderer.</p>
 <div class="figure">
-<img src="01-numpy_files/novice/python/01-numpy_83_0.png" alt="The Previous Plots as Subplots" />
-<p class="caption">The Previous Plots as Subplots</p>
+<img src="01-numpy_files/novice/python/01-numpy_83_0.png" alt="The Previous Plots as Subplots" /><p class="caption">The Previous Plots as Subplots</p>
 </div>
 <p>The call to <code>loadtxt</code> reads our data, and the rest of the program tells the plotting library how large we want the figure to be, that we’re creating three sub-plots, what to draw for each one, and that we want a tight layout. (Perversely, if we leave out that call to <code>fig.tight_layout()</code>, the graphs will actually be squeezed together more closely.)</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="make-your-own-plot"><span class="glyphicon glyphicon-pencil"></span>Make your own plot</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Make your own plot</h2>
 </div>
 <div class="panel-body">
 <p>Create a plot showing the standard deviation of the inflammation data for each day across all patients. Hint: <code>data.std(axis=0)</code> gives you standard deviation.</p>
@@ -112,7 +107,7 @@ plt.show(fig)</code></pre>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="moving-plots-around"><span class="glyphicon glyphicon-pencil"></span>Moving plots around</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Moving plots around</h2>
 </div>
 <div class="panel-body">
 <p>Modify the program to display the three plots on top of one another instead of side by side.</p>
@@ -163,7 +158,7 @@ filenames = filenames[<span class="dv">0</span>:<span class="dv">3</span>]
       <div class="footer">
         This work is derived from prior works that are Copyright © <a href="http://software-carpentry.org">Software Carpentry</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
-        <a class="label swc-blue-bg" href="https://github.com/softwaresaved/NGCMGSoton-2015-06-21">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/Southampton-RSG/2015-12-15-Southampton">Source</a>
       </div>
     </div>
     <!-- Javascript placed at the end of the document so the pages load faster -->
