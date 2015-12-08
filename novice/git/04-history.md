@@ -2,7 +2,7 @@
 layout: page
 title: Version Control with Git
 subtitle: 4. Exploring History
-minutes: 25
+minutes: 10
 ---
 > ## Learning Objectives {.objectives}
 >
@@ -202,6 +202,4 @@ without also undoing changes made later to the conclusion.
 If the introduction and conclusion are stored in **separate files**,
 on the other hand, moving backward and forward in time becomes much easier.
 
-###IF TIME LIMITED GO STRAIGHT TO [Collaboration](06-collab.html)###
-
-[Next - Ignoring Things](05-ignore.html) 
+[Next - Collaborating](05-collab.html) 

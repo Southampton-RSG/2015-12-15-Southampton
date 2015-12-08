@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Version Control with Git
-subtitle: 7. Conflicts
+subtitle: 6. Conflicts
 minutes: 15
 ---
 > ## Learning Objectives {.objectives}
@@ -330,3 +330,7 @@ or find a way to divide the work up differently.
 > What does Git do
 > when there is a conflict in an image or some other non-textual file
 > that is stored in version control?
+
+###IF TIME###
+
+[Ignoring Things](07-ignore.html)

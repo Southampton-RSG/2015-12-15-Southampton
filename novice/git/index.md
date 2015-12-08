@@ -10,9 +10,9 @@ subtitle: 0. Introduction
 2.  [Creating a Repository](02-create.html)
 3.  [Tracking Changes](03-changes.html)
 4.  [Exploring History](04-history.html)
-5.  [Ignoring Things](05-ignore.html)
-6.  [Collaborating](06-collab.html)
-7.  [Conflicts](07-conflict.html)
+5.  [Collaborating](05-collab.html)
+6.  [Conflicts](06-conflict.html)
+7.  [Ignoring Things](07-ignore.html)
 
 > ## Learning Objectives {.objectives}
 >

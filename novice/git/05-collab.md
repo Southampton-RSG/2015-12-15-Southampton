@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Version Control with Git
-subtitle: 6. Collaborating
+subtitle: 5. Collaborating
 minutes: 55
 ---
 > ## Learning Objectives {.objectives}
@@ -291,5 +291,5 @@ Fast-forward
 > Developer B can pull the updates
 
 ![Remote Repositories #4](img/slides/version-control-with-git-slides - 24.jpg)
-[Next - Conflicts](07-conflict.html)
+[Next - Conflicts](06-conflict.html)
 

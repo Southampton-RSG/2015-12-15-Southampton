@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Version Control with Git
-subtitle: 5. Ignoring Things
+subtitle: 7. Ignoring Things
 minutes: 5
 ---
 > ## Learning Objectives {.objectives}
@@ -121,5 +121,4 @@ $ git status --ignored
 nothing to commit, working directory clean
 ~~~
 
-[Next - Collaborating](06-collab.html)
 
