@@ -44,22 +44,37 @@
 <p>As soon as people can work in <strong>parallel</strong>, someone is going to step on someone else’s toes.</p>
 <p>This will even happen with a single person: if we are working on a piece of software on both our laptop and a server in the lab, we could make different changes to each copy.</p>
 <p>These situations are called <strong>conflicts</strong> Version control helps us manage these <a href="reference.html#conflicts">conflicts</a> by giving us tools to <a href="reference.html#resolve">resolve</a> overlapping changes.</p>
-<p>To see how we can resolve conflicts, we must first create one. The file <code>mars.txt</code> currently looks like this in both partners’ copies of our <code>planets</code> repository:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity</code></pre>
+<p>To see how we can resolve conflicts, we must first create one. The file <code>rainfall_conversion.py</code> currently looks like this in both partners’ copies of our <code>climate-analysis</code> repository:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> rainfall_conversion.py</code></pre>
+<pre class="output"><code>&quot;&quot;&quot;A library to perform rainfall unit conversions&quot;&quot;&quot;
+
+def inches_to_mm(inches):
+    &quot;&quot;&quot;Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    &quot;&quot;&quot;
+    mm = inches * 25.4
+    return mm</code></pre>
 <h3 id="developer-a---modify-and-push">Developer A - Modify and Push</h3>
 <div class="figure">
 <img src="img/slides/version-control-with-git-slides%20-%2025.jpg" alt="Conflicts" /><p class="caption">Conflicts</p>
 </div>
-<p>Let’s add a line to Developer A’s copy only:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> mars.txt
+<p>Let’s add a line to the bottom of Developer A’s copy only:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> rainfall_conversion.py
 $ <span class="kw">cat</span> mars.txt</code></pre>
-<pre class="output"><code>Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-Developer A added this line</code></pre>
+<pre class="output"><code>&quot;&quot;&quot;A library to perform rainfall unit conversions&quot;&quot;&quot;
+
+def inches_to_mm(inches):
+    &quot;&quot;&quot;Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    &quot;&quot;&quot;
+    mm = inches * 25.4
+    return mm
+
+# TODO(Developer B): Add function to convert from inches to centimetres</code></pre>
 <p>and then push the change to GitHub:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add mars.txt
 $ <span class="kw">git</span> commit -m <span class="st">&quot;Developer A added a line&quot;</span></code></pre>

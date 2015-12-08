@@ -23,39 +23,54 @@ by giving us tools to [resolve](reference.html#resolve) overlapping changes.
 
 To see how we can resolve conflicts,
 we must first create one.
-The file `mars.txt` currently looks like this
-in both partners' copies of our `planets` repository:
+The file `rainfall_conversion.py` currently looks like this
+in both partners' copies of our `climate-analysis` repository:
 
 ~~~ {.bash}
-$ cat mars.txt
+$ cat rainfall_conversion.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
 ~~~
 
 ###Developer A - Modify and Push###
 
 ![Conflicts](img/slides/version-control-with-git-slides - 25.jpg)
 
-Let's add a line to Developer A's copy only:
+Let's add a line to the bottom of Developer A's copy only:
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ nano rainfall_conversion.py
+$ cat rainfall_conversion.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-Developer A added this line
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
+
+# TODO(Developer B): Add function to convert from inches to centimetres
 ~~~
 
 and then push the change to GitHub:
 
 ~~~ {.bash}
-$ git add mars.txt
+$ git add rainfall_conversion.py
 $ git commit -m "Developer A added a line"
 ~~~
 ~~~ {.output}
@@ -81,20 +96,28 @@ Now let's have Developer B make a different change to their copy
 *without* updating (pulling) from GitHub:
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ nano rainfall_conversion.py
+$ cat rainfall_conversion.py
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-This was added by Dev B
+"""A library to perform rainfall unit conversions"""
+
+def inches_to_mm(inches):
+    """Convert inches to milimetres.
+
+    Arguments:
+    inches -- the rainfall inches
+    """
+    mm = inches * 25.4
+    return mm
+
+# TODO(Developer A): Add function to convert from inches to centimetres
 ~~~
 
 We can commit the change locally:
 
 ~~~ {.bash}
-$ git add mars.txt
+$ git add rainfall_conversion.py
 $ git commit -m "Developer B added a different line"
 ~~~
 ~~~ {.output}

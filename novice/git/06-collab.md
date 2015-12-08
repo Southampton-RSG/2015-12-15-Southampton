@@ -286,7 +286,7 @@ Fast-forward
 
 > ## Exercise: Two way collaboration {.challenge}
 > Now lets work it the other way.
-> Developer A can add a brief README.md outlining the prerequisites of the package we're developing and the license under which it is released.  
+> Developer A can add a brief README.md stating the authors of the package we're developing (You), and describing its purpose "Tools to parse and convert climate data from CSV" 
 > Add / commit them to their local repository and push them to github.
 > Developer B can pull the updates
 
