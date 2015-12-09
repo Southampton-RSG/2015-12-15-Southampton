@@ -30,7 +30,7 @@
           <h2 class="subtitle">Shell Scripts</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
 </div>
 <div class="panel-body">
 <ul>
@@ -55,7 +55,7 @@
 <p>Sure enough, our script’s output is exactly what we would get if we ran that pipeline directly.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="text-vs.whatever"><span class="glyphicon glyphicon-pushpin"></span>Text vs. Whatever</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>Text vs. Whatever</h2>
 </div>
 <div class="panel-body">
 <p>We usually call programs like Microsoft Word or LibreOffice Writer “text editors”, but we need to be a bit more careful when it comes to programming. By default, Microsoft Word uses <code>.docx</code> files to store not only text, but also formatting information about fonts, headings, and so on. This extra information isn’t stored as characters, and doesn’t mean anything to tools like <code>head</code>: they expect input files to contain nothing but the letters, digits, and punctuation on a standard computer keyboard. When editing programs, therefore, you must either use a plain text editor, or be careful to save files as plain text.</p>
@@ -80,7 +80,7 @@
 299196.8188,972890.0521,48.07,61.41,0.78</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="double-quotes-around-arguments"><span class="glyphicon glyphicon-pushpin"></span>Double-Quotes Around Arguments</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>Double-Quotes Around Arguments</h2>
 </div>
 <div class="panel-body">
 <p>We put the <code>$1</code> inside of double-quotes in case the filename happens to contain any spaces. The shell uses whitespace to separate arguments, so we have to be careful when using arguments that might have whitespace in them. If we left out these quotes, and <code>$1</code> expanded to a filename like <code>climate data.csv</code>, the command in the script would effectively be:</p>
@@ -118,7 +118,7 @@ head &quot;$2&quot; &quot;$1&quot; | tail &quot;$3&quot;</code></pre>
  1050073 total</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="why-isnt-it-doing-anything"><span class="glyphicon glyphicon-pushpin"></span>Why Isn’t It Doing Anything?</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>Why Isn’t It Doing Anything?</h2>
 </div>
 <div class="panel-body">
 <p>What happens if a script is supposed to process a bunch of files, but we don’t give it any filenames? For example, what if we type:</p>
@@ -144,7 +144,7 @@ wc -l &quot;$@&quot; | sort -n</code></pre>
 <p>After a moment’s work in an editor to remove the serial numbers on the commands, we have a completely accurate record of how we created that figure.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="unnumbering"><span class="glyphicon glyphicon-pushpin"></span>Unnumbering</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>Unnumbering</h2>
 </div>
 <div class="panel-body">
 <p>Nelle could also use <code>colrm</code> (short for “column removal”) to remove the serial numbers on her previous commands. Its parameters are the range of characters to strip from its input:</p>
@@ -166,7 +166,7 @@ history | tail -5 | colrm 1 7</code></pre>
 <p>In practice, most people develop shell scripts by running commands at the shell prompt a few times to make sure they’re doing the right thing, then saving them in a file for re-use. This style of work allows people to recycle what they discover about their data and their workflow with one call to <code>history</code> and a bit of editing to clean up the output and save it as a shell script.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="variables-in-shell-scripts"><span class="glyphicon glyphicon-pencil"></span>Variables in shell scripts</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Variables in shell scripts</h2>
 </div>
 <div class="panel-body">
 <p>In the test_directory/molecules directory, you have a shell script called <code>script.sh</code> containing the following commands:</p>
@@ -185,7 +185,7 @@ tail $3 $1</code></pre>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="list-unique-species"><span class="glyphicon glyphicon-pencil"></span>List unique species</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>List unique species</h2>
 </div>
 <div class="panel-body">
 <p>Leah has several hundred data files, each of which is formatted like this:</p>
@@ -202,7 +202,7 @@ tail $3 $1</code></pre>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="why-record-commands-in-the-history-before-running-them"><span class="glyphicon glyphicon-pencil"></span>Why record commands in the history before running them?</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Why record commands in the history before running them?</h2>
 </div>
 <div class="panel-body">
 <p>If you run the command:</p>
@@ -212,7 +212,7 @@ tail $3 $1</code></pre>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="script-reading-comprehension"><span class="glyphicon glyphicon-pencil"></span>Script reading comprehension</h2>
+<h2><span class="glyphicon glyphicon-pencil"></span>Script reading comprehension</h2>
 </div>
 <div class="panel-body">
 <p>Joel’s <code>data</code> directory contains three files: <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>. Explain what a script called <code>example.sh</code> would do when run as <code>bash example.sh *.dat</code> if it contained the following lines:</p>
