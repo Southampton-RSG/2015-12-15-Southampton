@@ -50,13 +50,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x6
 <p><a href="https://notepad-plus-plus.org/download/">Notepad++</a>. Just download the installer and run it.</p>
 <h4 id="mac-os-x-and-linux">Mac OS X and Linux</h4>
 <p>Nano is a text editor that is installed by default on Mac OS X and Linux.</p>
-You can verify you have nano installed by opening a terminal and typing:
+You can verify you have nano installed by opening a terminal and entering:
 </p>
 <pre class="code"><code>nano</code></pre>
 <p>If nano is not installed, you will receive an error. If it is installed, nano will open (appearing not dissimilar to the terminal window, but with menu items at the bottom of the window).</p>
 <p>To exit nano press CTRL+X (you might be prompted you to save or discard modified buffer - just type “N” to exit without saving).</p>
 <h2 id="python">Python</h2>
-<p>We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the “Python3.4 Anaconda” installation provides everything you will need. To install Anaconda, follow the instructions below.</p>
+<p>We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately! The “Python3.4 Anaconda” installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.</p>
 <h4 id="windows-2">Windows</h4>
 <p>Download the <a href="https://repo.continuum.io/archive/Anaconda3-2.3.0-Windows-x86_64.exe">Python3.4 Anaconda installer</a>. Double click the installer and follow the instructions.</p>
 <h4 id="mac-os-x-1">Mac OS X</h4>
@@ -65,17 +65,16 @@ You can verify you have nano installed by opening a terminal and typing:
 <p>Download the <a href="https://repo.continuum.io/archive/Anaconda3-2.3.0-Linux-x86_64.sh">Python3.4 Anaconda installation script</a>. Install via the terminal like this:</p>
 <pre class="code"><code>bash Anaconda3-2.3.0-Linux-x86_64.sh</code></pre>
 <h2 id="git">Git</h2>
-<p>Git is the version control software that we will use during the workshop.</p>
+<p>Git is the version control software we will use. It allows you to keep track of your software and the edits made to it.</p>
 <h4 id="create-a-github-account">Create a Github account</h4>
-<p>**You should must create a Github account before attending the workshop!</p>
-<p>To do so, <a href="https://github.com/join">go to the Github website</a> and provide your details. It’s quick and it’s free.</p>
-<p>Once you have your account, you need to install the Git software, as described below.</p>
+<p><strong>You should must create a Github account before attending the workshop!</strong></p>
+<p>To create an account, <a href="https://github.com/join">go to the Github website</a> and provide your details. It’s quick and it’s free. Once you have your account, you need to install the Git software as described below.</p>
 <h4 id="windows-3">Windows</h4>
-<p>Download and install <a href="http://git-scm.com/download/win">Git for Windows</a>. You can accept the default installation options, <strong>with one exception</strong> - at the step ‘Configuring the terminal emulator to use with Git Bash’ you <strong>must</strong> select ‘Use Windows default console window’. In this workshop we will use Git via the Git Bash command line, installed as part of this package.</p>
+<p>Download and install <a href="http://git-scm.com/download/win">Git for Windows</a>. <strong>Please note</strong> that you can accept the default installation options, <strong>with one exception</strong> - at the step ‘Configuring the terminal emulator to use with Git Bash’ you <strong>must</strong> select ‘Use Windows default console window’.</p>
 <h4 id="mac-os-x-2">Mac OS X</h4>
-<p>On Mac OS X 10.9 Mavericks and 10.10 Yosemite, Git will be installed automatically the first time you try to run it. Open a terminal and type:</p>
+<p>On Mac OS X 10.9 Mavericks and 10.10 Yosemite, Git will be installed automatically the first time you try to run it. Open a terminal and enter:</p>
 <pre class="code"><code>git</code></pre>
-<p>Follow the prompts to install the Apple command line development tools.</p>
+<p>There may be a short delay whilst the installer operates. You can then follow the prompts to install the Apple command line development tools.</p>
 <p>On Mac OS X 10.6 Snow Leoapard, Mac OS X 10.7 Lion and 10.8 Mountain Lion, download and open the <a href="http://downloads.sourceforge.net/project/git-osx-installer/git-2.3.5-intel-universal-snow-leopard.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fgit-osx-installer%2Ffiles%2F&amp;ts=1441637770&amp;use_mirror=kent">Git installer image</a>. Double click the <code>.pkg</code> file and follow the instructions.</p>
 <p>If you intend to use an earlier version of Mac OS X, please contact us before the event.</p>
 <h4 id="linux-2">Linux</h4>
@@ -86,14 +85,28 @@ You can verify you have nano installed by opening a terminal and typing:
 <pre class="code"><code>su -
 dnf install git</code></pre>
 <h2 id="verify-your-setup">Verify your setup</h2>
-<p>All of the exercises in this workshop will take place at the command line via the Bash shell. In Mac OS X and Linux, this is your normal terminal environment. In Windows, the Git Bash shell has been installed and can be accessed via the Git entry in the Start Menu.</p>
-<p>We provide a simple Python script to test that the prerequisites have been correctly installed. <strong>Close your existing terminal and reopen it</strong>. Now, retrieve and execute the test at the Bash prompt by typing (pasting) the following command:</p>
+<p>To make sure that everything has installed correctly, we have written a simple Python script to test the prerequisites.</p>
+<p><strong>Close your existing terminal and reopen it (this is important!)</strong>.</p>
+<p>Enter the command below into your terminal. It will download the python script and run it to check your prerequisites.</p>
 <h4 id="windows-4">Windows</h4>
 <pre class="code"><code>curl -L http://goo.gl/HuPJu3 | python</code></pre>
 <h4 id="mac-os-x-linux">Mac OS X, Linux</h4>
 <pre class="code"><code>curl -L http://goo.gl/HuPJu3 | python3.4</code></pre>
-<p>..</p>
-<p>You should see eight passes and no failures. If anything fails, please contact us (emailing s.crouch@software.ac.uk, j.robinson@software.ac.uk and d.inupakutika@software.ac.uk) with details by <strong>Friday, December 11, 2015</strong> at the latest.</p>
+<p>The script will run and output some text. If everything has installed correctly, within the text you will see eight passes and no failures, like this:</p>
+<pre class="code"><code>check command line shell (virtual-shell)... pass
+check Git (git)...  pass
+check Nose (nosetests)...   pass
+check Nose Python package (nose)... pass
+check Python version (python)...    pass
+check Argparse (argparse)...    pass
+check NumPy (numpy)...  pass
+check Matplotlib (matplotlib)...    pass</code></pre>
+<p>If anything fails, please <script type="text/javascript">
+<!--
+h='&#x73;&#x6f;&#116;&#x6f;&#110;&#46;&#x61;&#x63;&#46;&#x75;&#x6b;';a='&#64;';n='&#114;&#x73;&#x67;&#x2d;&#x69;&#110;&#102;&#x6f;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x63;&#x6f;&#110;&#116;&#x61;&#x63;&#116;&#32;&#x75;&#x73;'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x63;&#x6f;&#110;&#116;&#x61;&#x63;&#116;&#32;&#x75;&#x73;&#32;&#40;&#114;&#x73;&#x67;&#x2d;&#x69;&#110;&#102;&#x6f;&#32;&#x61;&#116;&#32;&#x73;&#x6f;&#116;&#x6f;&#110;&#32;&#100;&#x6f;&#116;&#32;&#x61;&#x63;&#32;&#100;&#x6f;&#116;&#32;&#x75;&#x6b;&#x29;</noscript> before the workshop.</p>
 <h2 id="during-the-workshop">During the workshop</h2>
 <p>We will make use of the <a href="https://public.etherpad-mozilla.org/p/SWC-Soton-Dec2015">Etherpad</a> collaboration tool during the workshop (Etherpad allows a group to edit documents online collaboratively in real-time). Please use this to keep collaborative notes and ask (and answer!) each others questions.</p>
         </div>

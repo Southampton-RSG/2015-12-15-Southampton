@@ -42,7 +42,7 @@ A text editor is the piece of software you use to view and write code. If you ha
 
 Nano is a text editor that is installed by default on Mac OS X and Linux.
 
-You can verify you have nano installed by opening a terminal and typing:</p>
+You can verify you have nano installed by opening a terminal and entering:</p>
 
 ~~~ {.code}
 nano
@@ -55,7 +55,7 @@ To exit nano press CTRL+X (you might be prompted you to save or discard modified
 
 ## Python
 
-We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the  "Python3.4 Anaconda" installation provides everything you will need. To install Anaconda, follow the instructions below.
+We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately! The "Python3.4 Anaconda" installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
 
 #### Windows
 
@@ -75,30 +75,27 @@ bash Anaconda3-2.3.0-Linux-x86_64.sh
 
 ## Git
 
-Git is the version control software that we will use during the workshop.
+Git is the version control software we will use. It allows you to keep track of your software and the edits made to it.
 
 ####Create a Github account
 
-**You should must create a Github account before attending the workshop!
+**You should must create a Github account before attending the workshop!**
 
-To do so, [go to the Github website](https://github.com/join) and provide your details. It's quick and it's free.
-
-Once you have your account, you need to install the Git software, as described below.
+To create an account, [go to the Github website](https://github.com/join) and provide your details. It's quick and it's free. Once you have your account, you need to install the Git software as described below.
 
 #### Windows
 
-Download and install [Git for Windows](http://git-scm.com/download/win). You can accept the default installation options, **with one exception** - at the step 'Configuring the terminal emulator to use with Git Bash' you **must** select 'Use Windows default console window'.
-In this workshop we will use Git via the Git Bash command line, installed as part of this package.
+Download and install [Git for Windows](http://git-scm.com/download/win). **Please note** that you can accept the default installation options, **with one exception** - at the step 'Configuring the terminal emulator to use with Git Bash' you **must** select 'Use Windows default console window'.
 
 #### Mac OS X
 
-On Mac OS X 10.9 Mavericks and 10.10 Yosemite, Git will be installed automatically the first time you try to run it.  Open a terminal and type:
+On Mac OS X 10.9 Mavericks and 10.10 Yosemite, Git will be installed automatically the first time you try to run it.  Open a terminal and enter:
 
 ~~~ {.code}
 git
 ~~~
 
-Follow the prompts to install the Apple command line development tools.
+There may be a short delay whilst the installer operates. You can then follow the prompts to install the Apple command line development tools.
 
 On Mac OS X 10.6 Snow Leoapard, Mac OS X 10.7 Lion and 10.8 Mountain Lion, download and open the [Git installer image](http://downloads.sourceforge.net/project/git-osx-installer/git-2.3.5-intel-universal-snow-leopard.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fgit-osx-installer%2Ffiles%2F&ts=1441637770&use_mirror=kent). Double click the `.pkg` file and follow the instructions.
 
@@ -123,9 +120,11 @@ dnf install git
 
 ## Verify your setup
 
-All of the exercises in this workshop will take place at the command line via the Bash shell.  In Mac OS X and Linux, this is your normal terminal environment.  In Windows, the Git Bash shell has been installed and can be accessed via the Git entry in the Start Menu.
+To make sure that everything has installed correctly, we have written a simple Python script to test the prerequisites.
 
-We provide a simple Python script to test that the prerequisites have been correctly installed. **Close your existing terminal and reopen it**.  Now, retrieve and execute the test at the Bash prompt by typing (pasting) the following command:
+**Close your existing terminal and reopen it (this is important!)**.
+
+Enter the command below into your terminal. It will download the python script and run it to check your prerequisites. 
 
 #### Windows
 
@@ -139,9 +138,20 @@ curl -L http://goo.gl/HuPJu3 | python
 curl -L http://goo.gl/HuPJu3 | python3.4
 ~~~
 
-..
+The script will run and output some text. If everything has installed correctly, within the text you will see eight passes and no failures, like this:
 
-You should see eight passes and no failures.  If anything fails, please contact us (emailing s.crouch@software.ac.uk, j.robinson@software.ac.uk and d.inupakutika@software.ac.uk) with details by **Friday, December 11, 2015** at the latest.
+~~~ {.code}
+check command line shell (virtual-shell)...	pass
+check Git (git)...	pass
+check Nose (nosetests)...	pass
+check Nose Python package (nose)...	pass
+check Python version (python)...	pass
+check Argparse (argparse)...	pass
+check NumPy (numpy)...	pass
+check Matplotlib (matplotlib)...	pass
+~~~
+
+If anything fails, please [contact us](mailto:rsg-info@soton.ac.uk) before the workshop.
 
 ## During the workshop
 
