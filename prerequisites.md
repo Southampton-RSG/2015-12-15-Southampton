@@ -3,7 +3,9 @@ layout: page-md
 title: Software Prerequisites
 ---
 
-**Prior to the workshop, it is vital that you install the following software on your laptop!** There is little time during the workshop to deal with installation problems, so it makes the day run much more smoothly if you arrive with your software already installed.
+**Prior to the workshop, it is vital that you install the following software on your laptop and create an account at Github!**
+
+There is little time during the workshop to deal with installation problems, so it makes the day run much more smoothly if you arrive with your software already installed.
 
 ## Help!
 
@@ -14,13 +16,15 @@ If you still have trouble, we will run a **Software Installation surgery from 09
 
 ## Bash
 
+Among many other things, Bash allows you to automate dull and boring tasks. We use it during the command line section of the course.
+
 #### Windows
 
 Bash will be provided as part of the Git for Windows installation as described below.
 
 #### Mac OS X
 
-The Bash shell is accessed by opening the "Terminal" application. The Terminal application can be found in the "Utilities folder which is in your "Applications" folder.
+The Bash shell is accessed by opening the "Terminal" application. The Terminal application can be found in the "Utilities" folder which is in your "Applications" folder.
 
 #### Linux
 
@@ -28,7 +32,7 @@ The Bash shell is accessed via the Terminal application.
 
 ## Text Editor
 
-A text editor is the piece of software you use to view and write code. You are free to use your preferred text editor. If you don&#39;t have one, we recommend:
+A text editor is the piece of software you use to view and write code. If you have a preferred text editor, please use it. If you don&#39;t have one, we recommend the following.
 
 #### Windows
 
@@ -36,7 +40,9 @@ A text editor is the piece of software you use to view and write code. You are f
 
 #### Mac OS X and Linux
 
-Nano, which is terminal based and is installed by default. You can verify you have this installed by typing the following at a terminal:</p>
+Nano is a text editor that is installed by default on Mac OS X and Linux.
+
+You can verify you have nano installed by opening a terminal and typing:</p>
 
 ~~~ {.code}
 nano
@@ -49,7 +55,7 @@ To exit nano press CTRL+X (you might be prompted you to save or discard modified
 
 ## Python
 
-We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the  "Python3.4 Anaconda" installation provides everything you will need.
+We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the  "Python3.4 Anaconda" installation provides everything you will need. To install Anaconda, follow the instructions below.
 
 #### Windows
 
@@ -61,7 +67,7 @@ Download the [Python 3.4 Anaconda MAC OS X Graphical installer](https://repo.con
 
 #### Linux
 
-Download the [Python3.4 Anaconda installation script](https://repo.continuum.io/archive/Anaconda3-2.3.0-Linux-x86_64.sh). Install via terminal like this:
+Download the [Python3.4 Anaconda installation script](https://repo.continuum.io/archive/Anaconda3-2.3.0-Linux-x86_64.sh). Install via the terminal like this:
 
 ~~~{.code}
 bash Anaconda3-2.3.0-Linux-x86_64.sh
@@ -69,7 +75,15 @@ bash Anaconda3-2.3.0-Linux-x86_64.sh
 
 ## Git
 
-In this workshop we will work with remote Git repositories hosted at Github. You should [create an account](https://github.com/join) there before the event.
+Git is the version control software that we will use during the workshop.
+
+####Create a Github account
+
+**You should must create a Github account before attending the workshop!
+
+To do so, [go to the Github website](https://github.com/join) and provide your details. It's quick and it's free.
+
+Once you have your account, you need to install the Git software, as described below.
 
 #### Windows
 

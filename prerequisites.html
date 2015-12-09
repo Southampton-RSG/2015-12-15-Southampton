@@ -26,7 +26,8 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
                     <h1 class="title">Software Prerequisites</h1>
-          <p><strong>Prior to the workshop, it is vital that you install the following software on your laptop!</strong> There is little time during the workshop to deal with installation problems, so it makes the day run much more smoothly if you arrive with your software already installed.</p>
+          <p><strong>Prior to the workshop, it is vital that you install the following software on your laptop and create an account at Github!</strong></p>
+<p>There is little time during the workshop to deal with installation problems, so it makes the day run much more smoothly if you arrive with your software already installed.</p>
 <h2 id="help">Help!</h2>
 <p>We maintain a list of common problems that can occur during installation and ways of solving them. Take a look at the <a href="https://github.com/swcarpentry/workshop-template/wiki/Configuration-Problems-and-Solutions">Configuration Problems and Solutions wiki page</a> for help.</p>
 <p>If you still have trouble, we will run a <strong>Software Installation surgery from 09.30 AM until 12.30 PM</strong> on <strong><em>Monday, December 14, 2015</em></strong>. This will take place in room 3013 (Simon Hettrick’s office), Building 32, Highfield campus. If you would like to come along to the surgery, <script type="text/javascript">
@@ -36,33 +37,39 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x6
 // -->
 </script><noscript>&#x65;&#x6d;&#x61;&#x69;&#108;&#32;&#x75;&#x73;&#32;&#116;&#x6f;&#32;&#x61;&#114;&#114;&#x61;&#110;&#x67;&#x65;&#32;&#x61;&#32;&#116;&#x69;&#x6d;&#x65;&#32;&#40;&#114;&#x73;&#x67;&#x2d;&#x69;&#110;&#102;&#x6f;&#32;&#x61;&#116;&#32;&#x73;&#x6f;&#116;&#x6f;&#110;&#32;&#100;&#x6f;&#116;&#32;&#x61;&#x63;&#32;&#100;&#x6f;&#116;&#32;&#x75;&#x6b;&#x29;</noscript>.</p>
 <h2 id="bash">Bash</h2>
+<p>Among many other things, Bash allows you to automate dull and boring tasks. We use it during the command line section of the course.</p>
 <h4 id="windows">Windows</h4>
 <p>Bash will be provided as part of the Git for Windows installation as described below.</p>
 <h4 id="mac-os-x">Mac OS X</h4>
-<p>The Bash shell is accessed by opening the “Terminal” application. The Terminal application can be found in the “Utilities folder which is in your”Applications&quot; folder.</p>
+<p>The Bash shell is accessed by opening the “Terminal” application. The Terminal application can be found in the “Utilities” folder which is in your “Applications” folder.</p>
 <h4 id="linux">Linux</h4>
 <p>The Bash shell is accessed via the Terminal application.</p>
 <h2 id="text-editor">Text Editor</h2>
-<p>A text editor is the piece of software you use to view and write code. You are free to use your preferred text editor. If you don't have one, we recommend:</p>
+<p>A text editor is the piece of software you use to view and write code. If you have a preferred text editor, please use it. If you don't have one, we recommend the following.</p>
 <h4 id="windows-1">Windows</h4>
 <p><a href="https://notepad-plus-plus.org/download/">Notepad++</a>. Just download the installer and run it.</p>
 <h4 id="mac-os-x-and-linux">Mac OS X and Linux</h4>
-Nano, which is terminal based and is installed by default. You can verify you have this installed by typing the following at a terminal:
+<p>Nano is a text editor that is installed by default on Mac OS X and Linux.</p>
+You can verify you have nano installed by opening a terminal and typing:
 </p>
 <pre class="code"><code>nano</code></pre>
 <p>If nano is not installed, you will receive an error. If it is installed, nano will open (appearing not dissimilar to the terminal window, but with menu items at the bottom of the window).</p>
 <p>To exit nano press CTRL+X (you might be prompted you to save or discard modified buffer - just type “N” to exit without saving).</p>
 <h2 id="python">Python</h2>
-<p>We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the “Python3.4 Anaconda” installation provides everything you will need.</p>
+<p>We use Python 3.4, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately, because the “Python3.4 Anaconda” installation provides everything you will need. To install Anaconda, follow the instructions below.</p>
 <h4 id="windows-2">Windows</h4>
 <p>Download the <a href="https://repo.continuum.io/archive/Anaconda3-2.3.0-Windows-x86_64.exe">Python3.4 Anaconda installer</a>. Double click the installer and follow the instructions.</p>
 <h4 id="mac-os-x-1">Mac OS X</h4>
 <p>Download the <a href="https://repo.continuum.io/archive/Anaconda3-2.3.0-MacOSX-x86_64.pkg">Python 3.4 Anaconda MAC OS X Graphical installer</a>. Double click the <code>.pkg</code> file and follow the instructions.</p>
 <h4 id="linux-1">Linux</h4>
-<p>Download the <a href="https://repo.continuum.io/archive/Anaconda3-2.3.0-Linux-x86_64.sh">Python3.4 Anaconda installation script</a>. Install via terminal like this:</p>
+<p>Download the <a href="https://repo.continuum.io/archive/Anaconda3-2.3.0-Linux-x86_64.sh">Python3.4 Anaconda installation script</a>. Install via the terminal like this:</p>
 <pre class="code"><code>bash Anaconda3-2.3.0-Linux-x86_64.sh</code></pre>
 <h2 id="git">Git</h2>
-<p>In this workshop we will work with remote Git repositories hosted at Github. You should <a href="https://github.com/join">create an account</a> there before the event.</p>
+<p>Git is the version control software that we will use during the workshop.</p>
+<h4 id="create-a-github-account">Create a Github account</h4>
+<p>**You should must create a Github account before attending the workshop!</p>
+<p>To do so, <a href="https://github.com/join">go to the Github website</a> and provide your details. It’s quick and it’s free.</p>
+<p>Once you have your account, you need to install the Git software, as described below.</p>
 <h4 id="windows-3">Windows</h4>
 <p>Download and install <a href="http://git-scm.com/download/win">Git for Windows</a>. You can accept the default installation options, <strong>with one exception</strong> - at the step ‘Configuring the terminal emulator to use with Git Bash’ you <strong>must</strong> select ‘Use Windows default console window’. In this workshop we will use Git via the Git Bash command line, installed as part of this package.</p>
 <h4 id="mac-os-x-2">Mac OS X</h4>
