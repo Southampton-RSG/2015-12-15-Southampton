@@ -36,7 +36,7 @@ A text editor is the piece of software you use to view and write code. If you ha
 
 #### Windows
 
-[Notepad++](https://notepad-plus-plus.org/download/). Just download the installer and run it.
+[Notepad++](https://notepad-plus-plus.org/download/v6.8.7.html). Just download the installer and run it.
 
 #### Mac OS X and Linux
 
