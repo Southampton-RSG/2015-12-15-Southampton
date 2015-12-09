@@ -128,15 +128,20 @@ Enter the command below into your terminal. It will download the python script a
 
 #### Windows
 
+From the Git folder in the Start Menu, open the Git Bash terminal.
+
 ~~~ {.code}
 curl -L http://goo.gl/HuPJu3 | python
 ~~~
 
 #### Mac OS X, Linux
 
+Close your existing terminal and reopen it.  **This is important!**
+
 ~~~ {.code}
 curl -L http://goo.gl/HuPJu3 | python3.4
 ~~~
+
 
 On Windows, Mac OS X and Linux, the script will run and output some text. If everything has installed correctly, within the text you will see eight passes and no failures, like this:
 
