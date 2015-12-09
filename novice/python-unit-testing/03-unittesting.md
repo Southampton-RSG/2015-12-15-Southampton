@@ -90,14 +90,14 @@ $ nosetests
 FAIL: test_rectangle2.test_actual_rectangle
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/Users/user/anaconda/lib/python3.5/site-packages/nose/case.py", line 198, in runTest
+  File "/Users/user/Work/anaconda/lib/python3.4/site-packages/nose/case.py", line 198, in runTest
     self.test(*self.arg)
   File "/Users/user/Work/Python Codes/python-unit-testing/code/test_rectangle2.py", line 10, in test_actual_rectangle
     assert rectangle_area([0, 1, 4, 7]) == 24.0
 AssertionError
 
 ----------------------------------------------------------------------
-Ran 3 tests in 0.003s
+Ran 3 tests in 0.002s
 
 FAILED (failures=1)
 ~~~

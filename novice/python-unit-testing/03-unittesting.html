@@ -91,14 +91,14 @@ AssertionError</code></pre>
 FAIL: test_rectangle2.test_actual_rectangle
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File &quot;/Users/user/anaconda/lib/python3.5/site-packages/nose/case.py&quot;, line 198, in runTest
+  File &quot;/Users/user/Work/anaconda/lib/python3.4/site-packages/nose/case.py&quot;, line 198, in runTest
     self.test(*self.arg)
   File &quot;/Users/user/Work/Python Codes/python-unit-testing/code/test_rectangle2.py&quot;, line 10, in test_actual_rectangle
     assert rectangle_area([0, 1, 4, 7]) == 24.0
 AssertionError
 
 ----------------------------------------------------------------------
-Ran 3 tests in 0.003s
+Ran 3 tests in 0.002s
 
 FAILED (failures=1)</code></pre>
 <p><code>nosetests</code> looks for files with a <code>test_</code> prefix and runs them, looking for functions whose names also start with the letters <code>'test_'</code> and runs each one:</p>
