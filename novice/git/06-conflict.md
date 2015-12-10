@@ -152,6 +152,7 @@ and **then push** that.
 ###Developer B - Pull and resolve###
 
 Let's start by pulling:
+
 ~~~ {.bash}
 $ git pull origin master
 ~~~
