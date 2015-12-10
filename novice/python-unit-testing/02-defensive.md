@@ -19,7 +19,7 @@ We made several mistakes while writing the programs in our first few lessons:
 
 The first step is to use *defensive programming*, i.e., to assume that mistakes *will* happen and to guard against them.
 
-One way to do this is to add *assertions* to our code so that it checks itself as it runs. An assertion is simply a statement that something must be true at a certain point in a program. When Python sees one, it checks that the assertion's condition:
+One way to do this is to add *assertions* to our code so that it checks itself as it runs. An assertion is simply a statement that something must be true at a certain point in a program. When Python sees one, it checks the assertion's condition:
 
 -   If *true*, Python does nothing
 -   If *false*, Python halts the program immediately and prints the error message provided
@@ -48,10 +48,11 @@ Broadly speaking, assertions fall into three categories:
 -   A **postcondition** is something that the function guarantees is true when it finishes.
 -   An **invariant** something that is always true at a particular point inside a piece of code.
 
-For example, let's look at rectangle1.py (in the code subdirectory). Suppose we are representing rectangles using a tuple of four coordinates `(x0, y0, x1, y1)`. In order to do some calculations, we need to normalize the rectangle so that it is at the origin and 1.0 units long on its longest axis. The function does that, but checks that its input is correctly formatted and that its result makes sense:
+For example, let's look at rectangle1.py (in the code subdirectory). Suppose we are representing rectangles using a tuple of four coordinates `(x0, y0, x1, y1)`, representing the lower left and upper right corners of the rectangle. In order to do some calculations, we need to normalize the rectangle so that the lower left corner is at the origin and 1.0 units long on its longest axis. The function does that, but checks that its input is correctly formatted and that its result makes sense:
 
 ~~~ {.python}
 def normalize_rectangle(rect):
+    ' ' ' Normalizes a rectangle so that it is at the origin and 1.0 units long on its longest axis. ' ' '
     assert len(rect) == 4, 'Rectangles must contain 4 coordinates'
     x0, y0, x1, y1 = rect
     assert x0 < x1, 'Invalid X coordinates'

@@ -25,7 +25,7 @@ But the two most important things are to use whatever language your colleagues a
 *  [Command-Line Programs](07-cmdline.html)
 *  [Reading and analysing Patient data using libraries](08-numpy.html)
 *  [Visualising data using libraries](09-matplotlib.html)
-*  [Python Style Guide](09-Python-style-guide.html)
+*  [Python Style Guide](10-Python-style-guide.html)
 
 ## Other resources
 
