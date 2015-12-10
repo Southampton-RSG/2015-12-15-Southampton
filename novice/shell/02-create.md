@@ -19,7 +19,7 @@ Let's use `ls -F` to see what our test directory contains:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-09-17-southampton/novice/shell/test_directory
+/Users/nelle/2015-12-15-southampton/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ ls -F
@@ -86,7 +86,7 @@ $ nano draft.txt
 > your computer's start menu, it may want to save files in your desktop or
 > documents directory instead. You can change this by navigating to
 > another directory the first time you "Save As...", and point it to the
-> 2015-09-17-southampton/novice/shell/test_directory/thesis folder in your 
+> 2015-12-15-southampton/novice/shell/test_directory/thesis folder in your
 > user's home directory.
 
 Let's type in a few lines of text,
@@ -149,7 +149,7 @@ and then move up one directory using `cd ..`:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-09-17-southampton/novice/shell/test_directory/thesis
+/Users/nelle/2015-12-15-southampton/novice/shell/test_directory/thesis
 ~~~
 ~~~ {.bash}
 $ nano draft.txt

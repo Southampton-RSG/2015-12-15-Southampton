@@ -78,7 +78,7 @@ $ pwd
 > On Linux it will look like `/home/nelle`,
 > on Git Bash on Windows it will look like `/c/Users/nelle`,
 > and on Windows itself it will be similar to `C:\Documents and Settings\nelle`.
-> Note that it may also look slightly different for different versions of 
+> Note that it may also look slightly different for different versions of
 > Windows.
 
 > ## Alphabet Soup {.callout}
@@ -100,7 +100,7 @@ $ pwd
 > (which means Control-A) and to the end using `^E`. Much quicker on long
 > lines than just using the left/right arrow keys.
 >
-> Using the up and down arrow keys allow you to cycle through your previous 
+> Using the up and down arrow keys allow you to cycle through your previous
 > commands - plus, useful if you forget exactly what you typed earlier!
 
 To understand what a "home directory" is,
@@ -148,7 +148,7 @@ which stands for "listing" (the `...` refers to other files and directories that
 $ ls
 ~~~
 ~~~ {.output}
-2015-09-17-southampton Misc                   Solar.pdf
+2015-12-15-southampton Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -159,7 +159,7 @@ Downloads              Pizza.cfg              mbox
 
 Of course, this listing will depend on what you have in your own home directory.
 
-We need to get into the repository directory `2015-09-17-southampton`, so what if we want to change our current working directory?
+We need to get into the repository directory `2015-12-15-southampton`, so what if we want to change our current working directory?
 Before we do this,
 `pwd` shows us that we're in `/Users/nelle`.
 
@@ -177,20 +177,20 @@ the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
 ~~~ {.bash}
-$ cd 2015-09-17-southampton
+$ cd 2015-12-15-southampton
 ~~~
 
 `cd` doesn't print anything,
-but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2015-09-17-southampton`.
+but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2015-12-15-southampton`.
 If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/2015-09-17-southampton`,
+it lists the contents of `/Users/nelle/2015-12-15-southampton`,
 because that's where we now are:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-09-17-southampton
+/Users/nelle/2015-12-15-southampton
 ~~~
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
@@ -352,7 +352,7 @@ $ cd test_directory
 
 We know how to go down the directory tree:
 but how do we go up?
-We could use an absolute path, e.g. `cd /Users/nelle/2015-09-17-southampton/novice/shell`.
+We could use an absolute path, e.g. `cd /Users/nelle/2015-12-15-southampton/novice/shell`.
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
@@ -360,7 +360,7 @@ but it's almost always simpler to use `cd ..` to go up one level:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-09-17-southampton/novice/shell/test_directory
+/Users/nelle/2015-12-15-southampton/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ cd ..
@@ -375,7 +375,7 @@ the **parent** of the current directory.
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-09-17-southampton/novice/shell/
+/Users/nelle/2015-12-15-southampton/novice/shell/
 ~~~
 
 Let's go back into our test directory:
@@ -398,7 +398,7 @@ creatures/          north-pacific-gyre/ solar.pdf
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle/2015-09-17-southampton/shell/novice/test_directory`, refers to the `/Users/nelle/2015-09-17-southampton/2015-09-17-southampton/novice/shell/` directory).
+such as `..` (which, if we're in `/Users/nelle/2015-12-15-southampton/shell/novice/test_directory`, refers to the `/Users/nelle/2015-12-15-southampton/2015-12-15-southampton/novice/shell/` directory).
 As you can see,
 it also displays another special directory that's just called `.`,
 which means "the current working directory".
@@ -410,7 +410,7 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/nelle/2015-09-17-southampton`,
+> if we are in `/Users/nelle/2015-12-15-southampton`,
 > the command `ls ..` will give us a listing of `/Users/nelle`.
 > When the meanings of the parts are the same no matter how they're combined,
 > programmers say they are **orthogonal**:
@@ -428,7 +428,7 @@ but we'll see some uses for it soon.
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
 ~~~ {.bash}
-$ ls ~/2015-09-17-southampton
+$ ls ~/2015-12-15-southampton
 ~~~
 ~~~ {.output}
 CONDUCT.md              _config.yml             prerequisites.html
