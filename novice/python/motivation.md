@@ -11,7 +11,7 @@ subtitle: Why Python?
 - Simple, readable, flexible, powerful language and easier for beginners to grasp 
 - Goal is to teach basic programming concepts that can be applied to other programming languages
 
-## Cont..
+## Why Python?
 
 - Part of the winning formula for productivity, software quality, and maintainability at many institutions and companies across the world
 - Largely being used across various application domains:
@@ -20,7 +20,7 @@ subtitle: Why Python?
      + Software development
      + Arts, business, education and government sectors
 
-## Cont..
+## Why Python?
 
 - Used for development on the web and the client 
 - Increased productivity:
@@ -31,7 +31,7 @@ subtitle: Why Python?
 - Based on Southampton PhD students software usage survey conducted by SSI's Policy researchers:
      ![](img/wordle2.png)
 
-## We'll be teachign Python3
+## We'll be teaching Python3
 
 - Python is currently transitioning from version 2 to 3
 - Teaching will be in 3.4
