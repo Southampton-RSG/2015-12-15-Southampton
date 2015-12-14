@@ -49,7 +49,7 @@
 <!-- include mention of research into searching for bugs in same place -->
 
 <p>The first step is to use <em>defensive programming</em>, i.e., to assume that mistakes <em>will</em> happen and to guard against them.</p>
-<p>One way to do this is to add <em>assertions</em> to our code so that it checks itself as it runs. An assertion is simply a statement that something must be true at a certain point in a program. When Python sees one, it checks that the assertion’s condition:</p>
+<p>One way to do this is to add <em>assertions</em> to our code so that it checks itself as it runs. An assertion is simply a statement that something must be true at a certain point in a program. When Python sees one, it checks the assertion’s condition:</p>
 <ul>
 <li>If <em>true</em>, Python does nothing</li>
 <li>If <em>false</em>, Python halts the program immediately and prints the error message provided</li>
@@ -70,8 +70,9 @@ AssertionError: Data should only contain positive values</code></pre>
 <li>A <strong>postcondition</strong> is something that the function guarantees is true when it finishes.</li>
 <li>An <strong>invariant</strong> something that is always true at a particular point inside a piece of code.</li>
 </ul>
-<p>For example, let’s look at rectangle1.py (in the code subdirectory). Suppose we are representing rectangles using a tuple of four coordinates <code>(x0, y0, x1, y1)</code>. In order to do some calculations, we need to normalize the rectangle so that it is at the origin and 1.0 units long on its longest axis. The function does that, but checks that its input is correctly formatted and that its result makes sense:</p>
+<p>For example, let’s look at rectangle1.py (in the code subdirectory). Suppose we are representing rectangles using a tuple of four coordinates <code>(x0, y0, x1, y1)</code>, representing the lower left and upper right corners of the rectangle. In order to do some calculations, we need to normalize the rectangle so that the lower left corner is at the origin and 1.0 units long on its longest axis. The function does that, but checks that its input is correctly formatted and that its result makes sense:</p>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> normalize_rectangle(rect):
+    <span class="co">&#39; &#39;</span> <span class="st">&#39; Normalizes a rectangle so that it is at the origin and 1.0 units long on its longest axis. &#39;</span> <span class="st">&#39; &#39;</span>
     <span class="kw">assert</span> <span class="dt">len</span>(rect) == <span class="dv">4</span>, <span class="st">&#39;Rectangles must contain 4 coordinates&#39;</span>
     x0, y0, x1, y1 = rect
     <span class="kw">assert</span> x0 &lt; x1, <span class="st">&#39;Invalid X coordinates&#39;</span>

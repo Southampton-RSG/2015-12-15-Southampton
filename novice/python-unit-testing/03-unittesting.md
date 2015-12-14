@@ -137,7 +137,7 @@ temperature conversion functions. Let's write some unit tests for them.
 > 1. Write some unit tests for the `fahr_to_kelvin` function in 
 >    `temp_conversion.py`, which you can find in 
 >    `python-unit-testing/code/temp_conversion.py`.
->    Place your unit tests in a new file called `test_climate_analysis.py`
+>    Place your unit tests in a new file called `test_temp_conversion.py`
 >    in the `python-unit-testing/code` directory, and use `nose` to run
 >    the tests.
 >    Try and think about tests that could **break** your code --- what
