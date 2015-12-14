@@ -1,4 +1,4 @@
-]---
+---
 layout: slides
 title: Building programs with Python	
 subtitle: Why Python?
