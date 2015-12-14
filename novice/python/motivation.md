@@ -1,4 +1,4 @@
----
+]---
 layout: slides
 title: Building programs with Python	
 subtitle: Why Python?
@@ -14,11 +14,11 @@ subtitle: Why Python?
 ## Cont..
 
 - Part of the winning formula for productivity, software quality, and maintainability at many institutions and companies across the world
-    + Largely being used across various application domains:
-         + Scientific (Bioinformatics, Biology, Computational chemistry, Data visualisation, Scientific programming etc..)
-         + Engineering
-         + Software development
-         + Arts, business, education and government sectors
+- Largely being used across various application domains:
+     + Scientific (Bioinformatics, Biology, Computational chemistry, Data visualisation, Scientific programming etc..)
+     + Engineering
+     + Software development
+     + Arts, business, education and government sectors
 
 ## Cont..
 
@@ -26,17 +26,12 @@ subtitle: Why Python?
 - Increased productivity:
       + Debugging Python programs is easy: a bad input or bug will show a meaningful error message.
       
-## What is Python?	
-
-- Close to pseudocode, easy to read
-- Indentation marks block structure - simplifies maintenance and aids collaboration
-      
-## Why teaching Python?
+## Python is up and coming!
 
 - Based on Southampton PhD students software usage survey conducted by SSI's Policy researchers:
      ![](img/wordle2.png)
 
-## Python3
+## We'll be teachign Python3
 
 - Python is currently transitioning from version 2 to 3
 - Teaching will be in 3.4
@@ -45,17 +40,16 @@ subtitle: Why Python?
       + Matrix multiplication
       + Chained exceptions
       + Everything is an iterator ...
-- New syntax. New interpreter behaviour. Standard library fixes        
      
 ## Learning objectives
  
 -  how to assign values to variables and perform simple operations: python basics
 -  how to repeat actions with loops 
--  how to read and analyse patient data using libraries
--  how to visualise data using libraries
 -  how to correctly evaluate expressions: making choices using conditionals 
 -  why we should divide programs into small, single-purpose blocks of code: creating functions
--  how to read data from standard input in a program so that it can be used in a pipeline
+-  how to build a program, step by step, to do basic analysis on some climate data
+-  how to read and analyse patient data using libraries
+-  how to visualise data using libraries
 
 ## Turning on Python Interpreter
 
