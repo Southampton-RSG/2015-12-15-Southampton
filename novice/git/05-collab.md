@@ -101,7 +101,7 @@ The name `origin` is a **local nickname** for your **remote repository**:
 we **could** use something else if we wanted to,
 but `origin` is **conventional**, and will come in useful later.
 
-Make sure to use the URL for your repository rather than Vlad's:
+Make sure to use the URL for your repository rather than mine!
 the only difference should be your username instead of `js-robinson`.
 :
 Where to Find Repository URL on GitHub
