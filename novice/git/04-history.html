@@ -122,20 +122,19 @@ index 277d6c7..c463f71 100644
 </div>
 <h3 id="restoring-files">Restoring Files</h3>
 <p>All right: we can <strong>save changes</strong> to files and <strong>see what we’ve changed</strong> — suppose we need to <strong>restore</strong> older versions of things?</p>
-<p>Let’s suppose we <strong>accidentally</strong> overwrite our file:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> climate_analysis.py
-$ <span class="kw">cat</span> climate_analysis.py</code></pre>
-<pre class="output"><code>Dear Mum,
-I&#39;m really getting the hang of this version control thing!!</code></pre>
+<p>Let’s suppose we <strong>accidentally</strong> overwritem or delete our file:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rm</span> climate_analysis.py
+$ <span class="kw">ls</span></code></pre>
+<pre class="output"><code>temp_conversion.py</code></pre>
 <p><strong>Whoops!</strong></p>
 <p><code>git status</code> now tells us that the file has been changed, but those changes haven’t been staged:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status</code></pre>
 <pre class="output"><code>On branch master
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)
   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
 
-        modified:   climate_analysis.py
+        deleted:    climate_analysis.py
 
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
 <p>Following the helpful hint in that output, we can put things back the way they were by using <code>git checkout</code>:</p>

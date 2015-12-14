@@ -90,7 +90,7 @@ the string we need to identify it:
 ![Where to Find Repository URL on GitHub](img/github-find-repo-string.png)
 
 Copy that URL from the browser,
-go into the local `planets` repository,
+go back to your local repository,
 and run this command:
 
 ~~~ {.bash}

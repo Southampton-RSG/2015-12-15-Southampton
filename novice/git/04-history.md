@@ -134,15 +134,14 @@ index 277d6c7..c463f71 100644
 All right:
 we can **save changes** to files and **see what we've changed** &mdash; suppose we need to **restore** older versions of things?
 
-Let's suppose we **accidentally** overwrite our file:
+Let's suppose we **accidentally** overwritem or delete our file:
 
 ~~~ {.bash}
-$ nano climate_analysis.py
-$ cat climate_analysis.py
+$ rm climate_analysis.py
+$ ls
 ~~~
 ~~~ {.output}
-Dear Mum,
-I'm really getting the hang of this version control thing!!
+temp_conversion.py
 ~~~
 
 **Whoops!**
@@ -156,10 +155,10 @@ $ git status
 ~~~ {.output}
 On branch master
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
+  (use "git add/rm <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-        modified:   climate_analysis.py
+        deleted:    climate_analysis.py
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
