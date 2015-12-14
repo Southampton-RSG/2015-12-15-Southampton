@@ -141,7 +141,7 @@ and to continue to do work without messing with that main line.  The main (defau
 
 At a later time you can re-integrate branches to the master.
 
-So, for **Developer A**, our local and remote repositories are now **in sync**!
+So, for **Developer A**, our local and remote repositories are now **in sync**! You can check in your browser that the files have reached your GitHub repository.
 
 ###Testing Pull###
 
