@@ -102,9 +102,8 @@ we **could** use something else if we wanted to,
 but `origin` is **conventional**, and will come in useful later.
 
 Make sure to use the URL for your repository rather than mine!
-the only difference should be your username instead of `js-robinson`.
-:
-Where to Find Repository URL on GitHub
+The only difference should be your username instead of `js-robinson`.
+
 We can check that the command has worked by running `git remote -v`:
 
 ~~~ {.bash}
