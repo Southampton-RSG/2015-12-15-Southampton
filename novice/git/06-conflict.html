@@ -124,7 +124,17 @@ hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; fo
 <p>Git <strong>detects</strong> that the <strong>changes</strong> made in one copy <strong>overlap</strong> with those made in the other and <strong>stops us from trampling</strong> on our collaborators work.</p>
 <p>What we have to do is <strong>pull</strong> the changes from GitHub, <a href="reference.html#merge">merge</a> them into the copy we’re currently working in, and <strong>then push</strong> that.</p>
 <h3 id="developer-b---pull-and-resolve">Developer B - Pull and resolve</h3>
-<p>Let’s start by pulling: <sub>~</sub> {.bash} $ git pull origin master <sub><sub><sub> </sub></sub></sub> {.output} remote: Counting objects: 5, done.<br />remote: Compressing objects: 100% (2/2), done.<br />remote: Total 3 (delta 1), reused 3 (delta 1)<br />Unpacking objects: 100% (3/3), done. From https://github.com/js-robinson/climate-analysis * branch master -&gt; FETCH_HEAD Auto-merging rainfall_conversion.py CONFLICT (content): Merge conflict in rainfall_conversion.py Automatic merge failed; fix conflicts and then commit the result. <sub>~</sub></p>
+<p>Let’s start by pulling:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> pull origin master</code></pre>
+<pre class="output"><code>remote: Counting objects: 5, done.        
+remote: Compressing objects: 100% (2/2), done.        
+remote: Total 3 (delta 1), reused 3 (delta 1)        
+Unpacking objects: 100% (3/3), done.
+From https://github.com/js-robinson/climate-analysis
+ * branch            master     -&gt; FETCH_HEAD
+Auto-merging rainfall_conversion.py
+CONFLICT (content): Merge conflict in rainfall_conversion.py
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <p><code>git pull</code> tells us there’s a <strong>conflict</strong>, and marks that conflict in the affected file:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> rainfall_conversion.py</code></pre>
 <pre class="output"><code>&quot;&quot;&quot;A library to perform rainfall unit conversions&quot;&quot;&quot;
