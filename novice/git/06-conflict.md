@@ -158,12 +158,12 @@ Let's start by pulling:
 $ git pull origin master
 ~~~
 ~~~ {.output}
-remote: Counting objects: 5, done.        
-remote: Compressing objects: 100% (2/2), done.        
-remote: Total 3 (delta 1), reused 3 (delta 1)        
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0
 Unpacking objects: 100% (3/3), done.
 From https://github.com/js-robinson/climate-analysis
- * branch            master     -> FETCH_HEAD
+   3973c44..479a5d2  master     -> origin/master
 Auto-merging rainfall_conversion.py
 CONFLICT (content): Merge conflict in rainfall_conversion.py
 Automatic merge failed; fix conflicts and then commit the result.
