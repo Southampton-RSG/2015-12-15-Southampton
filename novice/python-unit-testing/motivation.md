@@ -66,6 +66,9 @@ Letters – Retraction, Science 22 December 2006
 - Confidence to refactor or fix bugs without creating new bugs
 - Examples of how to use your code
 - Sufficient code reuse
+
+## Continued ...
+
 - “if it’s not tested, it’s broken”
     + bittermanandy, 10/09/2010
 - **NO** code duplication (--> bug duplication)     
