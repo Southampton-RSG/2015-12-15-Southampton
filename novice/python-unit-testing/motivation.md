@@ -62,10 +62,13 @@ Letters – Retraction, Science 22 December 2006
 - Confidence that your code does what it is supposed to
     + That your research is built on a solid foundation
 - Ability to detect, and fix, bugs more quickly
+    + Correct code (bugs caught early in the cycle)
 - Confidence to refactor or fix bugs without creating new bugs
 - Examples of how to use your code
+- Sufficient code reuse
 - “if it’s not tested, it’s broken”
     + bittermanandy, 10/09/2010
+- **NO** code duplication (--> bug duplication)     
 
 ## Examples of unit testing frameworks
 
@@ -117,3 +120,17 @@ are its limits?
 Write a function called **addnumbers** in **addnumbers.py** that passes the unit tests in **test_addnumbers.py**.
 
 All addnumbers should do is add together all the numbers in a list and return the result.
+
+## OK, What's the big deal?
+
+- Writing the tests made us look deeper
+
+- made us read the code very carefully
+
+- made us see both the good and the bad side 
+
+- Refactored some incorrect or messy code
+
+- In the end, we have absolutely no fear about tearing the code to pieces and putting it back together again, even though we didn't write it
+
+## Thank You!
