@@ -236,14 +236,18 @@ $ git add rainfall_conversion.py
 $ git status
 ~~~
 ~~~ {.output}
-# On branch master
-# All conflicts fixed but you are still merging.
-#   (use "git commit" to conclude merge)
-#
-# Changes to be committed:
-#
-#	modified:   rainfall_conversion.py
-#
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commit each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+
+        modified:   rainfall_conversion.py
+
 ~~~
 ~~~ {.bash}
 $ git commit -m "Merging changes from GitHub"
