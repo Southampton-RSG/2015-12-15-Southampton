@@ -84,15 +84,13 @@ Letters – Retraction, Science 22 December 2006
 > * when it's useful to write tests *before* writing code
 > * how Python reports and handles errors
 
-## Test Driven Development
+## Red, Green, Refactor
 
-1. Write some unit tests for a function that doesn't exist yet. 
-
-2. Write that function.
-
-3. Modify it until it passes all of the tests.
- 
-4. Finally, Clean up the function i.e. make it more readable or more efficient without breaking any of the tests.
+1. First write a test
+2. Write code to pass the test
+3. Clean up the code
+4. Repeat
+    ![](img/test-driven-development-with-python-3-728.jpg)
 
 ## Challenge
 
