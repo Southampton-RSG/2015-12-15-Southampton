@@ -82,12 +82,12 @@ $ <span class="kw">git</span> commit -m <span class="st">&quot;Developer A added
  1 file changed, 1 insertion(+)</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> push origin master</code></pre>
 <pre class="output"><code>Counting objects: 5, done.
-Delta compression using up to 4 threads.
+Delta compression using up to 8 threads.
 Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 352 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To https://github.com/vlad/planets
-   29aba7c..dabb4c8  master -&gt; master</code></pre>
+Writing objects: 100% (3/3), 357 bytes | 0 bytes/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To https://github.com/js-robinson/climate-analysis.git
+   3973c44..479a5d2  master -&gt; master</code></pre>
 <h3 id="developer-b---modify-and-push-without-pull">Developer B - Modify and push without pull</h3>
 <p>Now let’s have Developer B make a different change to their copy <em>without</em> updating (pulling) from GitHub:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">nano</span> rainfall_conversion.py

@@ -82,12 +82,12 @@ $ git push origin master
 ~~~
 ~~~ {.output}
 Counting objects: 5, done.
-Delta compression using up to 4 threads.
+Delta compression using up to 8 threads.
 Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 352 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-To https://github.com/vlad/planets
-   29aba7c..dabb4c8  master -> master
+Writing objects: 100% (3/3), 357 bytes | 0 bytes/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To https://github.com/js-robinson/climate-analysis.git
+   3973c44..479a5d2  master -> master
 ~~~
 
 ###Developer B - Modify and push without pull###
