@@ -84,6 +84,16 @@ Letters – Retraction, Science 22 December 2006
 > * when it's useful to write tests *before* writing code
 > * how Python reports and handles errors
 
+## Test Driven Development
+
+1. Write some unit tests for a function that doesn't exist yet. 
+
+2. Write that function.
+
+3. Modify it until it passes all of the tests.
+ 
+4. Finally, Clean up the function i.e. make it more readable or more efficient without breaking any of the tests.
+
 ## Challenge
 
 A colleague of yours has written a function that calculates the running total of all the values in a list, e.g., running([0, 1, 2]) produces the list [0, 1, 3]. 
