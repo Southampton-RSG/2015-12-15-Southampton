@@ -96,7 +96,7 @@ Letters – Retraction, Science 22 December 2006
 
 ## Red, Green, Refactor
 
-    ![](img/test-driven-development-with-python-3-728.jpg)
+![](img/test-driven-development-with-python-3-728.jpg)
 
 ## Challenge
 
