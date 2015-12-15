@@ -112,11 +112,12 @@ $ <span class="kw">git</span> commit -m <span class="st">&quot;Developer B added
 <p>but Git won’t let us push it to GitHub:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> push origin master</code></pre>
 <pre class="output"><code>To https://github.com/js-robinson/climate-analysis.git
- ! [rejected]        master -&gt; master (non-fast-forward)
+ ! [rejected]        master -&gt; master (fetch first)
 error: failed to push some refs to &#39;https://github.com/js-robinson/climate-analysis.git&#39;
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. Merge the remote changes (e.g. &#39;git pull&#39;)
-hint: before pushing again.
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., &#39;git pull ...&#39;) before pushing again.
 hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.</code></pre>
 <div class="figure">
 <img src="img/slides/version-control-with-git-slides%20-%2026.jpg" alt="Conflicts #2" /><p class="caption">Conflicts #2</p>
